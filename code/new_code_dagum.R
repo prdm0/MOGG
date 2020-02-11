@@ -6,6 +6,7 @@ library(parallel)
 library(tibble)
 library(pbmcapply)
 library(magrittr)
+library(purrr)
 
 # Baseline functions. -----------------------------------------------------
 pdf_dagum <- function(x, alpha, beta, p) 
@@ -149,16 +150,6 @@ mc <- function(n = 250L, M = 1e3L, par_true, method = "BFGS") {
   result
 }
 
-# Sample Size -------------------------------------------------------------
-n <- 10L
-
-# True parameters (theta, a, alpha, beta and p) -------------------------------------
-true_parameters <- c(5, 1, 5, 1, 1)
-
-set.seed(1L, kind = "L'Ecuyer-CMRG")
-result_mc <- mc(n = n, M = 100L, par_true = true_parameters, method = "BFGS")
-mc.reset.stream()
-
 bias_function <- function(x, par_true){
   x - par_true
 }
@@ -167,12 +158,23 @@ mse_function <- function(x, par_true) {
   (x - par_true) ^ 2
 }
 
-# Average Bias of Estimators ----------------------------------------------
-bias <- apply(X = result_mc, MARGIN = 1L, FUN = bias_function, par_true = true_parameters) %>% 
-  apply(MARGIN = 1L, FUN = mean)
-paste0("bias_", n, ".RData") %>% save(file = ., bias)
+simular <- function(n) {
+  # True parameters (theta, a, alpha, beta and p) -------------------------------------
+  true_parameters <- c(1, 1, 1, 1, 1)
+  
+  set.seed(1L, kind = "L'Ecuyer-CMRG")
+  result_mc <- mc(n = n, M = 1e4L, par_true = true_parameters, method = "BFGS")
+  mc.reset.stream()
+  
+  # Average Bias of Estimators ----------------------------------------------
+  bias <- apply(X = result_mc, MARGIN = 1L, FUN = bias_function, par_true = true_parameters) %>% 
+    apply(MARGIN = 1L, FUN = mean)
+  paste0("bias_", n, ".RData") %>% save(file = ., bias)
+  
+  # Mean Square Error -------------------------------------------------------
+  mse <- apply(X = result_mc, MARGIN = 1L, FUN = mse_function, par_true = true_parameters) %>% 
+    apply(MARGIN = 1L, FUN = mean)
+  paste0("mse_", n, ".RData") %>% save(file = ., mse)
+}
 
-# Mean Square Error -------------------------------------------------------
-mse <- apply(X = result_mc, MARGIN = 1L, FUN = mse_function, par_true = true_parameters) %>% 
-  apply(MARGIN = 1L, FUN = mean)
-paste0("mse_", n, ".RData") %>% save(file = ., mse)
+walk(.x = c(10, 20, 60, 100, 200, 400, 600, 1000, 2000, 5000, 10000), .f = simular)
