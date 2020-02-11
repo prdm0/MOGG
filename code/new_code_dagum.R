@@ -2,11 +2,19 @@
 # Author: Pedro Rafael D. Marinho
 
 # Loading libraries. ------------------------------------------------------
-library(purrr)
+library(parallel)
+library(tibble)
+library(pbmcapply)
+library(magrittr)
 
 # Baseline functions. -----------------------------------------------------
-pdf_w <- function(x, alpha, beta) dweibull(x = x, shape = alpha, scale = beta)
-cdf_w <- function(x, alpha, beta) pweibull(q = x, shape = alpha, scale = beta)
+pdf_dagum <- function(x, alpha, beta, p) 
+  alpha * p / x * (x / beta) ^ (alpha * p) / ((x / beta) ^ alpha + 1) ^ (p + 1)
+# integrate(f = pdf_dagum, lower = 0, upper = Inf, alpha = 1.2, beta = 1.6, p = 2.2)
+
+cdf_dagum <- function(x, alpha, beta, p) 
+  (1 + (x / beta) ^ (-alpha)) ^ (-p)
+# cdf_dagum(x = Inf, alpha = 1, beta = 4, p = 1)
 
 # This function creates MOGG functions. ----------------------------------
 pdf_mogg <- function(g, G){
@@ -20,30 +28,36 @@ pdf_mogg <- function(g, G){
   }
 }
 
-# MOGW --------------------------------------------------------------------
-rmogw <- function(n = 1L, theta, a, alpha, beta){
+rdagum <- function(n = 1L, alpha, beta, p) {
+  beta * (runif(n = n, min = 0, max = 1) ^ (-1 / p) - 1) ^ (-1 / alpha)
+}
+
+pdf_mogdagum <- pdf_mogg(g = pdf_dagum, G = cdf_dagum)
+
+# MOG-Dagum --------------------------------------------------------------------
+rmogdagum <- function(n = 1L, theta, a, alpha, beta, p){
   
-  cond_c <- function(x, theta, a, alpha, beta){
-    num <- pdf_mogw(x, theta, a, alpha, beta)
-    den <- dweibull(x, shape = 1, scale = 1)
-    -num/den
+  cond_c <- function(x, theta, a, alpha, beta, p){
+    num <- pdf_mogdagum(x, theta, a, alpha, beta, p)
+    den <- pdf_dagum(x, alpha = alpha, beta = beta , p = p)
+    -num / den
   }
   
   x_max <- optim(fn = cond_c, method = "BFGS", par = 1, theta = theta, a = a,
-                 alpha = alpha, beta = beta)$par
+                 alpha = alpha, beta = beta, p = p)$par
   
-  c <- pdf_mogw(x_max, theta, a, alpha, beta)/dweibull(x_max, shape = alpha, scale = beta)
+  c <- pdf_mogdagum(x_max, theta, a, alpha, beta, p)/pdf_dagum(x_max, alpha = alpha, beta = beta, p = p)
 
   criterion <- function(y, u){
-    num <- pdf_mogw(y, theta, a, alpha, beta)
-    den <- dweibull(y, shape = alpha, scale = beta)
+    num <- pdf_mogdagum(y, theta, a, alpha, beta, p)
+    den <- pdf_dagum(y, alpha = alpha, beta = beta, p = p)
     u < num / (c * den)
   }
   
   values <- double(n)
   i <- 1L
   repeat{
-    y <- rweibull(n = 1L, shape = alpha, scale = beta)
+    y <- rdagum(n = 1L, alpha = alpha, beta = beta, p = p)
     u <- runif(n = 1L, min = 0, max = 1)
     
     if (criterion(y, u)) {
@@ -56,27 +70,36 @@ rmogw <- function(n = 1L, theta, a, alpha, beta){
 }
 
 # Testing the rmogw Function ----------------------------------------------
-# theta = 1.2
-# a = 1.5
-# alpha = 1.7
-# beta = 1.4
-# pdf_mogw <- pdf_mogg(g = pdf_w, G = cdf_w)
-# sample_data <- rmogw(n = 250L, theta, a, alpha, beta)
-# x <- seq(0, 6, length.out = 500L)
-# hist(sample_data, probability = TRUE, xlab = "", main = "")
-# lines(x, pdf_mogw(x, theta, a, alpha, beta))
+theta = 5
+a = 1
+alpha = 5
+beta = 1
+p = 1
+pdf_mogdagum <- pdf_mogg(g = pdf_dagum, G = cdf_dagum)
+sample_data <- rmogdagum(n = 250L, theta, a, alpha, beta, p)
+x <- seq(0, max(sample_data), length.out = 500L)
+hist(sample_data, probability = TRUE, xlab = "", main = "")
+lines(x, pdf_mogdagum(x, theta, a, alpha, beta, p))
 
 # Monte Carlo simulations. ------------------------------------------------
-mc <- function(M = 1e3L, n = 100L, method = "BFGS", theta, a, alpha, beta) {
+mc <- function(n = 250L, M = 1e3L, par_true, method = "BFGS") {
+  
+  theta <- par_true[1L]
+  a <- par_true[2L]
+  alpha <- par_true[3L]
+  beta <- par_true[4L]
+  p <- par_true[5L]
   
   # Log-likelihood function. ------------------------------------------------
-  pdf_mogw <- pdf_mogg(g = pdf_w, G = cdf_w)
+  pdf_mogw <- pdf_mogg(g = pdf_dagum, G = cdf_dagum)
   log_likelihood <- function(x, par) {
     theta <- par[1L]
     a <- par[2L]
     alpha <- par[3L]
     beta <- par[4L]
-    -sum(log(pdf_mogw(x, theta = theta, a = a, alpha = alpha, beta = beta)))
+    p <- par[5L]
+    
+    -sum(log(pdf_mogdagum(x, theta = theta, a = a, alpha = alpha, beta = beta, p = p)))
   }
   
   myoptim <-
@@ -88,20 +111,20 @@ mc <- function(M = 1e3L, n = 100L, method = "BFGS", theta, a, alpha, beta) {
       )
   
   one_step_mc <- function(i){
-    sample_data <- rmogw(n, theta, a, alpha, beta)
+    sample_data <- rmogdagum(n, theta, a, alpha, beta, p)
     
     result <- myoptim(
       fn = log_likelihood, 
-      par = c(1, 1, 1, 1),
+      par = c(1, 1, 1, 1, 1),
       x = sample_data,
       method = method
     )
     
     while(is.na(result) || result$convergence != 0) {
-      sample_data <- rmogw(n, theta, a, alpha, beta)
+      sample_data <- rmogdagum(n, theta, a, alpha, beta, p)
       result <- myoptim(
         fn = log_likelihood, 
-        par = c(1, 1, 1, 1),
+        par = c(1, 1, 1, 1, 1),
         method = method,
         x = sample_data
       )
@@ -110,17 +133,46 @@ mc <- function(M = 1e3L, n = 100L, method = "BFGS", theta, a, alpha, beta) {
     result$par
   }
   
-  sapply(X = 1L:M, FUN = one_step_mc) 
+  result_vector <-
+    unlist(pbmcapply::pbmclapply(
+      X = 1L:M,
+      FUN = one_step_mc,
+      mc.cores = parallel::detectCores()
+    ))
+  
+  
+  result <-
+    tibble::as_tibble(matrix(result_vector, byrow = TRUE, ncol = 5L))
+  
+  names(result) <- c("theta", "a", "alpha", "beta", "p")
+  
+  result
 }
 
-result_mc <- mc(
-  M = 1e3L,
-  n = 250L,
-  method = "BFGS",
-  theta = 1.5,
-  a = 1.5,
-  alpha = 1.5,
-  beta = 1.5
-)
+# Sample Size -------------------------------------------------------------
+n <- 10L
 
-mean_est_par <- apply(X = result_mc, MARGIN = 1L, FUN = mean)
+# True parameters (theta, a, alpha, beta and p) -------------------------------------
+true_parameters <- c(5, 1, 5, 1, 1)
+
+set.seed(1L, kind = "L'Ecuyer-CMRG")
+result_mc <- mc(n = n, M = 100L, par_true = true_parameters, method = "BFGS")
+mc.reset.stream()
+
+bias_function <- function(x, par_true){
+  x - par_true
+}
+
+mse_function <- function(x, par_true) {
+  (x - par_true) ^ 2
+}
+
+# Average Bias of Estimators ----------------------------------------------
+bias <- apply(X = result_mc, MARGIN = 1L, FUN = bias_function, par_true = true_parameters) %>% 
+  apply(MARGIN = 1L, FUN = mean)
+paste0("bias_", n, ".RData") %>% save(file = ., bias)
+
+# Mean Square Error -------------------------------------------------------
+mse <- apply(X = result_mc, MARGIN = 1L, FUN = mse_function, par_true = true_parameters) %>% 
+  apply(MARGIN = 1L, FUN = mean)
+paste0("mse_", n, ".RData") %>% save(file = ., mse)

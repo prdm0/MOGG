@@ -33,7 +33,7 @@ rmogw <- function(n = 1L, theta, a, alpha, beta){
                  alpha = alpha, beta = beta)$par
   
   c <- pdf_mogw(x_max, theta, a, alpha, beta)/dweibull(x_max, shape = alpha, scale = beta)
-
+  
   criterion <- function(y, u){
     num <- pdf_mogw(y, theta, a, alpha, beta)
     den <- dweibull(y, shape = alpha, scale = beta)
