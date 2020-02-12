@@ -174,7 +174,6 @@ simulate <- function(n) {
         apply(MARGIN = 1L, FUN = mean)"))) 
   eval(parse(text = glue("save(file = \"bias_{n}.RData\", bias_{n})")))
   
-  
   # Mean Square Error -------------------------------------------------------
   eval(parse(text = glue("mse_{n} <- apply(X = result_mc, MARGIN = 1L, FUN = mse_function, par_true = true_parameters) %>% 
         apply(MARGIN = 1L, FUN = mean)"))) 
