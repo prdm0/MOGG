@@ -163,18 +163,31 @@ simulate <- function(n) {
   true_parameters <- c(1, 1, 1, 1, 1)
   
   set.seed(1L, kind = "L'Ecuyer-CMRG")
+  t0 <- Sys.time()
   result_mc <- mc(n = n, M = 1e4L, par_true = true_parameters, method = "BFGS")
+  total_time <- Sys.time() - t0
+    
   mc.reset.stream()
   
   # Average Bias of Estimators ----------------------------------------------
-  bias <- apply(X = result_mc, MARGIN = 1L, FUN = bias_function, par_true = true_parameters) %>% 
-    apply(MARGIN = 1L, FUN = mean)
-  paste0("bias_", n, ".RData") %>% save(file = ., bias)
+  eval(parse(text = glue("bias_{n} <- apply(X = result_mc, MARGIN = 1L, FUN = bias_function, par_true = true_parameters) %>% 
+        apply(MARGIN = 1L, FUN = mean)"))) 
+  eval(parse(text = glue("save(file = \"bias_{n}.RData\", bias_{n})")))
+  
   
   # Mean Square Error -------------------------------------------------------
-  mse <- apply(X = result_mc, MARGIN = 1L, FUN = mse_function, par_true = true_parameters) %>% 
-    apply(MARGIN = 1L, FUN = mean)
-  paste0("mse_", n, ".RData") %>% save(file = ., mse)
+  eval(parse(text = glue("mse_{n} <- apply(X = result_mc, MARGIN = 1L, FUN = mse_function, par_true = true_parameters) %>% 
+        apply(MARGIN = 1L, FUN = mean)"))) 
+  eval(parse(text = glue("save(file = \"mse_{n}.RData\", mse_{n})")))
+  
+  # Total Time --------------------------------------------------------------
+  eval(parse(text = glue("time_{n} <- total_time")))
+  eval(parse(text = glue("save(file = \"time_{n}.RData\", time_{n})")))
+  
+  # Result MC
+  eval(parse(text = glue("result_{n} <- result_mc")))
+  eval(parse(text = glue("save(file = \"result_{n}.RData\", result_{n})")))
+  
 }
 
 walk(.x = c(10, 20, 60, 100, 200, 400, 600, 1000, 2000, 5000, 10000, 20000, 30000, 50000), .f = simulate)
