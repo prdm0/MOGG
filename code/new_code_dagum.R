@@ -158,7 +158,7 @@ mse_function <- function(x, par_true) {
   (x - par_true) ^ 2
 }
 
-simular <- function(n) {
+simulate <- function(n) {
   # True parameters (theta, a, alpha, beta and p) -------------------------------------
   true_parameters <- c(1, 1, 1, 1, 1)
   
@@ -177,4 +177,4 @@ simular <- function(n) {
   paste0("mse_", n, ".RData") %>% save(file = ., mse)
 }
 
-walk(.x = c(10, 20, 60, 100, 200, 400, 600, 1000, 2000, 5000, 10000), .f = simular)
+walk(.x = c(10, 20, 60, 100, 200, 400, 600, 1000, 2000, 5000, 10000, 20000, 30000, 50000), .f = simulate)
