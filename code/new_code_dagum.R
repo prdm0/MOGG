@@ -7,6 +7,7 @@ library(tibble)
 library(pbmcapply)
 library(magrittr)
 library(purrr)
+library(xtable)
 
 # Baseline functions. -----------------------------------------------------
 pdf_dagum <- function(x, alpha, beta, p) 
@@ -190,3 +191,29 @@ simulate <- function(n) {
 }
 
 walk(.x = c(10, 20, 60, 100, 200, 400, 600, 1000, 2000, 5000, 10000, 20000, 30000, 50000), .f = simulate)
+
+first_col <- c(10, 20, 60, 100, 200, 400, 600, 1000, 5000, 10000, 20000, 30000, 50000)
+
+tabela <- rbind(bias_10, bias_20, bias_60, bias_100, bias_200, bias_400, bias_600, bias_1000, bias_5000, bias_10000,
+                bias_20000, bias_30000, bias_50000)
+tabela <- cbind(n = first_col, tabela)
+rownames(tabela) <- NULL
+
+tabela <- tibble::as_tibble(tabela)
+
+latex <- print.xtable(xtable(tabela,  caption = "Mean bias of EMV obtained by the BFGS method in 10,000 Monte Carlo repetitions.",
+                      digits = 4L), print.results = FALSE)
+
+writeLines(
+  c(
+    "\\documentclass[12pt]{article}",
+    "\\begin{document}",
+    "\\thispagestyle{empty}",
+    latex,
+    "\\end{document}"
+  ),
+  "mc_simulation.tex"
+)
+
+tools::texi2pdf("mc_simulation.tex", clean = TRUE)
+
