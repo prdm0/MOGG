@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2020.7.26)  10 AUG 2020 16:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2020.7.26)  10 AUG 2020 16:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -632,19 +632,19 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 119
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 141--145
+Underfull \hbox (badness 10000) in paragraph at lines 141--146
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 141--145
+Underfull \hbox (badness 10000) in paragraph at lines 141--146
 
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (1.37537pt too wide) in paragraph at lines 207--211
+Overfull \hbox (1.37537pt too wide) in paragraph at lines 208--212
 \T1/cmr/m/n/12 where $\OML/cmm/m/it/12 ^^M\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 a; 
 z\OT1/cmr/m/n/12 ) = [][] \OML/cmm/m/it/12 t[] \OT1/cmr/m/n/12 e[]dt$ \T1/cmr/m
 /n/12 is the in-com-plete gamma func-tion and $\OML/cmm/m/it/12 ^^M[]\OT1/cmr/m
@@ -657,49 +657,49 @@ n/12 (\OML/cmm/m/it/12 a; z\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 =\OT1/cmr/m/n/12 ^
 <density.pdf, id=38, 614.295pt x 794.97pt>
 File: density.pdf Graphic file (type pdf)
 <use density.pdf>
-Package pdftex.def Info: density.pdf  used on input line 299.
+Package pdftex.def Info: density.pdf  used on input line 300.
 (pdftex.def)             Requested size: 184.28992pt x 238.49284pt.
 <hazard.pdf, id=39, 614.295pt x 794.97pt>
 File: hazard.pdf Graphic file (type pdf)
 <use hazard.pdf>
-Package pdftex.def Info: hazard.pdf  used on input line 300.
+Package pdftex.def Info: hazard.pdf  used on input line 301.
 (pdftex.def)             Requested size: 184.28992pt x 238.49284pt.
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 3
-20.
+21.
  (/usr/share/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 3
-20.
+21.
 
 (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-Overfull \hbox (42.90099pt too wide) in paragraph at lines 319--328
+Overfull \hbox (42.90099pt too wide) in paragraph at lines 320--329
 \T1/cmr/m/it/12 quacy-Mo-del \T1/cmr/m/n/12 pac-kage for the \T1/cmss/m/n/12 R 
 \T1/cmr/m/n/12 sta-tis-ti-cal com-pu-ting en-vi-ron-ment (\T1/cmtt/m/n/12 https
 ://www.r-project.org/\T1/cmr/m/n/12 ).
  []
 
 
-Overfull \hbox (7.53539pt too wide) in paragraph at lines 319--328
+Overfull \hbox (7.53539pt too wide) in paragraph at lines 320--329
 \T1/cmr/m/n/12 quire ini-tial va-lues. More de-tails are avai-la-ble at \T1/cmt
 t/m/n/12 https://rdrr.io/cran/AdequacyModel/\T1/cmr/m/n/12 . 
  []
 
 
-LaTeX Warning: Reference `' on page 5 undefined on input line 329.
+LaTeX Warning: Reference `' on page 5 undefined on input line 330.
 
 [5
 
 
  <./density.pdf> <./hazard.pdf>]
-Overfull \hbox (12.46098pt too wide) detected at line 331
+Overfull \hbox (12.46098pt too wide) detected at line 332
 []
  []
 
 [6] [7]
-Overfull \hbox (49.81717pt too wide) in paragraph at lines 479--487
+Overfull \hbox (49.81717pt too wide) in paragraph at lines 480--488
 []\T1/cmr/m/n/12 As a se-cond ap-pli-ca-tion, we con-si-der a data set that can
  be found in http://biostat.mc.vanderbilt. 
  []
@@ -714,7 +714,7 @@ File: lstlang2.sty 2020/03/24 1.8d listings language file
 File: lstlang3.sty 2020/03/24 1.8d listings language file
 ) (./new_code_dagum.R
 [10] [11] [12] [13] [14]) [15]
-Overfull \hbox (2.40874pt too wide) in paragraph at lines 741--744
+Overfull \hbox (2.40874pt too wide) in paragraph at lines 742--745
 []\T1/cmr/m/n/12 M.M. Ris-ti¢, N. Ba-la-krish-nan: The gamma-exponentiated ex-p
 o-nen-tial dis-tri-bu-tion. Jour-
  []
@@ -759,7 +759,7 @@ ype1/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-
 super/sfss1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti0800.
 pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/share
 /texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on paper.pdf (16 pages, 492860 bytes).
+Output written on paper.pdf (16 pages, 494677 bytes).
 PDF statistics:
  192 PDF objects out of 1000 (max. 8388607)
  141 compressed objects within 2 object streams
