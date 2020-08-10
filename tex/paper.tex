@@ -11,11 +11,19 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{pdflscape}
+\usepackage{bm}
+\usepackage{float}
 %\usepackage[dvips]{graphicx, color}
 \usepackage{subfigure}
+\usepackage[skins,listings,breakable]{tcolorbox}
+
+\usepackage{color}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9} 
+
 %TCIDATA{OutputFilter=latex2.dll}
 %TCIDATA{LastRevised=Friday, February 01, 2008 17:54:39}
 %TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+
 
 \setlength\topmargin{-1.5cm} \setlength\oddsidemargin{0.0cm}
 \setlength\evensidemargin{0.0cm} \setlength{\textwidth}{16cm}
@@ -322,6 +330,38 @@ Here, we consider estimation of unknown parameters of the MO-$\Gamma$-$G$ distri
 \begin{align}\ell (\boldsymbol{\Theta})=&\,n\log (\theta)+n\log(\gamma)+n\, a\, \gamma \log(\lambda)+(a\gamma-1)\sum_{i=1}^n{\log(x_i)}-\lambda^\gamma\sum_{i=1}^n{\log(x_i)}-n\log[\Gamma(a)] \nonumber \\ & -2\sum_{i=1}^n{\log\{\theta+(1-\theta)\gamma_1[a,(\lambda\,x_i)^\gamma]\}}
 \end{align}
 
+\section{Simulation}\label{sec:simulation}
+
+Due to the probable absence of maximum likelihood estimators - MLE in closed form for distributions belonging to the MO-$\Gamma $-G family, it is necessary to understand the precision of the estimates obtained numerically. For that, we chose to study the bias of the estimators of the MO-$\Gamma$-Dagum($\theta$, $a$, $\alpha$, $\beta$, $p$) distribution, in which $ G \sim \mathrm {Dagum} (\alpha, \beta, p) $, for different sample sizes, being (10, 20, 60, 100, 200, 400, 600, 1000, 2000, 5000, 10000, 20000, 30000 and 500000).
+
+The simulations considered 10,000 Monte-Carlo - MC iterations for each of the sample sizes to which the numerical estimates were obtained by the BFGS method. Table \ref{tab:bias} shows that the BFGS method behaves well as the sample size grows. This is theoretically expected, however, in practice, difficulties can be faced in other families of distributions due to complications in the likelihood function.
+
+All simulations can be reproduced using the code in Annex \ref {ap:simulation}. The MC simulations are parallelized and are able to use all threads available by a multicore processor, thus making them more computationally efficient and consequently requiring less time to complete. The simulations were performed on a computer with an Intel Core i5-8265U processor with 8 threads working at a maximum frequency of 3.90 GHz, requiring, on these hardware, a time of 14.36 hours to perform all simulations.
+
+\begin{table}[H]
+	\centering
+	\caption{Mean bias of EMV obtained by the BFGS method in 10,000 Monte Carlo repetitions.} \label{tab:bias}
+	\begin{tabular}{rrrrrrr}
+		\hline
+		$\bm n$ & $\bm B(\bm \hat{\bm \theta})$ & $\bm B(\bm \hat{\bm a})$ & $\bm B(\bm \hat{\bm \alpha})$ & $\bm B(\bm \hat{\bm \beta})$ & $\bm B(\bm \hat{\bm p})$ & \textbf{Time (mins)}\\ 
+		\hline
+		10 & 0.2376 & 2.1635 & 2.7557 & 1.6282 & 1.3057 & 1.1430\\ 
+		20 & 0.4154 & 2.4639 & 1.5728 & 1.8082 & 0.7383 & 1.6248\\ 
+		60 & 0.7214 & 2.2432 & 0.5667 & 1.8815 & 0.2872 & 3.3954\\ 
+		100 & 0.6146 & 1.9579 & 0.3253 & 1.6148 & 0.2651 & 4.9628\\ 
+		200 & 0.3838 & 1.3894 & 0.1827 & 1.1773 & 0.3701 & 8.1457\\ 
+		400 & 0.2166 & 0.9635 & 0.1076 & 0.6181 & 0.3957 & 13.7370\\ 
+		600 & 0.1269 & 0.7242 & 0.0772 & 0.3968 & 0.3637 & 17.9310\\ 
+		1000 & 0.0553 & 0.4885 & 0.0521 & 0.2328 & 0.2636 & 22.8784 \\
+		2000  &  0.0456 & 0.3087 &  0.0334 &  0.0990 & 0.1722 &  38.4593\\
+		5000 & -0.0058 & 0.1307 & 0.0146 & 0.0117 & 0.0171 & 52.8098\\ 
+		10000 & -0.0146 & 0.0842 & 0.0095 & 0.0095 & 0.0031 & 95.8380\\ 
+		20000 & -0.0090 & 0.0330 & 0.0038 & 0.0005 & -0.0099 & 126.4260\\ 
+		30000 & -0.0028 & 0.0183 & 0.0012 & -0.0036 & -0.0029 & 182.0760\\ 
+		50000 & -0.0057 & 0.0124 & 0.0015 & 0.0016 & -0.0021 & 291.9300\\ 
+		\hline
+	\end{tabular}
+\end{table}
 
 \section{Applications}\label{applications}
 
@@ -579,7 +619,22 @@ $H^0_0=1$, $H^{0}_{n+1}=1\times 3\times 5\times\cdots\times(2n+1)$, $H^{n}_{n+1}
 
 \section{Conclusions}\label{conclusions}
 
+Falta escrever ...
 
+
+\appendix
+
+\section{Simulation code}\label{ap:simulation}
+
+The code below was used to perform the simulations whose results are found in Table \ref{tab:bias} of Section \ref{sec:simulation}. The code was developed using the programming language R and is available to be reused in other simulations or even to check the results presented in this paper.
+
+\lstinputlisting[language=R, caption={Monte-Carlo simulations for different sample sizes.}, numbers=left,
+stepnumber=1,
+showspaces=false,
+tabsize=4,  
+basicstyle=\scriptsize,
+backgroundcolor=\color{lbcolor},
+showstringspaces=false]{new_code_dagum.R}
 
 
 \section*{References}
