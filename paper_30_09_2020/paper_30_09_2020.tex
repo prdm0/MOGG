@@ -345,25 +345,16 @@ The simulations are performed on a computer with an Intel Core i5-8265U processo
 requiring, on these hardware, a time of 14.36 hours to perform all simulations. The figures in Table \ref{tab:bias} reveal that the average
 biases of the MLEs could be very reduced only for $n> 2,000$.
 
-{\color{red}
-
-Para gerar obervações da variável aleatória $X$ com distribuição $G$ optou-se em considerar  o algoritmo do método da aceitação e rejeição, muito útil quando a função quantilica envolvem funções complexas que podem trazer algumas imprecisões numéricas.  Seja $X$ uma variável aleatória com PDF  $f$ e que desejamos gerar observações e $Y$  uma outra variável aleatória com PDF $h$ no mesmo suporte de $f$. A variável aleatória $Y$ é escolhida de tal forma que sabemos gerar suas observações. Então o algoritmo do método da aceitação e rejeição é definido pelos passos que seguem:
-
+To generate observations from the random variable $X$ with density $f$, the well-known Acceptance-Rejection Algorithm for continuous random variables, which is very useful when the quantile function involves complex functions that can lead to some numerical inaccuracies. For doing this, another random variable $Y$ is chosen such that it can generate observations from a PDF $h$ with the same support as $f$. Then, the acceptance and rejection algorithm is defined by the following steps:
 \begin{enumerate}
-	\item Gere uma observação de $y$ proveniente de $Y$;
-	\item Gere uma observação $u$ de uma variável aleatória $U\sim \mathcal{U}(0, 1)$;
-	\item Se $u < \frac{f(y)}{cg(y)}$,  em que $c$ é uma constante real, aceite $x = y$; caso contrário rejeite $y$ como observação de $X$ e volte ao passo 1.
+	\item Generate an outcome $y$ from $Y$;
+	\item Generate an observation $u$ from a random variable $U\sim \mathcal{U}(0,1)$;
+	\item If $u < \frac{f(y)}{c\, g(y)}$, where $c$ is a real constant, accept $x=y$; otherwise reject $y$ as an outcome from $X$ and return to 1.
 \end{enumerate}
-A constante $c$ deve ser escolhida de tal forma que $\frac{f(y)}{cg(y)} \leq 1$. Considerando o caso discreto, em que também é possível aplicar o método da aceitação e rejeição, se $\{aceita\} = \{x = y\} = \{u < \frac{f(y)}{cg(y)}\}$, então,
 
-$$P(\{aceitar\}| Y = y) = \frac{P(\{aceitar\} \cap {Y=y})}{g(y)} = \frac{P\left( U \leq  \frac{f(y)}{cg(y)}\right)g(y)}{g(y)} = \frac{f(y)}{cg(y)}.$$
-
-Daí, pelo Teorema da Probabilidade Total, temos que:
-
-$$P(\{aceitar\}) = \sum_y P(\{aceitar\}| Y  = y) = \frac{1}{c}.$$
-
-Sendo assim, para minimizar o custo computacional de se gerar obervações de $X$ por meio de observações geradas de $Y$, colhe-se $c$ como o menor valor possível para maximizar a probabilidade de aceitação acima. Maiores detalhes do método da aceitação e rejeição poderá ser encontrado em Rizzo (2019).
-}
+The constant $c$ must be chosen in such a way that $\frac{f(y)}{c \,g (y)}\leq 1 $. 
+Thus, to minimize the computational cost of generating observations from $X$ through the generated observations from $Y$, $c$ is chosen 
+as the lowest possible value to maximize the likelihood of acceptance. Further details of this method can be found in Rizzo (2019).
 
 \begin{table}[H]
 	\centering
