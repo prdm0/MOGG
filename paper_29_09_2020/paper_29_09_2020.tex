@@ -17,7 +17,7 @@
 %\usepackage[dvips]{graphicx, color}
 %\usepackage{subfigure}
 %\usepackage[skins,listings,breakable]{tcolorbox}
-
+\usepackage{xcolor}
 \usepackage{color}
 \definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
 
@@ -136,7 +136,7 @@
 
 \begin{abstract}\noindent
 This article introduces a new family by combining the Marshall and Olkin-G and Gamma-G classes. The family has only two
-extra shape parameters and can be a better alternative than other existing classes of distributions. Simulations are performed to verify the
+extra shape parameters and can be a better model  than other existing classes of distributions. Simulations are performed to verify the
 consistency of the estimators. Its flexibility is shown using two real data sets.
 \end{abstract}
 
@@ -153,15 +153,15 @@ E-mail:\emph{gausscordeiro@de.ufpe.br, maria@de.ufpe.br, pedro.rafael.marinho@gm
 The mechanism by adding shape parameters to a baseline distribution has
 proved to be useful to make the generated distributions more flexible especially for studying tail
 properties than existing distributions and for improving their goodness-of-fit statistics
-to the data under study.
+to the data under study. Many special distributions in these families are discussed by Tahir
+and Nadarajah (2015).
 
 Let $G(x)$ be the cumulative distribution function (CDF) of a
 baseline distribution and $g(x)=dG(x)/dx$ be the corresponding  probability density function (PDF) depending on a
 parameter vectot $\eta$. A generalized family are presented
 with two additional shape parameters by transforming the CDF $G(x)$
 according to two sequential important gene\-rators. These families are important for modeling data
-in several engineering areas. Many special distributions in these families are discussed by Tahir
-and Nadarajah (2015).
+in several engineering areas. 
 
 
 The CDF of the Marshall and Olkin's (1997) ($\text{MO-G}$) family (for $\theta>0$) is
@@ -234,35 +234,38 @@ The density (\ref{PDF_MO-Gamma-G}) can be interpreted from a sequence of $N$ iid
 each one having a gamma density unit scale and shape $a>0$, assuming that $N$ (is not fixed) has a geometric 
 distribution with probabilities $\theta$ and $\theta^{-1}$ for $0<\theta<1$ and $\theta>1$,
 respectively. By transforming the $Z_i$'s via the baseline QF by $W_i=Q_G(1-\rm{e}^{Z_i})$
-(for $i-1,\ldots,N$), Equation \eqref{densityMO} is defined the PDF of the minimum $W_1,\cdots,W_n$. 
+(for $i-1,\ldots,N$), Equation \eqref{densityMO} is defines the PDF of the minimum $W_1,\cdots,W_n$. 
 Making this double composition of the two generators, the proposed family absorbs the impacts of two different flexibilities 
 on applications. 
 
 
 Table \ref{tabspecial1} provides some special cases of (\ref{PDF_MO-Gamma-G}), where
 $\Phi(x)$ and $\phi(x)$ are the CDF and PDF of the standard normal distribution. The density and hazard functions
-of the Marshall-Olkin-$\Gamma$-Weibull (MO-$\Gamma$-W) are displayed in Figure \ref{formas}, which provide
+of the Marshall-Olkin-$\Gamma$-Weibull (MO-$\Gamma$-W) defined by $h(x) = f(x)/(1-F(x))$ are displayed in Figure \ref{formas}, which provide
 more flexibility for these functions in relation to the baseline ones.
 
 \vspace{0.6cm}
 
 \begin{figure}[H]
 \begin{center}
-(a)\hspace{3.5cm} (b)\\
-\includegraphics[scale=.3]{density.pdf}
-\includegraphics[scale=.3]{hazard.pdf}\\
-\vspace{-0.5cm}
-\caption{(a) Curves for the MO-$\Gamma$-W density. (b) Curves for the MO-$\Gamma$-W hazard.\label{formas}}
+\includegraphics[scale =  0.39]{pdf-hazard.pdf}
+\caption{(A) MO-$\Gamma$-W density. (B) MO-$\Gamma$-W hazard.\label{formas}}
 \end{center}
 \end{figure}
 
 \vspace{0.6cm}
 
-The CDF \eqref{CDF_MO-Gamma-G} can be easily inverted to determine the quantile function (QF) of the MO-$\Gamma$-G distribution,
-say $x=Q_{X}(u)$, in terms of the baseline QF $Q_G(u)$. Let $u$ be a uniform $U(0,1)$ random variate. By using \eqref{CDF_MO-Gamma-G}
-and letting $z=\gamma_{1}\left(a, -\log[1-G(x)]\right)$, it follows $z=z(u)=\theta u/[1-(1-\theta)u]$.
-Then, the QF of $X$ takes the form $x=Q_G\left(1-\rm{e}^{-v}\right)$, where $v=v(z)$ is an upper point
-corresponding to the quantile $z$ of a gamma density (with unit scale and shape $\alpha$).
+The CDF \eqref{CDF_MO-Gamma-G} can be easily inverted to calculate the QF of the MO-$\Gamma$-G distribution,
+say $x=Q_{X}(u)=F_X^{-1}(u)$ for $u \in (0,10$, in terms of the baseline QF $Q_G(\cdot)$. The inverse of
+$F_{X}(x)=u$, where $u$ is a uniform number in $(0,1)$ is easily obtained. By combining the inverses
+of Equations (\ref{CDF_MO})and \eqref{CDF_MO-Gamma-G}, $F_{X}(x)=u$ leads to
+$z=z(u)=\theta u/[1-(1-\theta)u]$ and $\gamma_{1}\left(a, -\log[1-G(x)]\right)=z(u)$.
+Then, the QF of $X$ can be expressed as
+$$x=Q_G\left(v(u)\right),$$
+where
+$$v(u)=1-\exp\left[-\gamma_1^{-1}\big(a,z(u)\big)\right],$$
+and $\gamma_1^{-1}(a,w)=Q^{-1}(a,1-w)$ is the inverse function of $\gamma_1(a,w)$. Some formulae for
+$Q^{-1}(a,1-w)$ are given in \url{http:// functions.wolfram.com/ GammaBetaErf/ InverseGammaRegularized/}.
 
 \begin{landscape}
 \begin{table}[htbp]\label{tabspecial1}
@@ -300,8 +303,6 @@ corresponding to the quantile $z$ of a gamma density (with unit scale and shape 
 \textbf{Pareto} &  $G(x)=1-\frac{1}{(1+x)^\nu},\,\nu>0$ & $f_{X}(x)=\frac{\theta \, \rm{e}^{-x}\, \left[\nu\log(1+x)\right]^{a-1}\, g(x)}{\Gamma(a)\,(1+\rm{e}^{-x})^2\,\left\{\theta+(1-\theta)\gamma_1\left( a, \nu\log[1+x]\right)\right\}^{2}}$\\
 {} & {} & {} \\
 \hline
-{} & {} & {} \\
-\hline
 \end{tabular}
 \caption{Special Distributions in the  MO-$\Gamma$-G family.}
 \end{table}
@@ -323,7 +324,7 @@ the log-likelihood function for $\boldsymbol{\theta}^\top=(a,\theta,\etn^\top)$ 
 
 Due to the impossibility of obtaining the MLEs in closed form, numerical methods to obtain the estimates that maximize $ \ell (\cdot) $ are necessary. Several programming languages and statistical software distributes functions and routines that make it easy to obtain numerical estimates by various interactive methods. In practice, obtaining the MLEs for the parameters that index a probability distribution are commonly obtained in this way, since the Newton and quasi-Newton methods produce satisfactory results under reasonable conditions of the object function, that is, when they do not impose conditions that disturb the convergence of the algorithms.
 
-To obtain the MLEs, the package {\bf AdequacyModel} of the programming language {\sf R} was used, see R Core Team (2020). This library, created and maintained by one of the authors of this paper, is widely cited by several papers in the field of statistics and serves as a basis for other library implementations available on the Comprehensive R Archive Network - CRAN. With it, in particular using the function {\tt goodness.fit} it is possible to pass an implementation {\sf R} of (\ref {PDF_MO-Gamma-G}), being in charge of the function {\tt goodness.fit} obtain $\ell (\cdot)$ by returning several measures of fit adequacy as well as MLEs. Further details regarding the {\bf AdequacyModel} package can be obtained from Marinho et al. (2019).
+To obtain the MLEs, the package {\bf AdequacyModel} of the programming language {\sf R} was used, see R Core Team (2020). This library, created and maintained by one of the authors of this paper, is widely cited by several papers in the field of statistics and serves as a basis for other library implementations available on the Comprehensive R Archive Network - CRAN.  With it, in particular using the goodness.fit function, it is possible to provide an implementation {\sf R} of (\ref {PDF_MO-Gamma-G}), being in charge of this function, obtain $\ell(\cdot)$  by returning several measures of fit adequacy as well as the MLEs. Further details regarding this package can be obtained from Marinho et al. (2019).
 
 
 \section{Simulations}\label{sec:simulation}
@@ -344,9 +345,29 @@ The simulations are performed on a computer with an Intel Core i5-8265U processo
 requiring, on these hardware, a time of 14.36 hours to perform all simulations. The figures in Table \ref{tab:bias} reveal that the average
 biases of the MLEs could be very reduced only for $n> 2,000$.
 
+{\color{red}
+
+Para gerar obervações da variável aleatória $X$ com distribuição $G$ optou-se em considerar  o algoritmo do método da aceitação e rejeição, muito útil quando a função quantilica envolvem funções complexas que podem trazer algumas imprecisões numéricas.  Seja $X$ uma variável aleatória com PDF  $f$ e que desejamos gerar observações e $Y$  uma outra variável aleatória com PDF $h$ no mesmo suporte de $f$. A variável aleatória $Y$ é escolhida de tal forma que sabemos gerar suas observações. Então o algoritmo do método da aceitação e rejeição é definido pelos passos que seguem:
+
+\begin{enumerate}
+	\item Gere uma observação de $y$ proveniente de $Y$;
+	\item Gere uma observação $u$ de uma variável aleatória $U\sim \mathcal{U}(0, 1)$;
+	\item Se $u < \frac{f(y)}{cg(y)}$,  em que $c$ é uma constante real, aceite $x = y$; caso contrário rejeite $y$ como observação de $X$ e volte ao passo 1.
+\end{enumerate}
+A constante $c$ deve ser escolhida de tal forma que $\frac{f(y)}{cg(y)} \leq 1$. Considerando o caso discreto, em que também é possível aplicar o método da aceitação e rejeição, se $\{aceita\} = \{x = y\} = \{u < \frac{f(y)}{cg(y)}\}$, então,
+
+$$P(\{aceitar\}| Y = y) = \frac{P(\{aceitar\} \cap {Y=y})}{g(y)} = \frac{P\left( U \leq  \frac{f(y)}{cg(y)}\right)g(y)}{g(y)} = \frac{f(y)}{cg(y)}.$$
+
+Daí, pelo Teorema da Probabilidade Total, temos que:
+
+$$P(\{aceitar\}) = \sum_y P(\{aceitar\}| Y  = y) = \frac{1}{c}.$$
+
+Sendo assim, para minimizar o custo computacional de se gerar obervações de $X$ por meio de observações geradas de $Y$, colhe-se $c$ como o menor valor possível para maximizar a probabilidade de aceitação acima. Maiores detalhes do método da aceitação e rejeição poderá ser encontrado em Rizzo (2019).
+}
+
 \begin{table}[H]
 	\centering
-	\caption{Average biases of the MLEs obtained using the BFGS method.}\label{tab:bias}
+	\caption{Mean biases of the MLEs obtained using the BFGS method calculated from the Monte-Carlo simulation.}\label{tab:bias}
 	\begin{tabular}{rrrrrrr}
 		\hline
 		$n$ & $B(\hat{\theta})$ & $B(\hat{a})$ & $B(\hat{\alpha})$ & $B(\hat{\beta})$ & $B(\hat{p})$ & Time (mins)\\
@@ -368,6 +389,7 @@ biases of the MLEs could be very reduced only for $n> 2,000$.
 		\hline
 	\end{tabular}
 \end{table}
+
 
 \section{Applications}\label{applications}
 
@@ -827,6 +849,9 @@ Anais da Academia Brasileira de Ci\^{e}ncias {\bf 87}(2) 539-568 (2015).
 K. Zografos, N. Balakrishnan:
 On families of beta-and generalized gamma-generated distribution and
 associate inference.  Statistical Methodology {\bf 6}(4) 344-362 (2009).
+
+\item 
+Rizzo, Maria L. Statistical computing with R. CRC Press (2019).
 
 \end{description}
 
