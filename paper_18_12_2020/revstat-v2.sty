@@ -1,0 +1,428 @@
+%===============================================================================
+% revstat-v2.sty
+% version: 2.0
+% last modified: 2019/12/02
+%-------------------------------------------------------------------------------
+% REVSTAT - STATISTICAL JOURNAL
+% Instituto Nacional de Estatística - Portugal
+% https://www.ine.pt/revstat/inicio.html
+% revstat@ine.pt
+%===============================================================================
+%
+%-------------------------------------------------------------------------------
+% Package id...
+%-------------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{revstat-v2}[2019/12/02, v2.0, REVSTAT - STATISTICAL JOURNAL]
+%-------------------------------------------------------------------------------
+% Packages pre-loaded...
+%-------------------------------------------------------------------------------
+\RequirePackage{graphicx}
+\RequirePackage{latexsym}
+\RequirePackage{enumerate}
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{amsopn}
+\RequirePackage{amstext}
+\RequirePackage{amscd}
+\RequirePackage{lineno}
+\RequirePackage{hyperref}
+%\RequirePackage[colorlinks,citecolor=blue,urlcolor=blue]{hyperref}
+%\RequirePackage{lastpage}
+%\RequirePackage{appendix}
+%-------------------------------------------------------------------------------
+% Page layout parameters...
+%-------------------------------------------------------------------------------
+\topmargin=0.5cm
+\textwidth=13.5cm\textheight=22.5cm
+\evensidemargin=.95cm\oddsidemargin=.95cm
+%-------------------------------------------------------------------------------
+% Running heads...
+%-------------------------------------------------------------------------------
+\newcommand{\titleheading}{Short version of article's title}
+\newcommand{\authorheading}{Author names and/or inicials}
+%
+\def\ps@topheadings{%
+     \let\@oddfoot\@empty\let\@evenfoot\@empty
+     \def\@evenhead{{}\small\upshape\thepage{}\hfill{}\slshape\authorheading}%
+     \def\@oddhead{{}\small\slshape\titleheading{}\hfill{}\upshape\thepage}%
+     \let\@mkboth\@gobbletwo
+     \let\sectionmark\@gobble
+     \let\subsectionmark\@gobble
+     }
+\def\ps@firstpage{
+     \def\@evenhead{}
+     \def\@oddhead{}
+     \let\@mkboth\@gobbletwo
+     \let\sectionmark\@gobble
+     \let\subsectionmark\@gobble
+     }
+%-------------------------------------------------------------------------------
+% Title page...
+%-------------------------------------------------------------------------------
+\renewcommand\maketitle{\par
+   \begingroup
+     \renewcommand\thefootnote{\@fnsymbol\c@footnote}%
+     \def\@makefnmark{\rlap{\@textsuperscript{\normalfont\@thefnmark}}}%
+     \long\def\@makefntext##1{\parindent 1em\noindent
+             \hb@xt@1.8em{%
+                 \hss\@textsuperscript{\normalfont\@thefnmark}}##1}%
+      % \newpage
+       \global\@topnum\z@%
+       \@maketitletop
+       \thispagestyle{firstpage}\@thanks
+   \endgroup
+   \setcounter{footnote}{0}%
+   \global\let\thanks\relax
+   \global\let\maketitle\relax
+   \global\let\@maketitle\relax
+   \global\let\@thanks\@empty
+   \global\let\@author\@empty
+   \global\let\@date\@empty
+   \global\let\@title\@empty
+   \global\let\title\relax
+   \global\let\author\relax
+   \global\let\date\relax
+   \global\let\and\relax
+}
+\def\@maketitletop{%
+  % \newpage
+   \null
+   \vspace*{-1.05cm}% if not centered
+%  \vspace*{-1.4cm}% if centered
+%  \begin{center}%
+   \vbox{%
+   \hbox to\hsize{\hrulefill}%
+   \vspace*{-4.15mm}%
+   \hbox to\hsize{\hrulefill}%
+   \vspace*{-4mm}%
+   }%
+   \let \footnote \thanks
+     {\normalfont\Large\bfseries\noindent\@title\par}
+   \vspace*{-1mm}%
+   \vbox{%
+   \hbox to\hsize{\hrulefill}%
+   \vspace*{-4.15mm}%
+   \hbox to\hsize{\hrulefill}%
+   }%
+%  \end{center}%
+   \vspace*{2mm}% if not centered
+%  \vspace*{-1mm}% if centered
+   \noindent
+   \hbox to0pt{{\sffamily Authors:}\ \begin{tabular}[t]{l}%
+      \@author
+   \end{tabular}\hss}%
+   \vspace*{.5cm}%
+   \par
+}
+\newcommand{\authoraddress}[2]{\begin{tabular}[t]{l}
+                             {\scshape #1}\\
+                             \vbox{%
+                                   \noindent\small--%
+                                   \begin{tabular}[t]{l}
+                                   #2
+                                   \end{tabular}\vspace*{.5mm}%
+                                  }%
+                             \end{tabular}%
+                             }
+\renewenvironment{abstract}%
+   {\vspace*{3mm}%
+    \noindent\small{\sffamily Abstract:}%
+    \vspace*{-4mm}%
+    \setlength\labelsep{3mm}
+    \setlength\leftmargini{4.75mm}
+    \begin{itemize}\item}
+   {\end{itemize}}
+\newenvironment{keywords}%
+   {\vspace*{3mm}%
+    \noindent\small{\sffamily Key-Words:}\par%
+    \vspace*{-4mm}%
+    \setlength\labelsep{3mm}
+    \setlength\leftmargini{4.75mm}
+    \begin{itemize}\item\itshape}
+   {\end{itemize}}
+\newenvironment{ams}%
+   {\vspace*{3mm}%
+    \noindent\small{\sffamily AMS Subject Classification:}\par%
+    \vspace*{-4mm}%
+    \setlength\labelsep{3mm}
+    \setlength\leftmargini{4.75mm}
+    \begin{itemize}\item}
+   {\end{itemize}}
+%-------------------------------------------------------------------------------
+% Sections, subsections, etc...
+%-------------------------------------------------------------------------------
+\def\mainpaper{\newpage\ \newpage}
+%
+\def\@sect#1#2#3#4#5#6[#7]#8{%
+   \ifnum #2>\c@secnumdepth
+     \let\@svsec\@empty
+   \else
+     \refstepcounter{#1}%
+     \protected@edef\@svsec{\@seccntformat{#1}\relax}%
+   \fi%
+   \@tempskipa #5\relax
+   \ifdim \@tempskipa>\z@
+     % - - - - - - - - - - - - - - - - - - - - - - - -
+     \begingroup
+       \dimen\dimh=0pt\setlength{\dimv}{0mm}%
+       \setbox\boxa\hbox{#6{\@hangfrom{\hskip #3\relax\@svsec}%
+                         \interlinepenalty\@M #8}}%
+        \advance\dimen\dimh by\wd\boxa
+        \addtolength{\dimv}{\ht\boxa}%
+        \ifdim\dimv>11.5pt%
+          \setlength{\dimv}{0.25\ht\boxa}%
+        \else
+          \setlength{\dimv}{0mm}%
+        \fi%
+       \ifdim\dimen\dimh>\hsize%
+        \dimen\dimh=\hsize%
+       \else
+       \fi%
+       % - - - - - - -
+       \vspace{3.5mm}%
+       \vbox{\vspace{1.35mm}%
+         \hbox to\dimen\dimh{\hrulefill}%
+         \vspace{-3.5mm}%
+           #6{%
+              \@hangfrom{\hskip #3\relax\@svsec}%
+              \interlinepenalty \@M #8\@@par}%
+         \vspace{-2.25mm}%
+         \vspace{\dimv}%
+         \vspace{\dimvx}%
+         \hbox to\dimen\dimh{\hrulefill}%
+       }%
+       \global\setlength{\dimvx}{0mm}% reset if altered before \section
+     \endgroup
+     % - - - - - - - - - - - - - - - - - - - - - - - -
+     \csname #1mark\endcsname{#7}%
+     \addcontentsline{toc}{#1}{%
+       \ifnum #2>\c@secnumdepth \else
+         \protect\numberline{\csname the#1\endcsname}%
+       \fi%
+       #7}%
+   \else
+     \def\@svsechd{%
+       #6{\hskip #3\relax
+       \@svsec #8}%
+       \csname #1mark\endcsname{#7}%
+       \addcontentsline{toc}{#1}{%
+         \ifnum #2>\c@secnumdepth \else
+           \protect\numberline{\csname the#1\endcsname}%
+         \fi%
+         #7}}%
+   \fi%
+   \@xsect{#5}}
+\def\@ssect#1#2#3#4#5{%
+   \@tempskipa #3\relax
+   \ifdim \@tempskipa>\z@
+     % - - - - - - - - - - - - - - - - - - - - - - - -
+     \begingroup
+       \dimen\dimh=0pt\setlength{\dimv}{0mm}%
+       \setbox\boxa\hbox{#4{\@hangfrom{\hskip #1}\interlinepenalty\@M #5}}%
+        \advance\dimen\dimh by\wd\boxa
+        \addtolength{\dimv}{\ht\boxa}%
+        \ifdim\dimv>11.5pt%
+          \setlength{\dimv}{0.25\ht\boxa}%
+        \else
+          \setlength{\dimv}{0mm}%
+        \fi%
+       \ifdim\dimen\dimh>\hsize%
+        \dimen\dimh=\hsize%
+       \else
+       \fi%
+       % - - - - - - -
+       \vspace{3.5mm}%
+       \vbox{\vspace{1.35mm}%
+         \hbox to\dimen\dimh{\hrulefill}%
+         \vspace{-3.5mm}%
+           #4{%
+              \@hangfrom{\hskip #1}%
+              \interlinepenalty\@M #5\@@par}%
+         \vspace{-2.25mm}%
+         \vspace{\dimv}%
+         \vspace{\dimvx}%
+         \hbox to\dimen\dimh{\hrulefill}%
+       }%
+       \global\setlength{\dimvx}{0mm}% reset if altered before \section
+     \endgroup
+     % - - - - - - - - - - - - - - - - - - - - - - - -
+   \else
+     \def\@svsechd{#4{\hskip #1\relax #5}}%
+   \fi%
+   \@xsect{#3}}
+\renewcommand\section{%
+    \renewcommand{\@seccntformat}[1]{%
+      \hbox to\parindent{\csname thesection\endcsname.\hfil}}%
+    \@startsection{section}{1}{\z@}{3.5ex \@plus 1ex \@minus .2ex}%
+                                   {1.6ex \@plus.2ex}%
+                                   {\normalfont\bfseries}}
+\renewcommand\subsection{%
+    \ifnum\c@subsection < 9
+      \ifnum\c@section < 10
+        \renewcommand{\@seccntformat}[1]{%
+          \hbox to\parindent{\csname thesubsection\endcsname.\hfil}} %
+      \else
+        \renewcommand{\@seccntformat}[1]{%
+          \csname thesubsection\endcsname.\hspace*{3mm}} %
+      \fi%
+    \else
+      \renewcommand{\@seccntformat}[1]{%
+        \csname thesubsection\endcsname.\hspace*{3mm}}%
+    \fi%
+    \@startsection{subsection}{2}{\z@}%
+                                      {3.25ex\@plus 1ex \@minus .2ex}%
+                                      {1.5ex \@plus .2ex}%
+                                      {\normalfont\bfseries}}
+\renewcommand\subsubsection{%
+    \ifnum\c@subsubsection < 9
+      \ifnum\c@subsection < 10
+        \ifnum\c@section < 10
+          \renewcommand{\@seccntformat}[1]{%
+            \hbox to\parindent{\csname thesubsubsection\endcsname.\hfil}}%
+        \else
+          \renewcommand{\@seccntformat}[1]{%
+            \csname thesubsubsection\endcsname.\hspace*{3mm}}%
+        \fi%
+      \else
+        \renewcommand{\@seccntformat}[1]{%
+          \csname thesubsubsection\endcsname.\hspace*{3mm}}%
+      \fi%
+    \else
+      \renewcommand{\@seccntformat}[1]{%
+        \csname thesubsubsection\endcsname.\hspace*{3mm}}%
+    \fi%
+    \@startsection{subsubsection}{3}{\z@}%
+                                      {3.25ex\@plus 1ex \@minus .2ex}%
+                                      {1.5ex \@plus .2ex}%
+                                      {\normalfont\sffamily}}
+%-------------------------------------------------------------------------------
+% Theorem-like environments...
+%-------------------------------------------------------------------------------
+% from amsthm.sty:
+\def\@begintheorem#1#2[#3]{\vspace{3mm}%
+   \item[\indent\normalfont % reset in case body font is abnormal
+   \hskip\labelsep
+   \the\thm@headfont
+   \thm@indent
+   \@ifempty{#1}{\let\thmname\@gobble}{\let\thmname\@iden}%
+   \@ifempty{#2}{\let\thmnumber\@gobble}{\let\thmnumber\@iden}%
+   \@ifempty{#3}{\let\thmnote\@gobble}{\let\thmnote\@iden}%
+   \thm@swap\swappedhead\thmhead{#1}{#2}{#3}%
+   \the\thm@headpunct]%
+   \@restorelabelsep
+   \thmheadnl % possibly a newline.
+   \ignorespaces}
+\def\@endtheorem{\endtrivlist\@endpefalse}
+\def\th@plain{%
+%%  \let\thm@indent\noindent % no indent
+%%  \thm@headfont{\bfseries}% heading font is bold
+%%  \thm@notefont{}% same as heading font
+%%  \thm@headpunct{.}% add period after heading
+%%  \let\thm@swap\@gobble
+%%  \thm@preskip\topsep
+%%  \thm@postskip\theorempreskipamount
+   \slshape % body font
+}
+% from latex.ltx:
+\DeclareRobustCommand\em
+         {\@nomath\em \ifdim \fontdimen\@ne\font >\z@
+                        \itshape \else \slshape \fi}
+%
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{note}{Note}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+%
+\renewenvironment{proof}[1][\proofname]{\vspace{-2.5mm}
+   \trivlist
+   \item[\indent\hskip\labelsep\normalfont\bfseries
+     #1\@addpunct{:}]\normalfont\ignorespaces
+}{%
+   \qed\endtrivlist
+}
+%-------------------------------------------------------------------------------
+% Captions of figures and tables...
+%-------------------------------------------------------------------------------
+\def\fnum@figure{{Figure \thefigure}}
+\def\fnum@table{{Table \thetable}}
+\long\def\@makecaption#1#2{%
+    \vskip5mm
+    \hbox to\hsize{\hspace*{1cm}\small%
+                   \hbox to1.7cm{{\bfseries #1}:\hfil}\hfil%
+                   \parbox[t]{9.7cm}{#2}\hspace*{1cm}}}
+%-------------------------------------------------------------------------------
+% Acknowledgments...
+%-------------------------------------------------------------------------------
+\newenvironment{acknowledgments}%
+   {\vspace{5mm}\section*{ACKNOWLEDGMENTS}}
+   {\vspace{5mm}}
+%-------------------------------------------------------------------------------
+% References...
+%-------------------------------------------------------------------------------
+\def\thebibliography#1{\section*{REFERENCES\markboth
+  {REFERENCES}{REFERENCES}}\vspace{1mm}\small\list
+  {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+  \advance\leftmargin\labelsep
+  \usecounter{enumi}}
+  \def\newblock{\hskip .11em plus .33em minus -.07em}
+  \sloppy
+  \sfcode`\.=1000\relax}
+\let\endthebibliography=\endlist
+%-------------------------------------------------------------------------------
+% Mathematics...
+%-------------------------------------------------------------------------------
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\I}{\mathbb{I}}
+%
+\newcommand{\rd}{\mathrm{d}}          % Roman d for differential
+\newcommand{\re}{\mathrm{e}}          % Roman e for exponential
+\newcommand{\ri}{\mathrm{i}}          % Roman i for imaginary number
+\DeclareMathOperator{\sgn}{sgn}       % Sign
+\DeclareMathOperator{\Real}{Re}       % Real part
+\DeclareMathOperator{\Imag}{Im}       % Imaginary part
+\newcommand{\const}{\mathrm{const.}}  % Abbreviation for `constant'
+%-------------------------------------------------------------------------------
+% Other definitions...
+%-------------------------------------------------------------------------------
+\@addtoreset{equation}{section}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\renewcommand{\thetheorem}{\arabic{section}.\arabic{theorem}}
+\renewcommand{\thelemma}{\arabic{section}.\arabic{lemma}}
+\renewcommand{\thecorollary}{\arabic{section}.\arabic{corollary}}
+\renewcommand{\theproposition}{\arabic{section}.\arabic{proposition}}
+\renewcommand{\theremark}{\arabic{section}.\arabic{remark}}
+\renewcommand{\thenote}{\arabic{section}.\arabic{note}}
+\renewcommand{\thedefinition}{\arabic{section}.\arabic{definition}}
+\renewcommand{\theexample}{\arabic{section}.\arabic{example}}
+%
+\renewcommand{\floatpagefraction}{1.0}
+\renewcommand{\topfraction}{1.0}
+\renewcommand{\bottomfraction}{1.0}
+\renewcommand{\textfraction}{0.0}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+%
+\pagestyle{topheadings}
+\raggedbottom
+\parskip4mm
+\parindent=1cm
+\setlength\labelsep{17pt}
+\setlength\arraycolsep{2.5pt}
+\newbox\boxa
+\newdimen\dimh
+\newlength\dimv
+\newlength\dimvx\setlength{\dimvx}{0mm} % extra space if needed, before 2nd line
