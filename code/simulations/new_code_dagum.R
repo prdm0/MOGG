@@ -8,6 +8,7 @@ library(pbmcapply)
 library(magrittr)
 library(purrr)
 library(xtable)
+library(glue)
 
 # Baseline functions. -----------------------------------------------------
 pdf_dagum <- function(x, alpha, beta, p) 
@@ -73,7 +74,7 @@ rmogdagum <- function(n = 1L, theta, a, alpha, beta, p){
 
 # Testing the rmogw Function ----------------------------------------------
 theta = 5
-a = 1
+a = 1.4
 alpha = 5
 beta = 1
 p = 1

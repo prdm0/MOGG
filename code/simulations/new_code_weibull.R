@@ -2,7 +2,13 @@
 # Author: Pedro Rafael D. Marinho
 
 # Loading libraries. ------------------------------------------------------
+library(parallel)
+library(tibble)
+library(pbmcapply)
+library(magrittr)
 library(purrr)
+library(xtable)
+library(glue)
 
 # Baseline functions. -----------------------------------------------------
 pdf_w <- function(x, alpha, beta) dweibull(x = x, shape = alpha, scale = beta)
@@ -20,12 +26,14 @@ pdf_mogg <- function(g, G){
   }
 }
 
+pdf_mogw <- pdf_mogg(pdf_w, cdf_w)
+
 # MOGW --------------------------------------------------------------------
 rmogw <- function(n = 1L, theta, a, alpha, beta){
   
   cond_c <- function(x, theta, a, alpha, beta){
     num <- pdf_mogw(x, theta, a, alpha, beta)
-    den <- dweibull(x, shape = 1, scale = 1)
+    den <- pdf_w(x, alpha = 1, beta = 1)
     -num/den
   }
   
@@ -36,7 +44,7 @@ rmogw <- function(n = 1L, theta, a, alpha, beta){
   
   criterion <- function(y, u){
     num <- pdf_mogw(y, theta, a, alpha, beta)
-    den <- dweibull(y, shape = alpha, scale = beta)
+    den <- pdf_w(y, alpha, beta)
     u < num / (c * den)
   }
   
@@ -56,18 +64,23 @@ rmogw <- function(n = 1L, theta, a, alpha, beta){
 }
 
 # Testing the rmogw Function ----------------------------------------------
-# theta = 1.2
-# a = 1.5
-# alpha = 1.7
-# beta = 1.4
-# pdf_mogw <- pdf_mogg(g = pdf_w, G = cdf_w)
-# sample_data <- rmogw(n = 250L, theta, a, alpha, beta)
-# x <- seq(0, 6, length.out = 500L)
-# hist(sample_data, probability = TRUE, xlab = "", main = "")
-# lines(x, pdf_mogw(x, theta, a, alpha, beta))
+theta = 1.2
+a = 1.5
+alpha = 1.7
+beta = 1.4
+pdf_mogw <- pdf_mogg(g = pdf_w, G = cdf_w)
+sample_data <- rmogw(n = 250L, theta, a, alpha, beta)
+x <- seq(0, 6, length.out = 500L)
+hist(sample_data, probability = TRUE, xlab = "", main = "")
+lines(x, pdf_mogw(x, theta, a, alpha, beta))
 
 # Monte Carlo simulations. ------------------------------------------------
-mc <- function(M = 1e3L, n = 100L, method = "BFGS", theta, a, alpha, beta) {
+mc <- function(n = 250L, M = 1e3L, par_true, method = "BFGS") {
+  
+  theta <- par_true[1L]
+  a <- par_true[2L]
+  alpha <- par_true[3L]
+  beta <- par_true[4L]
   
   # Log-likelihood function. ------------------------------------------------
   pdf_mogw <- pdf_mogg(g = pdf_w, G = cdf_w)
@@ -76,6 +89,7 @@ mc <- function(M = 1e3L, n = 100L, method = "BFGS", theta, a, alpha, beta) {
     a <- par[2L]
     alpha <- par[3L]
     beta <- par[4L]
+    
     -sum(log(pdf_mogw(x, theta = theta, a = a, alpha = alpha, beta = beta)))
   }
   
@@ -110,17 +124,103 @@ mc <- function(M = 1e3L, n = 100L, method = "BFGS", theta, a, alpha, beta) {
     result$par
   }
   
-  sapply(X = 1L:M, FUN = one_step_mc) 
+  result_vector <-
+    unlist(pbmcapply::pbmclapply(
+      X = 1L:M,
+      FUN = one_step_mc,
+      mc.cores = parallel::detectCores()
+    ))
+  
+  
+  result <-
+    tibble::as_tibble(matrix(result_vector, byrow = TRUE, ncol = 4L))
+  
+  names(result) <- c("theta", "a", "alpha", "beta")
+  
+  result
 }
 
-result_mc <- mc(
-  M = 1e3L,
-  n = 250L,
-  method = "BFGS",
-  theta = 1.5,
-  a = 1.5,
-  alpha = 1.5,
-  beta = 1.5
+bias_function <- function(x, par_true){
+  x - par_true
+}
+
+mse_function <- function(x, par_true) {
+  (x - par_true) ^ 2
+}
+
+simulate <- function(n) {
+  # True parameters (theta, a, alpha and beta) -------------------------------------
+  true_parameters <- c(1, 1, 1, 1)
+  
+  set.seed(1L, kind = "L'Ecuyer-CMRG")
+  t0 <- Sys.time()
+  result_mc <- mc(n = n, M = 1e4L, par_true = true_parameters, method = "BFGS")
+  total_time <- Sys.time() - t0
+  
+  mc.reset.stream()
+  
+  # Average Bias of Estimators ----------------------------------------------
+  eval(parse(text = glue("bias_{n} <- apply(X = result_mc, MARGIN = 1L, FUN = bias_function, par_true = true_parameters) %>% 
+        apply(MARGIN = 1L, FUN = mean)"))) 
+  eval(parse(text = glue("save(file = \"bias_{n}.RData\", bias_{n})")))
+  
+  # Mean Square Error -------------------------------------------------------
+  eval(parse(text = glue("mse_{n} <- apply(X = result_mc, MARGIN = 1L, FUN = mse_function, par_true = true_parameters) %>% 
+        apply(MARGIN = 1L, FUN = mean)"))) 
+  eval(parse(text = glue("save(file = \"mse_{n}.RData\", mse_{n})")))
+  
+  # Total Time --------------------------------------------------------------
+  eval(parse(text = glue("time_{n} <- total_time")))
+  eval(parse(text = glue("save(file = \"time_{n}.RData\", time_{n})")))
+  
+  # Result MC
+  eval(parse(text = glue("result_{n} <- result_mc")))
+  eval(parse(text = glue("save(file = \"result_{n}.RData\", result_{n})")))
+  
+}
+
+walk(
+  .x = c(
+    10,
+    20,
+    60,
+    100,
+    200,
+    400,
+    600,
+    1000,
+    2000,
+    5000,
+    10000,
+    20000,
+    30000,
+    50000
+  ),
+  .f = simulate
 )
 
-mean_est_par <- apply(X = result_mc, MARGIN = 1L, FUN = mean)
+first_col <-
+  c(10, 20, 60, 100, 200, 400, 600, 1000, 5000, 10000, 20000, 30000, 50000)
+
+tabela <- rbind(bias_10, bias_20, bias_60, bias_100, bias_200, bias_400, bias_600, bias_1000, bias_5000, bias_10000,
+                bias_20000, bias_30000, bias_50000)
+tabela <- cbind(n = first_col, tabela)
+rownames(tabela) <- NULL
+
+tabela <- tibble::as_tibble(tabela)
+
+latex <- print.xtable(xtable(tabela,  caption = "Mean bias of EMV obtained by the BFGS method in 10,000 Monte Carlo repetitions.",
+                             digits = 4L), print.results = FALSE)
+
+writeLines(
+  c(
+    "\\documentclass[12pt]{article}",
+    "\\begin{document}",
+    "\\thispagestyle{empty}",
+    latex,
+    "\\end{document}"
+  ),
+  "mc_simulation_weibull.tex"
+)
+
+tools::texi2pdf("mc_simulation_weibull.tex", clean = TRUE)
