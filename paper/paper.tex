@@ -1,153 +1,105 @@
-\documentclass[12pt,a4paper]{article} %437
+\documentclass[twoside,leqno,11pt]{article}
 \usepackage{revstat-v2}
-\usepackage{indentfirst}
 \usepackage{amsmath}
 \usepackage{enumerate}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{color}
-\makeatletter
-\makeatother
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{pdflscape}
 \usepackage{bm}
 \usepackage{float}
 \usepackage{listings}
-%\usepackage[dvips]{graphicx, color}
-%\usepackage{subfigure}
-%\usepackage[skins,listings,breakable]{tcolorbox}
 \usepackage{xcolor}
 \usepackage{color}
-\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
 
-%TCIDATA{OutputFilter=latex2.dll}
-%TCIDATA{LastRevised=Friday, February 01, 2008 17:54:39}
-%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
-
-
-\setlength\topmargin{-1.5cm} \setlength\oddsidemargin{0.0cm}
-\setlength\evensidemargin{0.0cm} \setlength{\textwidth}{15cm}
-\setlength{\textheight}{25cm}
-
-
-%\newtheorem{definition}{Definition}
-%\newtheorem{theorem}{Theorem}
-%\newtheorem{example}{Example}
-%\newtheorem{corollary}{Corollary}
-%\newtheorem{lemma}{Lemma}
-%\newtheorem{proposition}{Proposition}
-%\newenvironment{proof}{{\bf Proof:\ \ }}{\qed}
-%\newcommand{\qed}{\rule{0.5em}{1.5ex}}
-\newcommand{\bfg}[1]{\mbox{\boldmath $#1$\unboldmath}}
-\newcommand{\dse} {\displaystyle}
-\newcommand{\real}{{I\!\!R}}
-\newcommand{\zern}{{\bf 0}}
-\newcommand{\Cn}{{\bf C}}
-\newcommand{\dn}{{\bf d}}
-\newcommand{\Dn}{{\bf D}}
-\newcommand{\Pn}{{\bf P}}
-\newcommand{\xn}{{\bf x}}
-\newcommand{\Un}{{\bf U}}
-\newcommand{\Kn}{{\bf K}}
-\newcommand{\Xn}{{\bf X}}
-\newcommand{\Vn}{{\bf V}}
-\newcommand{\vn}{{\bf v}}
-\newcommand{\bn}{{\bf b}}
-\newcommand{\an}{{\bf a}}
-\newcommand{\cn}{{\bf c}}
-\newcommand{\en}{{\bf e}}
-\newcommand{\sn}{{\bf s}}
-\newcommand{\Bn}{{\bf B}}
-\newcommand{\An}{{\bf A}}
-\newcommand{\yn}{{\bf y}}
-\newcommand{\Yn}{{\bf Y}}
-\newcommand{\Zn}{{\bf Z}}
-\newcommand{\zn}{{\bf z}}
-\newcommand{\Hn}{{\bf H}}
-\newcommand{\Gn}{{\bf G}}
-\newcommand{\Mn}{{\bf M}}
-\newcommand{\fn}{{\bf f}}
-\newcommand{\hn}{{\bf h}}
-\newcommand{\In}{{\bf I}}
-\newcommand{\Fn}{{\bf F}}
-\newcommand{\En}{{\bf E}}
-\newcommand{\Jn}{{\bf J}}
-\newcommand{\Ln}{{\bf L}}
-\newcommand{\mn}{{\bf m}}
-\newcommand{\rn}{{\bf r}}
-\newcommand{\un}{{\bf u}}
-\newcommand{\Rn}{{\bf R}}
-\newcommand{\Sn}{{\bf S}}
-\newcommand{\Tn}{{\bf T}}
-\newcommand{\GLn}{{\bf G \bf L}}
-\newcommand{\tn}{{\bf t}}
-\newcommand{\alpn}{{\mbox{\boldmath $\alpha$}}}
-\newcommand{\epsiln}{{\mbox{\boldmath $\epsilon$}}}
-\newcommand{\rhn}{{\mbox{\boldmath $\rho$}}}
-\newcommand{\betn}{{\mbox{\boldmath $\beta$}}}
-\newcommand{\deltn}{{\mbox{\boldmath $\delta$}}}
-\newcommand{\sigmn}{{\mbox{\boldmath $\beta$}}}
-\newcommand{\gamn}{{\mbox{\boldmath $\gamma$}}}
-\newcommand{\Gamn}{{\mbox{\boldmath $\Gamma$}}}
-\newcommand{\lamn}{{\mbox{\boldmath $\lambda$}}}
-\newcommand{\Lamn}{{\mbox{\boldmath $\Lambda$}}}
-\newcommand{\mun}{{\mbox{\boldmath $\mu$}}}
-\newcommand{\etn}{{\mbox{\boldmath $\eta$}}}
-\newcommand{\tetn}{{\mbox{\boldmath $\theta$}}}
-\newcommand{\Tetn}{{\mbox{\boldmath $\Theta$}}}
-\newcommand{\Deltn}{{\mbox{\boldmath $\Delta$}}}
-\newcommand{\Phin}{{\mbox{\boldmath $\Phi$}}}
-\newcommand{\phin}{{\mbox{\boldmath $\phi$}}}
-\newcommand{\Psin}{{\mbox{\boldmath $\Psi$}}}
-\newcommand{\psin}{{\mbox{\boldmath $\psi$}}}
-\newcommand{\Upin}{{\mbox{\boldmath $\Upsilon$}}}
-\newcommand{\upin}{{\mbox{\boldmath $\upsilon$}}}
-\newcommand{\Sign}{{\mbox{\boldmath $\Sigma$}}}
-\newcommand{\Omegn}{{\mbox{\boldmath $\Omega$}}}
-\newcommand{\omegn}{{\mbox{\boldmath $\omega$}}}
-\newcommand{\eln}{{\mbox{\boldmath $\ell$}}}
-\newcommand{\taun}{{\mbox{\boldmath $\tau$}}}
-
+\newcommand{\etn}{{\mbox{\boldmath $\eta$}}} 
 \hyphenation{ge-ne-ra-ted  hy-per-geo-me-tric  cha-rac-te-ri-ze}
-
-
-\hypersetup{
-	colorlinks=true,
-	linkcolor=blue,
-	filecolor=magenta,      
-	urlcolor=cyan,
-}
-
-\urlstyle{same}
-
-
+ 
 \begin{document}
+\thispagestyle{firstpage}
 
-\begin{center}
-\section*{\centerline {A new family of distributions: properties and applications}}
-\vspace{0.3in}
-{\large Gauss M. Cordeiro$^a$ , Maria do Carmo S. Lima$^a$ and Pedro Rafael D. Marinho$^b$}\\
+\vspace{-3.2cm}
+
+\noindent
+{\footnotesize {\sffamily REVSTAT~~--~~Statistical~~Journal\\[-1pt]
+		Volume 0, Number 0, Month 0000,
+		000-000}}
+% \thepage-\pageref{LastPage}}}   % requires \usepackage{lastpage}
+
+\vspace{1.5cm}
+\title{Marshall and Olkin-G and Gamma-G family of distribution: properties and applications
+	%\footnote{The opinions expressed in this text are those of the authors and do not necessarily reflect the views of any organization.}
+}
+\renewcommand{\titleheading}
+{Using the ``revstat-v2.sty" Package}  % --- on odd running heads
+
+\author{\authoraddress{Maria do Carmo S. Lima \href{https://orcid.org/0000-0004-8882-8330}{\includegraphics[scale=0.08]{ORCID-iD_icon-128x128}}} 
+	{Department of Statistics,
+		Federal University of Pernambuco,\\
+        Pernambuco, Recife, Brazil
+		\ (maria@de.ufpe.br)}
+	\\
+	\authoraddress{Gauss M. Cordeiro \href{https://orcid.org/0000-0002-3052-6551}{\includegraphics[scale=0.08]{ORCID-iD_icon-128x128}}}
+	{Department of Statistics,
+		Federal University of Pernambuco,\\
+		Pernambuco, Recife, Brazil
+		\ (gauss@de.ufpe.br)}
+	\\
+	\authoraddress{Pedro Rafael D. Marinho \href{https://orcid.org/0000-0003-1591-8300}{\includegraphics[scale=0.08]{ORCID-iD_icon-128x128}}
+	\correspondingauthor}
+	{Department of Statistics,
+		Federal University of Paraíba,\\
+		Paraíba, João Pessoa, Brazil
+		\ (pedro.rafael.marinho@gmail.com)}
+}
+\renewcommand{\authorheading}
+{Author Pedro Rafael D. Marinho}  % --- on even running heads
+
 %\vspace{0.3in}
 %First Version: 27 July 2010\\
 %\vspace{0.1in}
 %This Version: 27 January 2011\\
-\end{center}
 
-\begin{abstract}\noindent
+%-------------------------------------------------------------------------------
+% Just asking LaTeX to effectively do the title...
+%-------------------------------------------------------------------------------
+\maketitle
+%-------------------------------------------------------------------------------
+% Just asking LaTeX to numerate lines...
+%-------------------------------------------------------------------------------
+\setpagewiselinenumbers
+\modulolinenumbers[1]
+\linenumbers
+%%%%%%%%%%%%%%%%%%%%%%%%%% alteracao: Datas %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
+~~~~{\small{\sffamily Received:} December 2020 ~~~~~~{\sffamily Revised:} May 2022 ~~~~~~{\sffamily Accepted:} Month 0000}
+%%%%%%%%%%%%%%%%%%%%%%%%%% alteracao %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-------------------------------------------------------------------------------
+% Abstract of the article...
+%-------------------------------------------------------------------------------
+\begin{abstract}
 This article introduces a new family by combining the Marshall and Olkin-G and Gamma-G classes. The family has only two
 extra shape parameters and can be a better model  than other existing classes of distributions. Simulations are performed to verify the
 consistency of the estimators. Its flexibility is shown using two real data sets.
 \end{abstract}
 
-\vspace{0.5in}
-\noindent {\bf Key Words}:  Distribution family;  mathematical properties; simulations; applications.\\ \\
-%\noindent {\bf JEL Codes}: C16, G1 \\ \\
-\noindent $^{a}$  Department of Statistics, Federal University of Pernambuco, Recife, Brazil.\\
-\noindent $^{b}$ Department of Statistics, Federal University of Paraíba, João Pessoa, Brazil.\\
-E-mail:\emph{gausscordeiro@de.ufpe.br, maria@de.ufpe.br, pedro.rafael.marinho@gmail.com} \\
+%-------------------------------------------------------------------------------
+% Keywords...
+%-------------------------------------------------------------------------------
+\begin{keywords}
+ Distribution family;  mathematical properties; simulations; applications.
+\end{keywords}
 
+%-------------------------------------------------------------------------------
+% AMS classifications...
+%-------------------------------------------------------------------------------
+\begin{ams}
+	49A05, 78B26.
+\end{ams}
 
 \section{Introduction}
 
@@ -206,9 +158,6 @@ For $a=1$, the $\Gamma$-G family reduces to G.
 If $Z$ is a gamma random variable with unit scale
 parameter and shape parameter $a>0$, then $W=Q_G(1-\rm{e}^{Z})$ has density (\ref{PDF_Ga}). So,
 the $\Gamma$-G distribution is easily generated from the gamma distribution and the QF of G.
-
-
-
 
 The remaining of the paper is addressed as follows. Section \ref{sec:MOGaG} introduces the {\it Marshall and Olkin-Gamma-G} (MO-$\Gamma$-G)
 family and presents some special models. The maximum likelihood estimates (MLEs) of the parameters of the new family is addressed
@@ -702,16 +651,6 @@ of the proposed family is shown empirically by means of two applications to real
 
 The script below is used to perform the simulations whose results are given in Table \ref{tab:bias} of Section \ref{sec:simulation}.
 It is developed a script using the programming language {\sf R} to be used in other simulations or even to check the results presented in this paper.
-
-
-\lstinputlisting[language=R, caption={Monte-Carlo simulations for different sample sizes.}, numbers=left,
-stepnumber=1,
-showspaces=false,
-tabsize=4,
-basicstyle=\scriptsize,
-backgroundcolor=\color{lbcolor},
-showstringspaces=false]{new_code_dagum.R}
-
 
 \section*{References}
 

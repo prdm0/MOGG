@@ -1,4 +1,4 @@
-\documentclass[version=last,12pt,{"/home/prdm0/R/x86_64-pc-linux-gnu-library/4.2/komaletter/rmarkdown/templates/pdf/resources/maintainersDelight"},letterpaper,]{scrlttr2}
+\documentclass[version=last,12pt,{"maintainersDelight"},letterpaper,]{scrlttr2}
 
 % For Debuging the Layout  ----------------------------------------------------
 % \LoadLetterOption{visualize}
@@ -65,8 +65,7 @@
 }{}
 % set default figure placement to htbp
 \def\fps@figure{htbp}
-\setkomavar{signature}{Prof.~Dr.~Pedro Rafael D. Marinho\\
-(DSc in Statistics from Federal University of Pernambuco)}
+\setkomavar{signature}{Prof.~Dr.~Pedro Rafael D. Marinho and co-authors}
 \makeatother
 
 
@@ -85,7 +84,7 @@
 
 \setkomavar{subject}{Marshall and Olkin-G and Gamma-G family of
 distribution: properties and applications}
-\setkomavar{fromname}{Prof.~Dr.~Pedro Rafael D. Marinho}
+\setkomavar{fromname}{Response letter from the authors}
 \setkomavar{fromaddress}{Department of Statistics\\Federal University of
 Paraíba\\João Pessoa, Paraíba - PB, Brazil}
 
@@ -143,9 +142,9 @@ authors should justify why they only chose the Anderson Darling and
 Cramer-von Mises statistics.
 
 \emph{Response}:
-\textcolor{red}{The use of the $A^*$ and $W^*$ statistics, Anderson-Darling and Cramer-von Mises statistics, respectively, corrected by Chen and Balakrishnan, in the paper entitled "A General Purpose Approximate Goodness-of-Fit Test" (see [link](https://www.tandfonline.com/doi/abs/10.1080/00224065.1995.11979578)) are suitable for comparing models that are not necessarily embedded. Therefore, considering the statistics returned by the `goodness.fit` function and considering the distributions compared, we understand that the statistics $A^*$ and $W^*$ are the most suitable for making the comparisons.}
+\textcolor{red}{The use of the $A^*$ and $W^*$ statistics, Anderson-Darling and Cramer-von Mises statistics, respectively, corrected by Chen and Balakrishnan, in the paper entitled "A General Purpose Approximate Goodness-of-Fit Test" (see   \url{https://www.tandfonline.com/doi/abs/10.1080/00224065.1995.11979578}) are suitable for comparing models that are not necessarily embedded. Therefore, considering the statistics returned by the \texttt{goodness.fit} function and considering the distributions compared, we understand that the statistics $A^*$ and $W^*$ are the most suitable for making the comparisons.}
 
-\textcolor{red}{The **AdequacyModel** package was developed by one of the authors of this paper and was published at [https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0221487](https://journals .plos.org/plosone/article?id=10.1371/journal.pone.0221487). A code inspection of the `goodness.fit` function can be done by looking at the [link](https://github.com/prdm0/AdequacyModel/blob/master/R/goodness.fit.R) on GitHub, where it is hosted the development versioning of the package.}
+\textcolor{red}{The  \textbf{AdequacyModel} package was developed by one of the authors of this paper and was published at   \url{https://journals .plos.org/plosone/article?id=10.1371/journal.pone.0221487}. A code inspection of the \texttt{goodness.fit} function can be done by looking at the   \href{https://github.com/prdm0/AdequacyModel/blob/master/R/goodness.fit.R}{link} on GitHub, where it is hosted the development versioning of the package.}
 
 \emph{Minor points:}
 
@@ -256,6 +255,41 @@ Reorganize the presentation of the tables. (iv) Put the simulation code
 in Supplementary material.
 
 \emph{Response}:
+
+\begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\roman{enumi})}
+  \tightlist
+  \item
+    \textcolor{red}{Really, the title of the paper was really bad. We switched to \textbf{Marshall and Olkin-G and Gamma-G family of distribution: properties and applications}. We believe that the title now clarifies the paper's proposal better.}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\roman{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    \textcolor{red}{Change made. Thanks for the sugestion.}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\roman{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    \textcolor{red}{Thanks for the observation. The presentation of tables has been reorganized.}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\roman{enumi})}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    \textcolor{red}{Thanks for the sugestion.We chose to put the code for the simulations in a repository on GitHub. Thus, we considerably reduced the number of pages in the article and made it easier for readers of the material to reuse the code. With the code on GitHub it is also possible to verify the implementation and validate the simulations obtained. To access the codes, see the
+    \url{https://github.com/prdm0/MOGG/tree/master/code/simulations}}.
+  \end{enumerate}
+\end{itemize}
 
 \closing{Kind regards,}
 

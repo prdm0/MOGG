@@ -162,3 +162,8 @@ about naming the proposed distribution?. (ii) Place section 6 (properties) befor
 in Supplementary material.
 
 *Response*:
+
+- (i) \textcolor{red}{Really, the title of the paper was really bad. We switched to **Marshall and Olkin-G and Gamma-G family of distribution: properties and applications**. We believe that the title now clarifies the paper's proposal better.}
+- (ii) \textcolor{red}{Change made. Thanks for the sugestion.}
+- (iii) \textcolor{red}{Thanks for the observation. The presentation of tables has been reorganized.}
+- (iv) \textcolor{red}{Thanks for the sugestion.We chose to put the code for the simulations in a repository on GitHub. Thus, we considerably reduced the number of pages in the article and made it easier for readers of the material to reuse the code. With the code on GitHub it is also possible to verify the implementation and validate the simulations obtained. To access the codes, see the} [link](https://github.com/prdm0/MOGG/tree/master/code/simulations).
