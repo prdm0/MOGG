@@ -14,6 +14,8 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{color}
+\usepackage{caption}
+\usepackage{subcaption}
 
 \newcommand{\etn}{{\mbox{\boldmath $\eta$}}} 
 \hyphenation{ge-ne-ra-ted  hy-per-geo-me-tric  cha-rac-te-ri-ze}
@@ -34,7 +36,7 @@
 	%\footnote{The opinions expressed in this text are those of the authors and do not necessarily reflect the views of any organization.}
 }
 \renewcommand{\titleheading}
-{Using the ``revstat-v2.sty" Package}  % --- on odd running heads
+{MOGG family of distribution: properties and applications}  % --- on odd running heads
 
 \author{\authoraddress{Maria do Carmo S. Lima \href{https://orcid.org/0000-0004-8882-8330}{\includegraphics[scale=0.08]{ORCID-iD_icon-128x128}}} 
 	{Department of Statistics,
@@ -56,7 +58,7 @@
 		\ (pedro.rafael.marinho@gmail.com)}
 }
 \renewcommand{\authorheading}
-{Author Pedro Rafael D. Marinho}  % --- on even running heads
+{Maria do Carmo S. Lima, Gauss M. Cordeiro and Pedro Rafael D. Marinho, }  % --- on even running heads
 
 %\vspace{0.3in}
 %First Version: 27 July 2010\\
@@ -98,10 +100,10 @@ consistency of the estimators. Its flexibility is shown using two real data sets
 % AMS classifications...
 %-------------------------------------------------------------------------------
 \begin{ams}
-	49A05, 78B26.
+	60E05, 62E10, 62E15.
 \end{ams}
 
-\section{Introduction}
+\section{INTRODUCTION}
 
 The mechanism by adding shape parameters to a baseline distribution has
 proved to be useful to make the generated distributions more flexible especially for studying tail
@@ -165,9 +167,7 @@ in Section \ref{estimation}. Some simulations ate performed in Section \ref{sec:
 empirical applications illustrate the potentiality of the proposed family in Section \ref{applications}. A variety of theoretical properties are derived
 in Section \ref{properties}. Some conclusions remarks are offered in Section \ref{conclusions}.
 
-
-\section{The New Family}\label{sec:MOGaG}
-
+\section{THE NEW FAMILY}\label{sec:MOGaG}
 
 By combining Equations (\ref{CDF_MO}) and (\ref{CDF_Ga}), the CDF of the random variable $X\sim$MO-$\Gamma$-G
 representing the new family is defined by
@@ -196,11 +196,30 @@ more flexibility for these functions in relation to the baseline ones.
 
 \vspace{0.6cm}
 
-\begin{figure}[H]
-\begin{center}
-\includegraphics[scale =  0.39]{pdf-hazard.pdf}
-\caption{(A) MO-$\Gamma$-W density. (B) MO-$\Gamma$-W hazard.\label{formas}}
-\end{center}
+%\begin{figure}[H]
+%\begin{center}
+%\includegraphics[scale =  0.39]{pdf-hazard.pdf}
+%\caption{(A) MO-$\Gamma$-W density. (B) MO-$\Gamma$-W hazard.\label{formas}}
+%\end{center}
+%\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{pdf_function.pdf}
+		\caption{MO-$\Gamma$-W density function.}
+		\label{fig:pdf}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{hazard_function.pdf}
+		\caption{MO-$\Gamma$-W hazard function.}
+		\label{fig:hazard}
+	\end{subfigure}
+\caption{MO-$\Gamma$-W density function and  MO-$\Gamma$-W hazard function with G following the Weibull distribution.}
+\label{formas}
 \end{figure}
 
 \vspace{0.6cm}
@@ -258,7 +277,7 @@ $Q^{-1}(a,1-w)$ are given in \url{http:// functions.wolfram.com/ GammaBetaErf/ I
 \end{table}
 \end{landscape}
 
-\section{Estimation}\label{estimation}
+\section{ESTIMATION}\label{estimation}
 
 The  MO-$\Gamma$-G family can be  fitted to real data using the {\bf AdequacyModel} package in the {\sf R} software.
 This packa\-ge does not require to define the log-likelihood function and it computes the MLEs, their standard errors (SEs)
@@ -277,7 +296,7 @@ Due to the impossibility of obtaining the MLEs in closed form, numerical methods
 To obtain the MLEs, the package {\bf AdequacyModel} of the programming language {\sf R} was used, see R Core Team (2020). This library, created and maintained by one of the authors of this paper, is widely cited by several papers in the field of statistics and serves as a basis for other library implementations available on the Comprehensive R Archive Network - CRAN.  With it, in particular using the goodness.fit function, it is possible to provide an implementation {\sf R} of (\ref {PDF_MO-Gamma-G}), being in charge of this function, obtain $\ell(\cdot)$  by returning several measures of fit adequacy as well as the MLEs. Further details regarding this package can be obtained from Marinho et al. (2019).
 
 
-\section{Simulations}\label{sec:simulation}
+\section{SIMULATIONS}\label{sec:simulation}
 
 Due to the probable absence of MLEs in closed-form for distributions belonging to the MO-$\Gamma $-G family, it is necessary to examine the
 precision of the estimates calculated numerically. For doing that, the biases of the estimators of the parameters of the
@@ -332,7 +351,7 @@ as the lowest possible value to maximize the likelihood of acceptance. Further d
 \end{table}
 
 
-\section{Applications}\label{applications}
+\section{APPLICATIONS}\label{applications}
 
 Consider the Weibull baseline. Two applications are provided to compare the new generated model with seven extended Weibull
 distributions, namely the beta-Weibull ($\beta$-W) (Famoye {\it et al.}, 2005), Kumaraswamy Weibull (Kw-W) (Cordeiro and Nadarajah, 2010),
@@ -508,9 +527,7 @@ KW-W$(a,\theta,\lambda,\gamma)$ &   7363.281 & 0.03925762 &  1.467640 &   0.6146
 
 
 
-
-
-\section{Mathematical properties}\label{properties}
+\section{MATHEMATICAL PROPERTIES}\label{properties}
 
 
 In this section, some main mathematical properties are presented for the MO-$\Gamma$-G family
@@ -638,23 +655,15 @@ m_{n}(y)=\int_{-\infty}^y x^n\,f_{X}(x) dx = \sum_{i,j=0}^{\infty} [(i+1)a+j]\,d
 The definite integral in (\ref{incomplete}) can be evaluated for most baseline G distributions.
 
 
-
-\section{Conclusions}\label{conclusions}
+\section{CONCLUSIONS}\label{conclusions}
 
 A new family of distributions called the Marshall and Olkin-Gamma-G family with two shape parameters is introduced. The estimation of the unknown
 parameters is done via the maximum likelihood method and a simulation study is conducted to verify its adequacy. Additionally, the usefulness
 of the proposed family is shown empirically by means of two applications to real data.
 
-\appendix
 
-\section{Appendix: Simulation code}\label{ap:simulation}
+\begin{thebibliography}{8}
 
-The script below is used to perform the simulations whose results are given in Table \ref{tab:bias} of Section \ref{sec:simulation}.
-It is developed a script using the programming language {\sf R} to be used in other simulations or even to check the results presented in this paper.
-
-\section*{References}
-
-\begin{description}
 
 \item
 A. Alzaatreh, F. Famoye, C. Lee:
@@ -784,9 +793,7 @@ associate inference.  Statistical Methodology {\bf 6}(4) 344-362 (2009).
 \item 
 Rizzo, Maria L. Statistical computing with R. CRC Press (2019).
 
-\end{description}
-
-
+\end{thebibliography}
 
 
 \end{document}

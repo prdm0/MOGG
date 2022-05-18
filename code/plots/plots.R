@@ -49,11 +49,16 @@
              "Legenda 3" = "#9239F6",
              "Legenda 4" = "#E3D26D")
   
+  type_lines <- c("solid",
+                  "dotted",
+                  "dotdash",
+                  "twodash")
+  
   base <- ggplot(data.frame(x = c(0, 10)), aes(x)) +
-    ggtitle(
-      "Probability density function",
-      subtitle = "With G following the Weibull distribution "
-    ) +
+    # ggtitle(
+    #   "Probability density function",
+    #   subtitle = "With G following the Weibull distribution "
+    # ) +
     theme(
       plot.title = element_text(face = "bold"),
       axis.title = element_text(face = "bold"),
@@ -71,7 +76,8 @@
         beta = 3
       ),
       aes(color = "Legenda 1"),
-      size = 1.5
+      size = 1.5,
+      linetype = "solid"
     ) +
     
     stat_function(
@@ -83,7 +89,8 @@
         beta = 0.3
       ),
       aes(color = "Legenda 2"),
-      size = 1.5
+      size = 1.5,
+      linetype = "dotted"
     ) +
     
     stat_function(
@@ -95,7 +102,8 @@
         beta = 2.1
       ),
       aes(color = "Legenda 3"),
-      size = 1.5
+      size = 1.5,
+      linetype = "dotdash"
     ) +
     
     stat_function(
@@ -107,41 +115,49 @@
         beta = 2.7
       ),
       aes(color = "Legenda 4"),
-      size = 1.5
-    ) +
+      size = 1.5,
+      linetype = "twodash"
+    )  +
     
     labs(x = "x",
          y = expression("f(x)"),
          color = expression(paste("MO-", Gamma, "-Weibull")),
          element_text(face = "bold"))  +
-    
+  
     scale_color_manual(values = cores, labels =
                          expression(
                            paste(theta, " = 2.2, ", "a = 3.2, ", alpha, " = 2.0, ", beta, " = 3.0"),
                            paste(theta, " = 3.0, ", "a = 1.5, ", alpha, " = 0.7, ", beta, " = 0.3"),
                            paste(theta, " = 0.2, ", "a = 4.0, ", alpha, " = 1.4, ", beta, " = 2.1"),
                            paste(theta, " = 5.1, ", "a = 4.1, ", alpha, " = 2.5, ", beta, " = 2.7")
-                         )) +
+                         ), 
+                       guide = guide_legend(override.aes = list(
+                           linetype = type_lines
+                           ))) +
     theme(
       legend.title = element_text(face = "bold"),
       legend.background = element_rect(color = "black"),
       legend.position = c(0.7, 0.84),
-      text = element_text(size = 18)
+      text = element_text(size = 15),
+      legend.key.width = unit(3,"cm"),
+      legend.text = element_text(size=10),
+      legend.spacing.x = unit(0.7, 'cm')
     )
   
+
   
   # Plot hazard function ----------------------------------------------------
   
   cores <- c("Legenda 1" = "#FF6B58",
              "Legenda 2" = "#FF4373",
              "Legenda 3" = "#9239F6",
-             "Legenda 4" = "#00B19D") 
+             "Legenda 4" = "#00B19D")
   
   base <- ggplot(data.frame(x = c(0, 25)), aes(x)) +
-    ggtitle(
-      "Hazard Function",
-      subtitle = "With G following the Weibull distribution "
-    ) +
+    # ggtitle(
+    #   "Hazard Function",
+    #   subtitle = "With G following the Weibull distribution "
+    # ) +
     theme(
       plot.title = element_text(face = "bold"),
       axis.title = element_text(face = "bold"),
@@ -159,7 +175,8 @@
         beta = 0.3
       ),
       aes(color = "Legenda 1"),
-      size = 1.5
+      size = 1.5,
+      linetype = "solid"
     ) +
     
     stat_function(
@@ -171,7 +188,8 @@
         beta = 0.43
       ),
       aes(color = "Legenda 2"),
-      size = 1.5
+      size = 1.5,
+      linetype = "dotted"
     ) +
     
     stat_function(
@@ -183,7 +201,8 @@
         beta = 5
       ),
       aes(color = "Legenda 3"),
-      size = 1.5
+      size = 1.5,
+      linetype = "dotdash"
     ) +
     
     stat_function(
@@ -195,7 +214,8 @@
         beta = 7
       ),
       aes(color = "Legenda 4"),
-      size = 1.5
+      size = 1.5,
+      linetype = "twodash"
     ) + 
     labs(x = "x",
          y = expression("h(x)"),
@@ -208,15 +228,20 @@
                            paste(theta, " = 4.5, ", "a = 1.5, ", alpha, " = 0.65, ", beta, " = 0.43"),
                            paste(theta, " = 2.0, ", "a = 1.0, ", alpha, " = 1.50, ", beta, " = 5.00"),
                            paste(theta, " = 1.0, ", "a = 1.0, ", alpha, " = 1.00, ", beta, " = 7.00")
-                         )) +
+                         ), guide = guide_legend(override.aes = list(
+                           linetype = type_lines
+                         ))) +
     theme(
       legend.title = element_text(face = "bold"),
       legend.background = element_rect(color = "black"),
       legend.position = c(0.65, 0.39),
-      text = element_text(size = 18)
+      text = element_text(size = 15),
+      legend.key.width = unit(3,"cm"),
+      legend.text = element_text(size=10),
+      legend.spacing.x = unit(0.7, 'cm')
     )
   
   pdf(file="pdf-hazard.pdf",width=15,height=7, paper="special",
-      family="Bookman",pointsize=14)
-  plot_grid(p1, p2, labels = c("A", "B"))
+      family="Bookman",pointsize=12)
+    plot_grid(p1, p2, labels = c("A", "B"))
   dev.off()
