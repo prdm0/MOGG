@@ -8,6 +8,9 @@ library(pbmcapply)
 library(magrittr)
 library(purrr)
 library(xtable)
+library(glue)
+library(fs)
+library(kableExtra)
 
 # Baseline functions. -----------------------------------------------------
 pdf_dagum <- function(x, alpha, beta, p) 
@@ -73,7 +76,7 @@ rmogdagum <- function(n = 1L, theta, a, alpha, beta, p){
 
 # Testing the rmogw Function ----------------------------------------------
 theta = 5
-a = 1
+a = 1.4
 alpha = 5
 beta = 1
 p = 1
@@ -152,11 +155,11 @@ mc <- function(n = 250L, M = 1e3L, par_true, method = "BFGS") {
 }
 
 bias_function <- function(x, par_true){
-  x - par_true
+  round(x - par_true, digits = 3L)
 }
 
 mse_function <- function(x, par_true) {
-  (x - par_true) ^ 2
+  round((x - par_true) ^ 2, digits = 3L)
 }
 
 simulate <- function(n) {
@@ -166,43 +169,109 @@ simulate <- function(n) {
   set.seed(1L, kind = "L'Ecuyer-CMRG")
   t0 <- Sys.time()
   result_mc <- mc(n = n, M = 1e4L, par_true = true_parameters, method = "BFGS")
-  total_time <- Sys.time() - t0
+  total_time <- difftime(Sys.time(), t0, units = 'mins')[[1L]] 
     
   mc.reset.stream()
   
   # Average Bias of Estimators ----------------------------------------------
   eval(parse(text = glue("bias_{n} <- apply(X = result_mc, MARGIN = 1L, FUN = bias_function, par_true = true_parameters) %>% 
         apply(MARGIN = 1L, FUN = mean)"))) 
-  eval(parse(text = glue("save(file = \"bias_{n}.RData\", bias_{n})")))
+  eval(parse(text = glue("save(file = \"rdata/dagum/bias_{n}.RData\", bias_{n})")))
   
   # Mean Square Error -------------------------------------------------------
   eval(parse(text = glue("mse_{n} <- apply(X = result_mc, MARGIN = 1L, FUN = mse_function, par_true = true_parameters) %>% 
         apply(MARGIN = 1L, FUN = mean)"))) 
-  eval(parse(text = glue("save(file = \"mse_{n}.RData\", mse_{n})")))
+  eval(parse(text = glue("save(file = \"rdata/dagum/mse_{n}.RData\", mse_{n})")))
   
   # Total Time --------------------------------------------------------------
   eval(parse(text = glue("time_{n} <- total_time")))
-  eval(parse(text = glue("save(file = \"time_{n}.RData\", time_{n})")))
+  eval(parse(text = glue("save(file = \"rdata/dagum/time_{n}.RData\", time_{n})")))
   
   # Result MC
   eval(parse(text = glue("result_{n} <- result_mc")))
-  eval(parse(text = glue("save(file = \"result_{n}.RData\", result_{n})")))
+  eval(parse(text = glue("save(file = \"rdata/dagum/result_{n}.RData\", result_{n})")))
   
 }
+n <- c(10, 20, 60, 100, 200, 400, 600, 1000, 2000, 5000, 10000, 20000, 30000, 50000)
+walk(.x = n, .f = simulate)
 
-walk(.x = c(10, 20, 60, 100, 200, 400, 600, 1000, 2000, 5000, 10000, 20000, 30000, 50000), .f = simulate)
+# Load bias
+load(file = "rdata/dagum/bias_10.RData")
+load(file = "rdata/dagum/bias_20.RData")
+load(file = "rdata/dagum/bias_60.RData")
+load(file = "rdata/dagum/bias_100.RData")
+load(file = "rdata/dagum/bias_200.RData")
+load(file = "rdata/dagum/bias_400.RData")
+load(file = "rdata/dagum/bias_600.RData")
+load(file = "rdata/dagum/bias_1000.RData")
+load(file = "rdata/dagum/bias_2000.RData")
+load(file = "rdata/dagum/bias_5000.RData")
+load(file = "rdata/dagum/bias_10000.RData")
+load(file = "rdata/dagum/bias_20000.RData")
+load(file = "rdata/dagum/bias_30000.RData")
+load(file = "rdata/dagum/bias_50000.RData")
 
-first_col <- c(10, 20, 60, 100, 200, 400, 600, 1000, 5000, 10000, 20000, 30000, 50000)
+# Load times
+load(file = "rdata/dagum/time_10.RData")
+load(file = "rdata/dagum/time_20.RData")
+load(file = "rdata/dagum/time_60.RData")
+load(file = "rdata/dagum/time_100.RData")
+load(file = "rdata/dagum/time_200.RData")
+load(file = "rdata/dagum/time_400.RData")
+load(file = "rdata/dagum/time_600.RData")
+load(file = "rdata/dagum/time_1000.RData")
+load(file = "rdata/dagum/time_2000.RData")
+load(file = "rdata/dagum/time_5000.RData")
+load(file = "rdata/dagum/time_10000.RData")
+load(file = "rdata/dagum/time_20000.RData")
+load(file = "rdata/dagum/time_30000.RData")
+load(file = "rdata/dagum/time_50000.RData")
 
-tabela <- rbind(bias_10, bias_20, bias_60, bias_100, bias_200, bias_400, bias_600, bias_1000, bias_5000, bias_10000,
-                bias_20000, bias_30000, bias_50000)
-tabela <- cbind(n = first_col, tabela)
+tabela <-
+  rbind(
+    bias_10,
+    bias_20,
+    bias_60,
+    bias_100,
+    bias_200,
+    bias_400,
+    bias_600,
+    bias_1000,
+    bias_2000,
+    bias_5000,
+    bias_10000,
+    bias_20000,
+    bias_30000,
+    bias_50000
+  )
+tabela <- cbind(
+  tabela,
+  c(
+    time_10,
+    time_20,
+    time_60,
+    time_100,
+    time_200,
+    time_400,
+    time_600,
+    time_1000,
+    time_2000,
+    time_5000,
+    time_10000,
+    time_20000,
+    time_30000,
+    time_50000
+  )
+)
+colnames(tabela) <- c("theta", "a", "alpha", "beta", "p", "Times (mins)") 
 rownames(tabela) <- NULL
+tabela <- tabela |> round(digits = 4L) |> as_tibble()
 
-tabela <- tibble::as_tibble(tabela)
-
+tabela <- as.vector(unlist(tabela)) |> matrix(byrow = F, nrow = length(n))
+colnames(tabela) <- c("theta", "a", "alpha", "beta", "p", "Times (mins)") 
+tabela <- cbind(n = n, tabela) |> round(digits = 4L) |> as_tibble()
 latex <- print.xtable(xtable(tabela,  caption = "Mean bias of EMV obtained by the BFGS method in 10,000 Monte Carlo repetitions.",
-                      digits = 4L), print.results = FALSE)
+                             digits = 4L), print.results = FALSE)
 
 writeLines(
   c(
@@ -212,8 +281,7 @@ writeLines(
     latex,
     "\\end{document}"
   ),
-  "mc_simulation.tex"
+  "simulations/mc_simulation_dagum.tex"
 )
 
-tools::texi2pdf("mc_simulation.tex", clean = TRUE)
-
+tools::texi2pdf("simulations/mc_simulation_dagum.tex", clean = TRUE)
