@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.2)  20 MAY 2022 16:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.15)  24 MAY 2022 20:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**letter_answers.tex
-(./letter_answers.tex
+**Reply_Letter_May_24.tex
+(./Reply_Letter_May_24.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-04-10>
 (/usr/share/texmf-dist/tex/latex/koma-script/scrlttr2.cls
@@ -53,32 +53,21 @@ Package: typearea 2021/11/13 v3.35 KOMA-Script package (type area)
 \ta@bcor=\skip47
 \ta@div=\count185
 Package typearea Info: Switching compatibility level to `last'.
-Package typearea Info: You've used standard option `letterpaper'.
-(typearea)             This is correct!
-(typearea)             Internally I'm using `paper=letter'.
-(typearea)             If you'd like to set the option with \KOMAoptions,
-(typearea)             you'd have to use `paper=letter' there
-(typearea)             instead of `letterpaper', too.
 \ta@hblk=\skip48
 \ta@vblk=\skip49
 \ta@temp=\skip50
 \footheight=\skip51
-Package typearea Info: With paper sizes other than (almost) `A4' predefined
-(typearea)             DIV values do not exist. Using DIV calculation for good
-(typearea)             line width (unless using `version=3.24` or prior).
-
-DIV calculation for typearea with good linewidth.
 Package typearea Info: These are the values describing the layout:
-(typearea)             DIV  = 8
+(typearea)             DIV  = 12
 (typearea)             BCOR = 0.0pt
-(typearea)             \paperwidth      = 614.295pt
-(typearea)              \textwidth      = 383.9344pt
-(typearea)              DIV departure   = 1%
-(typearea)              \evensidemargin = 42.91031pt
-(typearea)              \oddsidemargin  = 42.91031pt
-(typearea)             \paperheight     = 794.96999pt
-(typearea)              \textheight     = 505.0pt
-(typearea)              \topmargin      = -12.77374pt
+(typearea)             \paperwidth      = 597.50793pt
+(typearea)              \textwidth      = 448.13095pt
+(typearea)              DIV departure   = -6%
+(typearea)              \evensidemargin = 2.4185pt
+(typearea)              \oddsidemargin  = 2.4185pt
+(typearea)             \paperheight     = 845.04694pt
+(typearea)              \textheight     = 635.5pt
+(typearea)              \topmargin      = -41.72441pt
 (typearea)              \headheight     = 18.125pt
 (typearea)              \headsep        = 21.75pt
 (typearea)              \topskip        = 12.0pt
@@ -89,18 +78,19 @@ Package typearea Info: These are the values describing the layout:
 \c@letter=\count186
 )
 Class scrlttr2 Info: Letter-Class-Option `DIN' loaded on input line 2.
- (/usr/share/texmf-dist/tex/latex/koma-script/DIN.lco
+
+(/usr/share/texmf-dist/tex/latex/koma-script/DIN.lco
 File: DIN.lco 2021/11/13 v3.35 KOMA-Script letter-class-option
 )
 Class scrlttr2 Info: Letter-Class-Option `"maintainersDelight"' loaded on input
  line 2.
-
-(./maintainersDelight.lco
+ (./maintainersDelight.lco
 File: maintainersDelight.lco letter class options to maintainers delight
 Class scrlttr2 Info: Letter-Class-Option `DIN' loaded on input line 3.
- (/usr/share/texmf-dist/tex/latex/koma-script/DIN.lco
+(/usr/share/texmf-dist/tex/latex/koma-script/DIN.lco
 File: DIN.lco 2021/11/13 v3.35 KOMA-Script letter-class-option
-) (/usr/share/texmf-dist/tex/latex/lm/lmodern.sty
+)
+(/usr/share/texmf-dist/tex/latex/lm/lmodern.sty
 Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -182,13 +172,13 @@ Package: ragged2e 2021/12/15 v3.1 ragged2e Package
 Package typearea Info: These are the values describing the layout:
 (typearea)             DIV  = areaset
 (typearea)             BCOR = 0.0pt
-(typearea)             \paperwidth      = 614.295pt
+(typearea)             \paperwidth      = 597.50793pt
 (typearea)              \textwidth      = 455.24408pt
-(typearea)              \evensidemargin = 7.25546pt
-(typearea)              \oddsidemargin  = 7.25546pt
-(typearea)             \paperheight     = 794.96999pt
+(typearea)              \evensidemargin = -1.13808pt
+(typearea)              \oddsidemargin  = -1.13808pt
+(typearea)             \paperheight     = 845.04694pt
 (typearea)              \textheight     = 674.3303pt
-(typearea)              \topmargin      = -70.80676pt
+(typearea)              \topmargin      = -54.11446pt
 (typearea)              \headheight     = 17.0pt
 (typearea)              \headsep        = 21.75pt
 (typearea)              \topskip        = 12.0pt
@@ -501,8 +491,8 @@ File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count278
 \l__pdf_internal_box=\box53
 )
-(./letter_answers.aux)
-\openout1 = `letter_answers.aux'.
+(./Reply_Letter_May_24.aux)
+\openout1 = `Reply_Letter_May_24.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 92.
 LaTeX Font Info:    ... okay on input line 92.
@@ -669,21 +659,10 @@ LaTeX Info: Redefining \ref on input line 92.
 LaTeX Info: Redefining \pageref on input line 92.
 LaTeX Info: Redefining \nameref on input line 92.
 
-(./letter_answers.out) (./letter_answers.out)
+(./Reply_Letter_May_24.out) (./Reply_Letter_May_24.out)
 \@outlinefile=\write3
-\openout3 = `letter_answers.out'.
+\openout3 = `Reply_Letter_May_24.out'.
 
-
-
-Class scrlttr2 Warning: Letter option file `DIN.lco'
-(scrlttr2)              needs paper size `a4'.
-(scrlttr2)              Current paper size is not `a4'!
-(scrlttr2)              You should add `paper=a4,paper=portrait' at the
-(scrlttr2)              option list of `\documentclass' or
-(scrlttr2)              add `\KOMAoptions{paper=a4,paper=portrait}'
-(scrlttr2)              before starting this letter!
-(scrlttr2)              Maybe you know what you are doing,
-(scrlttr2)              so I do not change this myself.
 
 Foldmarks: yes
 Head of first page
@@ -848,39 +827,39 @@ Location field: empty
 Title: no
 Subject: before opening
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <12> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 111.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 113.
 [1
 
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-40.
+33.
 
 (/usr/share/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 147.
+(Font)              scaled to size 10.42007pt on input line 148.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 147.
+(Font)              scaled to size 7.91925pt on input line 148.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 147.
+(Font)              scaled to size 10.42007pt on input line 148.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 147.
+(Font)              scaled to size 7.91925pt on input line 148.
  [2] [3] [4]
-(./letter_answers.aux)
-Package rerunfilecheck Info: File `letter_answers.out' has not changed.
+(./Reply_Letter_May_24.aux)
+Package rerunfilecheck Info: File `Reply_Letter_May_24.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 14670 strings out of 478238
- 235900 string characters out of 5850457
- 646238 words of memory out of 5000000
- 32528 multiletter control sequences out of 15000+600000
- 523044 words of font info for 174 fonts, out of 8000000 for 9000
+ 14681 strings out of 478238
+ 236106 string characters out of 5850456
+ 647209 words of memory out of 5000000
+ 32526 multiletter control sequences out of 15000+600000
+ 523856 words of font info for 181 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,11n,106p,1011b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 108i,11n,106p,1016b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf-dist/f
 onts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/te
@@ -895,10 +874,10 @@ public/lm/lmsso12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmtt12.pfb><
 /usr/share/texmf-dist/fonts/type1/public/marvosym/marvosym.pfb></usr/share/texm
 f-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-dist/fonts/type1/u
 rw/palatino/uplri8a.pfb>
-Output written on letter_answers.pdf (4 pages, 215979 bytes).
+Output written on Reply_Letter_May_24.pdf (4 pages, 218074 bytes).
 PDF statistics:
- 124 PDF objects out of 1000 (max. 8388607)
- 85 compressed objects within 1 object stream
+ 126 PDF objects out of 1000 (max. 8388607)
+ 87 compressed objects within 1 object stream
  11 named destinations out of 1000 (max. 500000)
  38913 words of extra memory for PDF output out of 42996 (max. 10000000)
 

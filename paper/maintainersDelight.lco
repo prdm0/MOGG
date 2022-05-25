@@ -1,0 +1,82 @@
+\ProvidesFile{maintainersDelight.lco}[letter class options to maintainers delight] % loosely follows DIN 5008B
+
+\LoadLetterOption{DIN} % the default but let's be explicit about our foundation
+
+
+% Options  --------------------------------------------------------------------
+\KOMAoptions{%
+  parskip=half,              % half line skip between paragraphs
+  firstfoot=false,           % no footer
+  enlargefirstpage,          % longer first page works well with no footer
+  refline=narrow,            % adjust refline with text body
+  backaddress=plain          % do not underline backaddress in address window
+}
+
+
+% Fonts, Icons and Colors -----------------------------------------------------
+\renewcommand{\familydefault}{\sfdefault}  % sans serif font for entire letter
+\usepackage{lmodern}
+
+\usepackage{marvosym}                      % icons
+\usepackage[dvipsnames]{xcolor}            % custom colors
+\usepackage{ragged2e}                      % aligned AND correctly hyphenated
+
+\setkomafont{backaddress}{\fontsize{8pt}{8pt}\selectfont}
+\setkomafont{refname}{\fontsize{8pt}{8pt}\selectfont}
+\setkomafont{refvalue}{\fontsize{10pt}{10pt}\selectfont}
+\setkomafont{foldmark}{\color[gray]{0.50}}
+
+% with ideas from https://tex.stackexchange.com/a/550095/218581 https://tex.stackexchange.com/a/550178/218581 https://tex.stackexchange.com/a/78919/218581
+\newcommand*{\addverythinspace}{\hskip0.02083em\relax}
+\setkomavar{backaddressseparator}{\nobreak\addverythinspace\textperiodcentered\addverythinspace}
+\setkomavar{backaddress}{\parbox[c]{\useplength{toaddrwidth}}{%
+{\def\\{\usekomavar{backaddressseparator}\@ogobble}%
+\usekomavar{fromname}\usekomavar{backaddressseparator}\usekomavar{fromaddress}}%
+\RaggedRight%
+}}
+
+
+% Layout ----------------------------------------------------------------------
+% Text block
+\areaset{160mm}{237mm}                           % width and height of textarea
+\setlength{\oddsidemargin}{\dimexpr 30mm-1in}    % left margin  30mm
+\setlength{\evensidemargin}{\dimexpr 20mm-1in}   % right margin 20mm
+
+% Letter Head
+\@setplength{firstheadhpos}{30mm}
+\@setplength{firstheadvpos}{17mm}
+\@setplength{firstheadwidth}{\textwidth}
+
+% Address Window
+\@setplength{toaddrhpos}{30mm}
+\@setplength{toaddrvpos}{45mm}
+\@setplength{toaddrwidth}{75mm}
+\@setplength{toaddrheight}{45mm}
+\@setplength{toaddrindent}{0mm}
+\@setplength{backaddrheight}{16pt}
+
+% Foldmarks
+\@setplength{foldmarkhpos}{5mm}
+
+% Reference line
+\@setplength{refvpos}{94mm}
+\@setplength{refaftervskip}{8.46mm}
+
+% Signature
+\let\raggedsignature\raggedright
+
+
+% Custom Letter Head ----------------------------------------------------------
+\setkomavar{firsthead}{%
+  \parbox{\useplength{firstheadwidth}}{%
+    \raggedleft%
+    \ifkomavarempty{fromname}{}{{\fontsize{24pt}{24pt}\bfseries\color[gray]{0.33}\usekomavar{fromname}}\\\vspace{2mm}}
+    {%
+      \fontsize{10pt}{12pt}\selectfont\color[gray]{0.33}%
+      \ifkomavarempty{fromaddress}{}{{\def\\{,\nobreakspace\@ogobble}\usekomavar{fromaddress}}~\Letter\\}%
+      \ifkomavarempty{fromemail}{}{\usekomavar{fromemail}~\MVAt\\}%
+      \ifkomavarempty{fromphone}{}{\usekomavar{fromphone}~\Telefon\\}%
+      \ifkomavarempty{fromurl}{}{\usekomavar{fromurl}~\Mundus\\}%
+    }
+  }
+}

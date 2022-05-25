@@ -38,7 +38,7 @@
 \renewcommand{\titleheading}
 {MOGG family of distribution: properties and applications}  % --- on odd running heads
 
-\author{\authoraddress{Maria do Carmo S. Lima \href{https://orcid.org/0000-0004-8882-8330}{\includegraphics[scale=0.08]{ORCID-iD_icon-128x128}}} 
+\author{\authoraddress{Maria do Carmo S. Lima \href{https://orcid.org/0000-0002-5480-3103}{\includegraphics[scale=0.08]{ORCID-iD_icon-128x128}}} 
 	{Department of Statistics,
 		Federal University of Pernambuco,\\
         Pernambuco, Recife, Brazil
@@ -113,7 +113,7 @@ and Nadarajah (2015).
 
 Let $G(x)$ be the cumulative distribution function (CDF) of a
 baseline distribution and $g(x)=dG(x)/dx$ be the corresponding  probability density function (PDF) depending on a
-parameter vectot $\eta$. A generalized family are presented
+parameter vector $\eta$. A generalized family are presented
 with two additional shape parameters by transforming the CDF $G(x)$
 according to two sequential important gene\-rators. These families are important for modeling data
 in several engineering areas. 
@@ -136,7 +136,7 @@ respectively.
 
 Tahir and Nadarajah (2015, Table 2) presented thirty distributions
 belonging to this family. It is easily generated from the baseline quantile function (QF) by
-$Q_{\text{MO-G}}(u)=Q_{G}\left(\theta u \left[\theta u+1-u\right]\right)$ for $u\in(0,1)$.
+$Q_{\text{MO-G}}(u)=Q_{G}\left(\theta u / \left[\theta u+1-u\right]\right)$ for $u\in(0,1)$.
 
 Marshall and Olkin considered the exponential and Weibull distributions for the baseline G and derived some
 structural properties of the generated distributions. The special case that G is an exponential distribution
@@ -158,10 +158,10 @@ f_{\Gamma\text{-G}}(x)=\frac{\displaystyle 1}{\displaystyle \Gamma(a)} \left\{ -
 Each new $\Gamma$-G distribution follows from a given baseline G.
 For $a=1$, the $\Gamma$-G family reduces to G.
 If $Z$ is a gamma random variable with unit scale
-parameter and shape parameter $a>0$, then $W=Q_G(1-\rm{e}^{Z})$ has density (\ref{PDF_Ga}). So,
+parameter and shape parameter $a>0$, then $W=Q_G(1-\rm{e}^{-Z})$ has density (\ref{PDF_Ga}). So,
 the $\Gamma$-G distribution is easily generated from the gamma distribution and the QF of G.
 
-The remaining of the paper is addressed as follows. Section \ref{sec:MOGaG} introduces the {\it Marshall and Olkin-Gamma-G} (MO-$\Gamma$-G)
+The remaining of the paper is addressed as follows. Section \ref{sec:MOGaG} introduces the {\it Marshall and Olkin-Gamma-G} (MOGa-G)
 family and presents some special models. The maximum likelihood estimates (MLEs) of the parameters of the new family is addressed
 in Section \ref{estimation}. Some simulations ate performed in Section \ref{sec:simulation} to estimate the biases of the MLEs. Two
 empirical applications illustrate the potentiality of the proposed family in Section \ref{applications}. A variety of theoretical properties are derived
@@ -169,7 +169,7 @@ in Section \ref{properties}. Some conclusions remarks are offered in Section \re
 
 \section{THE NEW FAMILY}\label{sec:MOGaG}
 
-By combining Equations (\ref{CDF_MO}) and (\ref{CDF_Ga}), the CDF of the random variable $X\sim$MO-$\Gamma$-G
+By combining Equations (\ref{CDF_MO}) and (\ref{CDF_Ga}), the CDF of the random variable $X\sim$MOGa-G
 representing the new family is defined by
 \begin{equation}\label{CDF_MO-Gamma-G}
 F_{X}(x)=\frac{\gamma_1\left( a, -\log \left[1-G(x)\right]\right)}{\theta+(1-\theta)\gamma_1\left( a, -\log \left[1-G(x)\right]\right)},\quad x \in \mathbb{R}.
@@ -181,17 +181,17 @@ f_{X}(x)=\frac{\theta  \left\{ -\log[1-G(x)] \right\}^{a-1}\, g(x)}{\Gamma(a)\,\
 \end{equation}
 
 The density (\ref{PDF_MO-Gamma-G}) can be interpreted from a sequence of $N$ iid random variables, say $Z_1,\cdots,Z_N$,
-each one having a gamma density unit scale and shape $a>0$, assuming that $N$ (is not fixed) has a geometric 
+each one having a gamma density with unit scale parameter and shape parameter $a>0$, assuming that $N$ (is not fixed) has a geometric 
 distribution with probabilities $\theta$ and $\theta^{-1}$ for $0<\theta<1$ and $\theta>1$,
-respectively. By transforming the $Z_i$'s via the baseline QF by $W_i=Q_G(1-\rm{e}^{Z_i})$
+respectively. By transforming the $Z_i$'s via the baseline QF by $W_i=Q_G(1-\rm{e}^{-Z_i})$
 (for $i-1,\ldots,N$), Equation \eqref{densityMO} is defines the PDF of the minimum $W_1,\cdots,W_n$. 
 Making this double composition of the two generators, the proposed family absorbs the impacts of two different flexibilities 
 on applications. 
 
 
-Table \ref{tabspecial1} provides some special cases of (\ref{PDF_MO-Gamma-G}), where
+Table 1 provides some special cases of (\ref{PDF_MO-Gamma-G}), where
 $\Phi(x)$ and $\phi(x)$ are the CDF and PDF of the standard normal distribution. The density and hazard functions
-of the Marshall-Olkin-$\Gamma$-Weibull (MO-$\Gamma$-W) defined by $h(x) = f(x)/(1-F(x))$ are displayed in Figure \ref{formas}, which provide
+of the Marshall-Olkin-$\Gamma$-Weibull (MOGa-W) defined by $h(x) = f(x)/(1-F(x))$ are displayed in Figure \ref{formas}, which provide
 more flexibility for these functions in relation to the baseline ones.
 
 \vspace{0.6cm}
@@ -199,7 +199,7 @@ more flexibility for these functions in relation to the baseline ones.
 %\begin{figure}[H]
 %\begin{center}
 %\includegraphics[scale =  0.39]{pdf-hazard.pdf}
-%\caption{(A) MO-$\Gamma$-W density. (B) MO-$\Gamma$-W hazard.\label{formas}}
+%\caption{(A) MOGa-W density. (B) MOGa-W hazard.\label{formas}}
 %\end{center}
 %\end{figure}
 
@@ -208,24 +208,24 @@ more flexibility for these functions in relation to the baseline ones.
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{pdf_function.pdf}
-		\caption{MO-$\Gamma$-W density function.}
+		\caption{MOGa-W density function.}
 		\label{fig:pdf}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{hazard_function.pdf}
-		\caption{MO-$\Gamma$-W hazard function.}
+		\caption{MOGa-W hazard function.}
 		\label{fig:hazard}
 	\end{subfigure}
-\caption{MO-$\Gamma$-W density function and  MO-$\Gamma$-W hazard function with G following the Weibull distribution.}
+\caption{MOGa-W density function and  MOGa-W hazard function with G following the Weibull distribution.}
 \label{formas}
 \end{figure}
 
 \vspace{0.6cm}
 
-The CDF \eqref{CDF_MO-Gamma-G} can be easily inverted to calculate the QF of the MO-$\Gamma$-G distribution,
-say $x=Q_{X}(u)=F_X^{-1}(u)$ for $u \in (0,10$, in terms of the baseline QF $Q_G(\cdot)$. The inverse of
+The CDF \eqref{CDF_MO-Gamma-G} can be easily inverted to calculate the QF of the MOGa-G distribution,
+say $x=Q_{X}(u)=F_X^{-1}(u)$ for $u \in (0,1)$, in terms of the Q$_F$ of the baseline distribution G, $Q_G(\cdot)$. The inverse of
 $F_{X}(x)=u$, where $u$ is a uniform number in $(0,1)$ is easily obtained. By combining the inverses
 of Equations (\ref{CDF_MO})and \eqref{CDF_MO-Gamma-G}, $F_{X}(x)=u$ leads to
 $z=z(u)=\theta u/[1-(1-\theta)u]$ and $\gamma_{1}\left(a, -\log[1-G(x)]\right)=z(u)$.
@@ -237,49 +237,52 @@ and $\gamma_1^{-1}(a,w)=Q^{-1}(a,1-w)$ is the inverse function of $\gamma_1(a,w)
 $Q^{-1}(a,1-w)$ are given in \url{http:// functions.wolfram.com/ GammaBetaErf/ InverseGammaRegularized/}.
 
 \begin{landscape}
-\begin{table}[htbp]\label{tabspecial1}
-\centering
-\begin{tabular}{c|c|c}
-\hline
-\textbf{Distribution} & \textbf{Baseline CDF} & \textbf{Generated PDF}  \\
-\hline
-{} & {} & {} \\
-\textbf{Normal} &  $G(x)=\Phi(x)$ & $f_{X}(x)=\frac{\theta  \left\{ -\log[1-\Phi(x)] \right\}^{a-1}\, \phi(x)}{\Gamma(a)\,\left\{\theta+(1-\theta)\gamma_1\left( a, -\log \left[1-\Phi(x)\right]\right)\right\}^{2}}$ \\
-{} & {} & {} \\
-\hline
-{} & {} & {} \\
-\textbf{Logistic} &  $G(x)=\frac{1}{1+\rm{e}^{-x}}$ & $f_{X}(x)=\frac{\theta\,\rm{e}^{-x}\, \left\{ -\log[1-(1+\rm{e}^{-x})^{-1}] \right\}^{a-1}}{\Gamma(a)\,(1+\rm{e}^{-x})^{2}\,\left\{\theta+(1-\theta)\gamma_1\left( a, -\log \left[1-(1+\rm{e}^{-x})^{-1}\right]\right)\right\}^{2}}$\\
-{} & {} & {} \\
-\hline
-\textbf{Gumbel} &  $G(x)=1-\exp(-\rm{e}^x)$ & $f_{X}(x)=\frac{\theta \, \exp(a \,x-  \rm{e}^x)}{\Gamma(a)\,\left\{\theta+(1-\theta)\gamma_1\left(a, \rm{e}^{x}\right)\right\}^{2}}$ \\
-{} & {} & {} \\
-\hline
-{} & {} & {} \\
-\textbf{Log-Normal} &  $G(x)=\Phi(\log x)$ & $f_{X}(x)=\frac{\theta\,\phi(\log x)\,  \left\{ -\log[1-\Phi(\log x)] \right\}^{a-1}}{\Gamma(a)\,x\,\left\{\theta+(1-\theta)\gamma_1\left( a, -\log \left[1-\Phi(\log x)\right]\right)\right\}^{2}}$ \\
-{} & {} & {} \\
-\hline
-{} & {} & {} \\
-\textbf{Exponential} &  $G(x)=1-\exp(-\lambda x),\,\lambda>0$ & $f_{X}(x)=\frac{\theta\,\lambda^{a}\,x^{(a-1)}\, }{\Gamma(a)\,\left\{\theta+(1-\theta)\gamma_1\left(a,\lambda x\right)\right\}^{2}}$ \\
-{} & {} & {} \\
-\hline
-{} & {} & {} \\
-\textbf{Weibull} &  $G(x)=1-\exp(-(\lambda x)^\gamma),\,\lambda,\gamma>0$ & $f_X(x)=\frac{\theta\,\gamma\lambda^{a\,\gamma}x^{a\,\gamma-1}\exp\{-(\lambda\,\gamma)^\gamma\}}{\Gamma (a)\{\theta+(1-\theta)\gamma_1[a,(\lambda\,x)^\gamma]\}^2}$ \\
-{} & {} & {} \\
-\hline
-{} & {} & {} \\
-\textbf{Gamma} &  $G(x)=\gamma_1(\alpha,\beta x),\,\alpha,\,\beta>0$ & $f_{X}(x)=\frac{\theta\,\beta^{\alpha}\,x^{\alpha-1}\,\rm{e}^{-\beta x}\,\left\{ -\log[1-\gamma_1(\alpha,\beta x)] \right\}^{a-1}}{\Gamma(a)\,\left\{\theta+(1-\theta)\gamma_1\left( a, -\log \left[1-\gamma_1(\alpha,\beta x)\right]\right)\right\}^{2}}$ \\
-{} & {} & {} \\                                                                                                                                                                                                                                                                           \hline
-\textbf{Pareto} &  $G(x)=1-\frac{1}{(1+x)^\nu},\,\nu>0$ & $f_{X}(x)=\frac{\theta \, \rm{e}^{-x}\, \left[\nu\log(1+x)\right]^{a-1}\, g(x)}{\Gamma(a)\,(1+\rm{e}^{-x})^2\,\left\{\theta+(1-\theta)\gamma_1\left( a, \nu\log[1+x]\right)\right\}^{2}}$\\
-{} & {} & {} \\
-\hline
-\end{tabular}
-\caption{Special Distributions in the  MO-$\Gamma$-G family.}
-\end{table}
+	\begin{table}[htbp]\label{tabspecial1}
+		\caption{Special Distributions in the  MOGa-G family.}
+		\centering
+\scalebox{0.7}{	
+		\begin{tabular}{l|l|l}
+			\hline
+			\textbf{Distribution} & \textbf{Baseline CDF} & \textbf{Generated PDF}  \\
+			\hline
+			{} & {} & {} \\
+			\textbf{Normal} &  $G(x)=\Phi(x)$ & $f_{X}(x)=\frac{\theta  \left\{ -\log[1-\Phi(x)] \right\}^{a-1}\, \phi(x)}{\Gamma(a)\,\left\{\theta+(1-\theta)\gamma_1\left( a, -\log \left[1-\Phi(x)\right]\right)\right\}^{2}}$ \\
+			{} & {} & {} \\
+			\hline
+			{} & {} & {} \\
+			\textbf{Logistic} &  $G(x)=\frac{1}{1+\rm{e}^{-x}}$ & $f_{X}(x)=\frac{\theta\,\rm{e}^{-x}\, \left\{ -\log[1-(1+\rm{e}^{-x})^{-1}] \right\}^{a-1}}{\Gamma(a)\,(1+\rm{e}^{-x})^{2}\,\left\{\theta+(1-\theta)\gamma_1\left( a, -\log \left[1-(1+\rm{e}^{-x})^{-1}\right]\right)\right\}^{2}}$\\
+			{} & {} & {} \\
+			\hline
+			\textbf{Gumbel} &  $G(x)=1-\exp(-\rm{e}^x)$ & $f_{X}(x)=\frac{\theta \, \exp(a \,x-  \rm{e}^x)}{\Gamma(a)\,\left\{\theta+(1-\theta)\gamma_1\left(a, \rm{e}^{x}\right)\right\}^{2}}$ \\
+			{} & {} & {} \\
+			\hline
+			{} & {} & {} \\
+			\textbf{Log-Normal} &  $G(x)=\Phi(\log x)$ & $f_{X}(x)=\frac{\theta\,\phi(\log x)\,  \left\{ -\log[1-\Phi(\log x)] \right\}^{a-1}}{\Gamma(a)\,x\,\left\{\theta+(1-\theta)\gamma_1\left( a, -\log \left[1-\Phi(\log x)\right]\right)\right\}^{2}}$ \\
+			{} & {} & {} \\
+			\hline
+			{} & {} & {} \\
+			\textbf{Exponential} &  $G(x)=1-\exp(-\lambda x),\,\lambda>0$ & $f_{X}(x)=\frac{\theta\,\lambda^{a}\,x^{(a-1)}\, }{\Gamma(a)\,\left\{\theta+(1-\theta)\gamma_1\left(a,\lambda x\right)\right\}^{2}}$ \\
+			{} & {} & {} \\
+			\hline
+			{} & {} & {} \\
+			\textbf{Weibull} &  $G(x)=1-\exp(-(\lambda x)^\gamma),\,\lambda,\gamma>0$ & $f_X(x)=\frac{\theta\,\gamma\lambda^{a\,\gamma}x^{a\,\gamma-1}\exp\{-(\lambda\,\gamma)^\gamma\}}{\Gamma (a)\{\theta+(1-\theta)\gamma_1[a,(\lambda\,x)^\gamma]\}^2}$ \\
+			{} & {} & {} \\
+			\hline
+			{} & {} & {} \\
+			\textbf{Gamma} &  $G(x)=\gamma_1(\alpha,\beta x),\,\alpha,\,\beta>0$ & $f_{X}(x)=\frac{\theta\,\beta^{\alpha}\,x^{\alpha-1}\,\rm{e}^{-\beta x}\,\left\{ -\log[1-\gamma_1(\alpha,\beta x)] \right\}^{a-1}}{\Gamma(a)\,\left\{\theta+(1-\theta)\gamma_1\left( a, -\log \left[1-\gamma_1(\alpha,\beta x)\right]\right)\right\}^{2}}$ \\
+			{} & {} & {} \\                                                                                                                                                                          \hline
+			\textbf{Pareto} &  $G(x)=1-\frac{1}{(1+x)^\nu},\,\nu>0$ & $f_{X}(x)=\frac{\theta \, \rm{e}^{-x}\, \left[\nu\log(1+x)\right]^{a-1}\, g(x)}{\Gamma(a)\,(1+\rm{e}^{-x})^2\,\left\{\theta+(1-\theta)\gamma_1\left( a, \nu\log[1+x]\right)\right\}^{2}}$\\
+			{} & {} & {} \\
+			\hline
+			\textbf{Dagum} & $G(x) = \Big[1 + \Big(\frac{x}{\beta}\Big) ^ {-\alpha}\Big] ^ {-p},\,\, \alpha, \beta, p > 0$ & $f_X(x) = \frac{\theta  \left\{ -\log[1-G(x)] \right\}^{a-1}\, g(x)}{\Gamma(a)\{\theta + (1 - \theta)\gamma_1[a, -\log   (1-((x/\beta)^{-\alpha}+1)^{-p})]\}}$ \\
+			\hline
+		\end{tabular} }
+	\end{table}
 \end{landscape}
 
 \section{ESTIMATION}\label{estimation}
 
-The  MO-$\Gamma$-G family can be  fitted to real data using the {\bf AdequacyModel} package in the {\sf R} software.
+The  MOGa-G family can be  fitted to real data using the {\bf AdequacyModel} package, {\color{red}Marinho et al. (2019)}, in the {\sf R} software.
 This packa\-ge does not require to define the log-likelihood function and it computes the MLEs, their standard errors (SEs)
 and the formal statistics defined in Section \ref{applications}. It is necessary to provide the
 PDF and CDF of the distribution to be fitted to a data set.
@@ -298,21 +301,16 @@ To obtain the MLEs, the package {\bf AdequacyModel} of the programming language 
 
 \section{SIMULATIONS}\label{sec:simulation}
 
-Due to the probable absence of MLEs in closed-form for distributions belonging to the MO-$\Gamma $-G family, it is necessary to examine the
-precision of the estimates calculated numerically. For doing that, the biases of the estimators of the parameters of the
-MO-$\Gamma$-Dagum($\theta$, $a$, $\alpha$, $\beta$, $p$) distribution are determined, where $G\sim \mathrm {Dagum} (\alpha, \beta, p)$
-is the baseline distribution. All parameters are taken equal to one for different sample sizes reported in Table \ref{tab:bias}.
+{\color{red}Due to the probable absence of MLEs in closed-form for distributions belonging to the MOGa-G family, it is necessary to examine the precision of the estimates calculated numerically. 
 
-Ten thousand Monte Carlo simulations are performed for each sample size to examine the numerical estimates calculated by the
-BFGS method. The figures in Table \ref{tab:bias} indicate that this method behaves well when the sample size increases.
-This is theoretically expected. However, in practice, difficulties can be faced in other families of distributions
-due to the flatness of the log-likelihood function.
+For doing that, the biases of the estimators of the parameters of the
+MOGa-Dagum($\theta$, $a$, $\alpha$, $\beta$, $p$) and  MOGa-Weibull($\theta$, $a$, $\lambda$, $\gamma$) distribution are determined, where $G\sim \mathrm {Dagum} (\alpha, \beta, p)$ and  $\mathrm {Weibull} (\gamma, \lambda)$ are the baselines distributions, respectively. All parameters are taken equal to one for different sample sizes reported in the Tables \ref{tab:bias1} and \ref{tab:bias2}. 
 
-All simulations can be reproduced using the script in Appendix \ref{ap:simulation}. The simulations are parallelized and able to use all threads
-available by a multicore processor, thus making them more computationally efficient and consequently requiring less time to complete.
-The simulations are performed on a computer with an Intel Core i5-8265U processor with 8 threads working at a maximum frequency of 3.90 GHz,
-requiring, on these hardware, a time of 14.36 hours to perform all simulations. The figures in Table \ref{tab:bias} reveal that the average
-biases of the MLEs could be very reduced only for $n> 2,000$.
+The Tables \ref{tab:bias1} and \ref{tab:bias2} indicate that this method behaves well when the sample size increases. This is theoretically expected. However, in practice, difficulties can be faced in other families of distributions due to the flatness of the log-likelihood function.
+
+All simulations can be reproduced using the script in \url{https://github.com/prdm0/MOGG}. The simulations are parallelized and able to use all threads available by a multicore processor, thus making them more computationally efficient and consequently requiring less time to complete. 
+
+The simulations are performed on a computer with an Intel(R) Core(TM) i5-9500 CPU processor with 6 threads working at a maximum frequency of 3.00GHz, requiring, on these hardware, a time of 15.4828 hours to perform all simulations, 7.7414 hours for the MOGa-Dagum($\theta$, $a$, $\alpha$, $\beta$, $p$) distribution and 4.9688 hours for the MOGa-Weibull($\theta$, $a$, $\lambda$, $\gamma$) distribution. The  Tables \ref{tab:bias1} and  \ref{tab:bias2} reveal that the average biases of the MLEs could be very reduced only for $n> 2,000$.}
 
 To generate observations from the random variable $X$ with density $f$, the well-known Acceptance-Rejection Algorithm for continuous random variables, which is very useful when the quantile function involves complex functions that can lead to some numerical inaccuracies. For doing this, another random variable $Y$ is chosen such that it can generate observations from a PDF $h$ with the same support as $f$. Then, the acceptance and rejection algorithm is defined by the following steps:
 \begin{enumerate}
@@ -327,27 +325,52 @@ as the lowest possible value to maximize the likelihood of acceptance. Further d
 
 \begin{table}[H]
 	\centering
-	\caption{Mean biases of the MLEs obtained using the BFGS method calculated from the Monte-Carlo simulation.}\label{tab:bias}
+	\caption{\textcolor{red}{Mean biases of the MLEs of the MOGa-Dagum($\theta$, $a$, $\alpha$, $\beta$, $p$) distribution obtained by the BFGS method calculated from the Monte-Carlo simulation.}}\label{tab:bias1}
 	\begin{tabular}{rrrrrrr}
 		\hline
 		$n$ & $B(\hat{\theta})$ & $B(\hat{a})$ & $B(\hat{\alpha})$ & $B(\hat{\beta})$ & $B(\hat{p})$ & Time (mins)\\
 		\hline
-		10 & 0.2376 & 2.1635 & 2.7557 & 1.6282 & 1.3057 & 1.1430\\
-		20 & 0.4154 & 2.4639 & 1.5728 & 1.8082 & 0.7383 & 1.6248\\
-		60 & 0.7214 & 2.2432 & 0.5667 & 1.8815 & 0.2872 & 3.3954\\
-		100 & 0.6146 & 1.9579 & 0.3253 & 1.6148 & 0.2651 & 4.9628\\
-		200 & 0.3838 & 1.3894 & 0.1827 & 1.1773 & 0.3701 & 8.1457\\
-		400 & 0.2166 & 0.9635 & 0.1076 & 0.6181 & 0.3957 & 13.7370\\
-		600 & 0.1269 & 0.7242 & 0.0772 & 0.3968 & 0.3637 & 17.9310\\
-		1,000 & 0.0553 & 0.4885 & 0.0521 & 0.2328 & 0.2636 & 22.8784 \\
-		2,000  &  0.0456 & 0.3087 &  0.0334 &  0.0990 & 0.1722 &  38.4593\\
-		5,000 & -0.0058 & 0.1307 & 0.0146 & 0.0117 & 0.0171 & 52.8098\\
-		10,000 & -0.0146 & 0.0842 & 0.0095 & 0.0095 & 0.0031 & 95.8380\\
-		20,000 & -0.0090 & 0.0330 & 0.0038 & 0.0005 & -0.0099 & 126.4260\\
-		30,000 & -0.0028 & 0.0183 & 0.0012 & -0.0036 & -0.0029 & 182.0760\\
-		50,000 & -0.0057 & 0.0124 & 0.0015 & 0.0016 & -0.0021 & 291.9300\\
+10 & 0.2213 & 2.1944 & 2.6971 & 1.5803 & 1.3190 & 0.6960 \\ 
+20 & 0.4240 & 2.4793 & 1.5591 & 1.8083 & 0.7414 & 0.9819 \\ 
+60 & 0.7458 & 2.2661 & 0.5598 & 1.8495 & 0.2812 & 1.9417 \\ 
+100 & 0.6194 & 1.9438 & 0.3312 & 1.6142 & 0.2935 & 2.7208 \\ 
+200 & 0.3950 & 1.4262 & 0.1856 & 1.1556 & 0.3611 & 4.4534 \\ 
+400 & 0.2077 & 0.9599 & 0.1082 & 0.6157 & 0.4076 & 7.4698 \\ 
+600 & 0.1200 & 0.7213 & 0.0767 & 0.4024 & 0.3572 & 9.4975 \\ 
+1000 & 0.0629 & 0.4791 & 0.0503 & 0.2123 & 0.2584 & 12.4221 \\ 
+2000 & 0.0362 & 0.2958 & 0.0298 & 0.1145 & 0.1878 & 20.7251 \\ 
+5000 & -0.0040 & 0.1325 & 0.0159 & 0.0144 & 0.0167 & 28.3380 \\ 
+10000 & -0.0133 & 0.0815 & 0.0096 & 0.0081 & 0.0039 & 50.9298 \\ 
+20000 & -0.0111 & 0.0349 & 0.0037 & 0.0006 & -0.0109 & 68.6320 \\ 
+30000 & -0.0036 & 0.0191 & 0.0006 & -0.0041 & -0.0034 & 97.3046 \\ 
+50000 & -0.0057 & 0.0129 & 0.0016 & 0.0015 & -0.0026 & 158.3737 \\ 
 		\hline
 	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{\textcolor{red}{Mean biases of the MLEs of the MOGa-Weibull($\theta$, $a$, $\lambda$, $\gamma$) distribution obtained by the BFGS method calculated from the Monte-Carlo simulation.}}\label{tab:bias2}
+	\begin{tabular}{rrrrrr}
+		\hline
+		$n$ & $B(\hat{\theta})$ & $B(\hat{a})$ & $B(\hat{\lambda})$ & $B(\hat{\gamma})$ & Time (mins)\\
+		\hline
+		10 & 0.0818 & 0.1362 & 4.9274 & 1.2407 & 0.6716 \\ 
+		20 & 0.3404 & -0.0177 & 3.4160 & 1.4117 & 0.8077 \\ 
+		60 & 0.7037 & -0.0677 & 1.8806 & 1.3385 & 1.1773 \\ 
+		100 & 0.6698 & -0.0535 & 1.3684 & 1.1796 & 1.2643 \\ 
+		200 & 0.5371 & -0.0299 & 0.8265 & 0.9110 & 1.7886 \\ 
+		400 & 0.3371 & -0.0047 & 0.4205 & 0.5967 & 2.8386 \\ 
+		600 & 0.2457 & 0.0076 & 0.2685 & 0.4306 & 3.6867 \\ 
+		1000 & 0.1476 & 0.0093 & 0.1553 & 0.2818 & 5.0944 \\ 
+		2000 & 0.0731 & 0.0035 & 0.0758 & 0.1530 & 8.8577 \\ 
+		5000 & 0.0264 & 0.0007 & 0.0283 & 0.0618 & 15.8586 \\ 
+		10000 & 0.0128 & -0.0007 & 0.0142 & 0.0318 & 29.8629 \\ 
+		20000 & 0.0053 & -0.0012 & 0.0071 & 0.0160 & 48.7417 \\ 
+		30000 & 0.0023 & -0.0014 & 0.0053 & 0.0119 & 64.7387 \\ 
+		50000 & 0.0023 & -0.0004 & 0.0028 & 0.0063 & 112.7422 \\ 
+		\hline
+\end{tabular}
 \end{table}
 
 
@@ -359,7 +382,7 @@ Marshall-Olkin Weibull (MO-W) (Ahmed {\it et al.}, 2017), Marshall-Olkin Extende
 exponentiated Weibull (exp-W) (Mudholkar and Srivastava, 1993), gamma Weibull ($\Gamma$-W) Cordeiro {\it et al.}, 2016) and exponentiated
 generalized Weibull (EG-W) (Oguntunde {\it et al.}, 2015) (with $a=1$). Some of these distributions are widely used in practice.
 
-The log-likelihood for the Marshall-Olkin-Gamma-Weibull (MO-$\Gamma$-W) from one observation is
+The log-likelihood for the Marshall-Olkin-Gamma-Weibull (MOGa-W) from one observation is
 \begin{align}
 \ell (\boldsymbol{\theta})=& \log (\theta)+\log (\gamma)+(a\,\gamma)\log (\lambda)+(a\,\gamma-1)\log(x)-(\gamma\, x)^\gamma-\log[\Gamma(a)]\nonumber \\ &-2\log\{\theta+(1-\theta)\gamma_1[a,(\lambda\,x)^\gamma]\},
 \end{align}
@@ -413,7 +436,36 @@ Here, the household expenditures for food are considered and is given by
 data = FoodExpenditure_{food} / \#(FoodExpenditure_{food}),
 \end{eqnarray*}
 where $FoodExpenditure_{food}$ is the random variable corresponding to the household expenditures for food and $\#(\cdot)$ indicates the number of
-observations on this variable. The MLEs and their standard errors (SEs) (in parentheses) are listed in Table \ref{tab-ex1}.
+observations on this variable. \textcolor{red}{Some descriptive statistics are displayed from Table \ref{tabds}. }
+
+
+\begin{table}[!htb] 
+\scriptsize
+\center
+\caption{Descriptive statistics for the first data}
+\label{tabds}
+\begin{tabular}{ ccccccccc}
+\hline\noalign{\smallskip}
+   Min. & 1st Qu.&  Median&    Mean& 3rd  Qu.&    Max. & sd &skewness & kurtosis\\
+   \hline
+ 0.1956  &0.2913 & 0.3903 & 0.4198 & 0.5027 & 0.7626 & 0.148009 & 0.5250021 & -0.4440273\\
+\hline
+\end{tabular}
+\end{table}
+
+\textcolor{red}{The minimum value in the table above refers to a family that has 3 people and with a family income of 39,.151US, which does not represent the lowest family income in the data set in question, as expected, occupying only the fifth position among those with the lowest income. The maximum value represents a family with a family income of 69,.929US and with 6 people, the second largest number among the number of people per family in the group in question. Furthermore, we can observe that the considered dataset presents positive asymmetry and negative kurtosis. Additionally, the standard deviation (sd) is relatively low.
+Figure \ref{ttt} of the data set referring to the first application indicates the decreasing form for the failure rate function. Therefore, these plots indicate the appropriateness of the MOGa-W distribution to fit these data, since the new model can present this form of the hrf, as showed in Figure \ref{fig:hazard}.
+}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale =  1]{ttt1.eps}
+\caption{TTT plot for the fisrt data.\label{ttt}}
+\end{center}
+\end{figure}
+
+
+The MLEs and their standard errors (SEs) (in parentheses) are listed in Table \ref{tab-ex1}.
 The statistics  W$^{*}$ and A$^{*}$ are also given in this table. The results indicate that the proposed model has better performance than the other
 seven fitted models.
 
@@ -428,7 +480,7 @@ seven fitted models.
 Model & $a$ & $\theta$ & $\lambda$ & $\gamma$ &  $W^*$ & $A^*$   \\
 \hline \\
  & & & & &  \\
-MO-$\Gamma$-W$(a,\theta,\lambda,\gamma)$    &  0.926134 & 1.379664 & 33.323073 & 25.398809 & 0.0339 &  0.2376 \\                            &    (0.02626926) & (0.22381086) & (0.28530971) & (0.08259864)  & & \\
+MOGa-W$(a,\theta,\lambda,\gamma)$    &  0.926134 & 1.379664 & 33.323073 & 25.398809 & 0.0339 &  0.2376 \\                            &    (0.02626926) & (0.22381086) & (0.28530971) & (0.08259864)  & & \\
 
  & & & & &  \\
 $\beta-$W$(a,\theta,\lambda,\gamma)$ &   9.92882 &  0.1700880 & 9.759469 & 1.530541  & 0.043567 & 0.2594618\\
@@ -467,9 +519,423 @@ $\gamma$-W$(a,\lambda,\gamma)$    & 5.751546  & - &  10.0000 & 1.208773&  0.0879
 
 
 As a second application, consider a data set collected in a pilot study about hypertension in the Dominican Republic
-in 1997 found in \url{http://biostat.mc.vanderbilt.edu/wiki/
-Main/DataSets}. The observations are the systolic blood pressure of persons who came to medical clinics in
-several villages for a variety of complaints. The MLEs of the parameters, their SEs and the values of the statistics are
+in 1997. The observations are the systolic blood pressure of persons who came to medical clinics in
+several villages for a variety of complaints. 
+\textcolor{red}{ The data set in question has the following observations} 
+         150,
+         120,
+         120,
+         180,
+         138,
+         115,
+         130,
+         150,
+         200,
+         120,
+         190,
+         90,
+         130,
+         120,
+         200,
+         140,
+         110,
+         134,
+         160,
+         140,
+         105,
+         126,
+         129,
+         120,
+         100,
+         130,
+         118,
+         144,
+         180,
+         138,
+         110,
+         140,
+         120,
+         118,
+         110,
+         110,
+         130,
+         140,
+         130,
+         165,
+         180,
+         130,
+         140,
+         112,
+         130,
+         158,
+         112,
+         150,
+         140,
+         142,
+         110,
+         140,
+         130,
+         132,
+         140,
+         140,
+         122,
+         128,
+         90,
+         118,
+         120,
+         110,
+         122,
+         200,
+         110,
+         140,
+         150,
+         120,
+         150,
+         120,
+         164,
+         122,
+         112,
+         130,
+         140,
+         102,
+         122,
+         130,
+         102,
+         130,
+         122,
+         200,
+         140,
+         180,
+         124,
+         110,
+         124,
+         90,
+         120,
+         159,
+         142,
+         140,
+         118,
+         122,
+         108,
+         170,
+         120,
+         140,
+         100,
+         118,
+         110,
+         114,
+         150,
+         160,
+         140,
+         190,
+         118,
+         120,
+         150,
+         120,
+         200,
+         150,
+         168,
+         110,
+         142,
+         150,
+         160,
+         142,
+         160,
+         150,
+         110,
+         128,
+         122,
+         150,
+         140,
+         122,
+         120,
+         130,
+         100,
+         130,
+         150,
+         130,
+         100,
+         120,
+         105,
+         100,
+         150,
+         196,
+         130,
+         110,
+         140,
+         122,
+         110,
+         164,
+         120,
+         120,
+         150,
+         160,
+         150,
+         135,
+         124,
+         110,
+         100,
+         95,
+         130,
+         120,
+         108,
+         118,
+         170,
+         105,
+         120,
+         95,
+         95,
+         120,
+         140,
+         142,
+         160,
+         110,
+         190,
+         180,
+         130,
+         130,
+         120,
+         204,
+         150,
+         150,
+         120,
+         122,
+         120,
+         130,
+         140,
+         148,
+         118,
+         126,
+         136,
+         140,
+         130,
+         102,
+         110,
+         110,
+         130,
+         126,
+         142,
+         140,
+         128,
+         130,
+         124,
+         162,
+         130,
+         130,
+         110,
+         80,
+         166,
+         140,
+         160,
+         160,
+         140,
+         98,
+         138,
+         120,
+         112,
+         112,
+         134,
+         140,
+         115,
+         140,
+         98,
+         115,
+         120,
+         80,
+         160,
+         126,
+         110,
+         130,
+         104,
+         236,
+         118,
+         120,
+         140,
+         120,
+         98,
+         164,
+         150,
+         110,
+         120,
+         130,
+         170,
+         180,
+         110,
+         120,
+         130,
+         118,
+         130,
+         190,
+         158,
+         90,
+         99,
+         210,
+         180,
+         140,
+         184,
+         105,
+         120,
+         150,
+         140,
+         130,
+         160,
+         118,
+         210,
+         100,
+         170,
+         150,
+         130,
+         170,
+         150,
+         120,
+         134,
+         90,
+         125,
+         170,
+         140,
+         150,
+         110,
+         105,
+         140,
+         120,
+         100,
+         124,
+         112,
+         160,
+         140,
+         118,
+         190,
+         110,
+         118,
+         160,
+         150,
+         124,
+         128,
+         150,
+         120,
+         125,
+         118,
+         132,
+         110,
+         143,
+         170,
+         98,
+         124,
+         180,
+         178,
+         110,
+         98,
+         159,
+         110,
+         140,
+         130,
+         122,
+         110,
+         98,
+         180,
+         90,
+         118,
+         165,
+         138,
+         138,
+         170,
+         106,
+         170,
+         140,
+         90,
+         118,
+         110,
+         102,
+         102,
+         180,
+         100,
+         110,
+         162,
+         140,
+         110,
+         98,
+         140,
+         140,
+         110,
+         170,
+         112,
+         90,
+         102,
+         106,
+         124,
+         110,
+         180,
+         138,
+         90,
+         150,
+         126,
+         110,
+         130,
+         150,
+         145,
+         140,
+         156,
+         110,
+         150,
+         160,
+         120,
+         140,
+         120,
+         110,
+         120,
+         140,
+         160,
+         160,
+         110,
+         150,
+         118,
+         110,
+         120,
+         120,
+         146,
+         124,
+         170,
+         124,
+         170,
+         159,
+         120,
+         120,
+         118,
+         152,
+         190.
+
+
+
+\textcolor{red}{
+ Table \ref{tabds2} represents the descriptive statistics for the second data. Considering that the systolic blood pressure represents the highest number presented in the pressure measuring equipment, the maximum found in table (236) must represent an individual with serious heart problems. This is due to the fact that the value considered normal for systolic pressure is 120. } 
+ 
+ \textcolor{red}{Regarding the minimum value (80), what we can conclude is that this observation must be from an individual who suffers from low blood pressure, probably. Also note that the data set has positive skewness. This indicates that few people have high pressure values  and, in this case, the mode is 120, which represents a good value for systolic pressure.
+}
+
+ \textcolor{red}{Figure \ref{ttt2} represents TTT plot for the second data. As seen in the first data set, the hrf function is decreasing, conforming to the forms found for the model function.  }
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale =  1]{ttt2.eps}
+\caption{TTT plot for the second data.\label{ttt2}}
+\end{center}
+\end{figure}
+
+\begin{table}[!htb] 
+\scriptsize
+\center
+\caption{Descriptive statistics for the second data}
+\label{tabds2}
+\begin{tabular}{ ccccccccc}
+\hline\noalign{\smallskip}
+   Min. & 1st Qu.&  Median&    Mean& 3rd  Qu.&    Max. & sd &skewness & kurtosis\\
+   \hline
+ 80   &  118    & 130&     133 &    150 &    236  &25.71575 &0.7893591 & 0.5908937\\
+\hline
+\end{tabular}
+\end{table}
+
+The MLEs of the parameters, their SEs and the values of the statistics are
 listed in Table \ref{tab-ex2} for the previous distributions. By comparing the measures of these formal statistics,
 we conclude that the proposed distribution outperforms the rest of them.
 
@@ -483,7 +949,7 @@ we conclude that the proposed distribution outperforms the rest of them.
 Model & $a$ & $\theta$ & $\lambda$ & $\gamma$ &  $W^*$ & $A^*$   \\
 \hline
  & & & & &  \\
-MO-$\Gamma$-W$(a,\theta,\lambda,\gamma)$    &  9.629304 & 3.640779 & 6.260826 & 12.823429 &0.5093&  2.8076 \\
+MOGa-W$(a,\theta,\lambda,\gamma)$    &  9.629304 & 3.640779 & 6.260826 & 12.823429 &0.5093&  2.8076 \\
                                        &    (0.006217876) & (0.182495785) & (0.024446563) & (0.007965221)  && \\
 
  & & & & &  \\
@@ -530,9 +996,9 @@ KW-W$(a,\theta,\lambda,\gamma)$ &   7363.281 & 0.03925762 &  1.467640 &   0.6146
 \section{MATHEMATICAL PROPERTIES}\label{properties}
 
 
-In this section, some main mathematical properties are presented for the MO-$\Gamma$-G family
+In this section, some main mathematical properties are presented for the MOGa-G family
 based on a general linear representation for its density function, which are important
-to determine its mathematical properties from those of exponentiated-G (exp-G) distributions.
+to determine its mathematical properties from those of exponentiated-G (exp-G) distribution.
 
 \subsection{Linear Representation}
 
@@ -586,7 +1052,7 @@ is the Stirling polynomial, $H^{m}_{n+1}=(2n+1-m)H^{m}_{n} + (n-m+1)H^{m-1}_{n}$
 $H^0_0=1$, $H^{0}_{n+1}=1\times 3\times 5\times\cdots\times(2n+1)$ and $H^{n}_{n+1}=1$.
 
 By inserting \eqref{EXP33} in Equation \eqref{EXP44} and via a result for a power series raised to a positive integer (Gradshteyn and
-Ryzhik, 2000), the expansion for the cdf of the MO-$\Gamma$-G distribution reduces to
+Ryzhik, 2000), the expansion for the cdf of the MOGa-G distribution reduces to
 \begin{align*}
 F_{\text{MO}-\Gamma\text{-G}}(x)&=\sum_{i=0}^{\infty}\,w_{i}^{\text{MO-}\Gamma}\,G(x)^{(i+1)a}\,\left[\sum_{j=0}^{\infty}\,w_{j}^{\Gamma\text{-G}}\,G(x)^{j}\right]^{i+1}\\
 &=\sum_{i=0}^{\infty}\,w_{i}^{\text{MO-}\Gamma}\,G(x)^{(i+1)a}\,\sum_{j=0}^{\infty}\,c_{i+1,j}\,G(x)^{j} =\sum_{i,j=0}^\infty d_{i,j}\,\Pi_{(i+1)a+j}(x),
@@ -594,7 +1060,7 @@ F_{\text{MO}-\Gamma\text{-G}}(x)&=\sum_{i=0}^{\infty}\,w_{i}^{\text{MO-}\Gamma}\
 where $d_{i,j}=d_{i,j}(a,\theta)=w_{i}^{\text{MO-G}}\,c_{i+1,j}(a)$, $c_{i+1,0}(a)=(w_{0}^{\Gamma\text{-G}})^{i+1}$ and, for $m \ge 1$,
 $c_{i+1,m}(a)=\frac{1}{m w_{0}^{\Gamma\text{-G}}}\,\sum^{m}_{r=1}\,\left[r(i+2)-m\right]\,w_{r}^{\Gamma\text{-G}}\,c_{i+1,m-r}(a)$.
 
-By differentiating the last equation, the expansion for the MO-$\Gamma$-G density follows as
+By differentiating the last equation, the expansion for the MOGa-G density follows as
 \begin{equation}\label{lcom}
 f_{\text{MO}-\Gamma\text{-G}}(x)=\sum_{i,j=0}^\infty d_{i,j}\,\pi_{(i+1)a+j}(x).
 \end{equation}
@@ -606,10 +1072,12 @@ and those properties of the exp-G distribution. In most applications, the indice
 \subsection{Some quantities}
 
 Hereafter, let $T_{i,j}\sim$exp-G$[(i+1)a+j]$. The $n$th moment of $X$ can be obtained from (\ref{lcom}) as
+{\footnotesize
 \begin{eqnarray}\label{moment}
 \displaystyle
 \mu_n^{\prime}=E(X^n)=\sum_{i,j=0}^\infty d_{i,j}\,E(T_{i,j})=\sum_{i,j=0}^\infty \,[(i+1)a+j-1]\,d_{i,j}\,\tau[n,(i+1)a+j-1],
 \end{eqnarray}
+}
 where
 \begin{eqnarray*}
 \tau(n,a)=\int_{-\infty}^{\infty} x^n\,G(x)^{a}\,g(x)dx=\int_{0}^{1} Q_G(u)^n\,u^a d u.
@@ -624,17 +1092,19 @@ It follows easily as
 \end{eqnarray*}
 
 A general expansion for the moment generating function (MGF) $M(t)=E(\rm{e}^{t\,X})$ of $X$ can be expressed from (\ref{lcom})
+{\footnotesize
 \begin{eqnarray}\label{mgf}
 \displaystyle
 M(t)=\sum_{i,j=0}^{\infty} \,d_{i,j}\,M_{i,j}(t)=\sum_{i,j=0}^{\infty}\, [(i+1)a+j]\,d_{i,j}\,\rho(t,(i+1)a+j-1),
 \end{eqnarray}
+}
 where $M_{i,j}(t)$ is the MGF of $Y_{i,j}$ and
 \begin{eqnarray*}
 \rho(t,a)=\int_{-\infty}^{\infty}\,\rm{e}^{t x}\,G(x)^{a}\,g(x) dx=\int_{0}^{1}\exp\left\{t\,Q_G(u)\right\}\,u^a d u.
 \end{eqnarray*}
 
-The MGFs of many MO-$\Gamma$-G distributions can be determined from Equation (\ref{mgf}).
-For example, the generating function of the MO-$\Gamma$-exponential with parameter $\lambda$
+The MGFs of many MOGa-G distributions can be determined from Equation (\ref{mgf}).
+For example, the generating function of the MOGa-exponential with parameter $\lambda$
 (if $t<\lambda^{-1}$) is
 \begin{eqnarray*}
 \displaystyle
@@ -645,7 +1115,7 @@ For empirical purposes, the shape of many distributions can be usefully describe
 the incomplete moments. These moments play an important role for measuring
 inequa\-lity. For example, the mean deviations and Lorenz and Bonferroni curves depend upon the first incomplete moment of the distribution.
 The $n$th incomplete moment of $X$ can be expressed as
-{\small
+{\footnotesize
 \begin{eqnarray}\label{incomplete}
 \displaystyle
 \qquad
