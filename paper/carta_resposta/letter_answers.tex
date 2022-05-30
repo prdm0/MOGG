@@ -125,12 +125,14 @@ the applications, whereas for the simulations it is chosen the
 Dagum distribution. These choices should be clarified.
 
 \emph{Response}:
-{\color{red} Indeed, the way in which the application section was introduced suggests that a forced attempt was made to fit the $G\sim Weibull$ model as an adequate distribution to the datasets, thus clashing with the distribution considered in the simulations. To eliminate some ambiguity, we chose to extend the simulations studies, where we now also include the MOGa-Weibull distribution. 
+{\color{red} Indeed, the way in which the application section was introduced suggests that a forced attempt was made to fit the $G\sim Weibull$ model as an adequate distribution to the datasets, thus clashing with the distribution considered in the simulations. We chose to extend the simulation studies to eliminate some 
+ambiguity, where we now also include the MOGa-Weibull distribution. 
 
-Furthermore, the simulations of the MOGa-Dagum distribution were redone, considering that the current hardware is not 
+Furthermore, the simulations of the MOGa-Dagum distribution were redone by considering that the current hardware is not 
 the same as that one we used at the time of submission.
 
-The Monte-Carlo simulations were performed in parallel, using the package \textbf{parallel} of the \texttt{R} language, in which the pseudo-random number generator considered for a processing with thread division was the L'Ecuyer-CMRG (see \url{https://pubsonline.informs.org/doi/abs/10.1287/opre.47.1.159} and \url{https://pubsonline.informs.org/doi/abs/10.1287/opre.50.6.1073.358}. As this generator depends on a fixed seed and also on the number of threads, which in turn depends on the hardware used, this was the other reason that led us to redo all the simulations.}
+The Monte-Carlo simulations were performed in parallel using 
+the  \textbf{parallel-}package of the \texttt{R} language, in which the pseudo-random number generator considered for a processing with thread division was the L'Ecuyer-CMRG (see \url{https://pubsonline.informs.org/doi/abs/10.1287/opre.47.1.159} and \url{https://pubsonline.informs.org/doi/abs/10.1287/opre.50.6.1073.358}. As this generator depends on a fixed seed and also on the number of threads, which in turn depends on the hardware used, this was the other reason that led us to redo all the simulations.}
 
 4 -- As the Dagum distribution is used in the simulations, the generated PDF should also be in Table 1.
 
@@ -145,7 +147,7 @@ the comparisons.}
 
 \textcolor{red}{The \textbf{AdequacyModel} package was developed 
 by one of the authors of this paper and it was published at \url{https://journals .plos.org/plosone/article?id=10.1371/journal.pone.0221487}. 
-A code inspection of the \texttt{goodness.fit} function can be done by looking at the link   \href{https://github.com/prdm0/AdequacyModel/blob/master/R/goodness.fit.R}{link} on GitHub, where it is hosted the development versioning of the package.}
+A code inspection of the \texttt{goodness.fit} function can be done by looking at the    \href{https://github.com/prdm0/AdequacyModel/blob/master/R/goodness.fit.R}{link} on GitHub, where it is hosted the development versioning of the package.}
 
 \emph{Minor points:}
 
@@ -174,8 +176,7 @@ A code inspection of the \texttt{goodness.fit} function can be done by looking a
 
 \emph{Response}: \textcolor{red}{Done.}
 
-7 -- Figure 1: I suggest to change the lines to different types (even letting the colours as they are) so as to enable the interpretation 
-in a black and white print. Also, the letters assigned to the parameters must agree with those in Table 1 (and, eventually, with those in expression (3.1)).
+7 -- Figure 1: I suggest to change the lines to different types (even letting the colours as they are) so as to enable the interpretation in a black and white print. Also, the letters assigned to the parameters must agree with those in Table 1 (and, eventually, with those in expression (3.1)).
 
 \emph{Response}:
 \textcolor{red}{Thanks a lot for the suggestion. All changes have been made. In fact, in a black and white print, solid lines will not help to differentiate the graphics.}
@@ -203,7 +204,7 @@ in a black and white print. Also, the letters assigned to the parameters must ag
 13 -- I suggest to make the labels of Figure 1 and of tables in \LaTeX, not in \texttt{R}.
 
 \emph{Response}:
-\textcolor{red}{Thanks for the suggestion. This suggestion was implemented.}
+\textcolor{red}{Thanks for the suggestion. It was implemented.}
 
 14 -- The references ``R Core Team. \ldots{}'' and ``Rizzo, \ldots{}'' are in the wrong order.
 
@@ -235,7 +236,9 @@ suggest authors to create the state-of-art related to this topic in the first se
 
 4 - I expect to see more detailed discussion in the simulation study and real data analysis. Could you revise these sections, including the conclusion section that is actually weak?
 
-\emph{Response}: \textcolor{red}{Missing.}
+\emph{Response}: \textcolor{red}{We noticed the need to modify the simulations. So, we extended the simulations to the MOGa-Weibull family to be adopted in the data applications. We also add 
+the \texttt{R} code on GitHub (see \url{https://github.com/prdm0/MOGG}) for easy checking 
+and reuse by readers of the paper.}
 
 
 5 - Suggestions: (i) Rewrite the paper title since the current one is nothing enlightening. How about naming the proposed distribution?. (ii) Place section 6 (properties) before section 4 (simulation). (iii) Reorganize the presentation of the tables. (iv) Put the simulation code in Supplementary material.
@@ -248,7 +251,7 @@ suggest authors to create the state-of-art related to this topic in the first se
   \def\labelenumi{(\roman{enumi})}
   \tightlist
   \item
-    \textcolor{red}{Really, the title of the paper was no good. We changed to \textbf{The Marshall and Olkin-Gamma-G family of distributions: properties and applications}. We believe that the title now clarifies the paper's proposal better. It is worth mentioning that the new title is very consistent with the sequential application of the MO family to the baseline Gamma-G.}
+    \textcolor{red}{Really, the title of the paper was no good. Then, we changed to \textbf{``The Marshall and Olkin-Gamma-G family of distributions: properties and applications''}. We believe that the title now clarifies the paper's proposal better. It is worth mentioning that the new title is very consistent with the sequential application of the MO family to the baseline Gamma-G class.}
   \end{enumerate}
 \item
   \begin{enumerate}
@@ -273,7 +276,7 @@ suggest authors to create the state-of-art related to this topic in the first se
   \tightlist
   \item
     \textcolor{red}{Thanks for the suggestion. We chose to put the code for the simulations in a repository on GitHub. Thus, we considerably reduced the number of pages in the article and made it easier for readers of the material to reuse the code. With the code on GitHub it is also possible to verify the implementation and validate the simulations obtained. To access the codes, see the link 
-    \url{https://github.com/prdm0/MOGG/tree/master/code/simulations}}.
+    \url{https://github.com/prdm0/MOGG/tree/master/code/simulations}}.\\\\
   \end{enumerate}
 \end{itemize}
 
