@@ -17,6 +17,25 @@
 \usepackage{caption}
 \usepackage{subcaption}
 
+\usepackage{hyperref}
+\hypersetup{
+	pdftoolbar=true,        % show Acrobat’s toolbar?
+	pdfmenubar=true,        % show Acrobat’s menu?
+	pdffitwindow=true,     % window fit to page when opened
+	pdfstartview={FitH},    % fits the width of the page to the window
+	pdftitle={title},    % title
+	pdfauthor={Salvatore Mazzarino},     % author
+	pdfsubject={Subject},   % subject of the document
+	pdfcreator={Salvatore Mazzarino},   % creator of the document
+	pdfproducer={Salvatore Mazzarino}, % producer of the document
+	pdfkeywords={Green Networking} {Mobile Cloud} {Network Coding} {Energy}, % list of keywords
+	pdfnewwindow=true,      % links in new window
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=blue,          % color of internal links (change box color with linkbordercolor)
+	citecolor=blue,        % color of links to bibliography
+	filecolor=magenta,      % color of file links
+	urlcolor=magenta           % color of external links
+}
 \newcommand{\etn}{{\mbox{\boldmath $\eta$}}} 
 \hyphenation{ge-ne-ra-ted  hy-per-geo-me-tric  cha-rac-te-ri-ze}
  
@@ -32,9 +51,8 @@
 % \thepage-\pageref{LastPage}}}   % requires \usepackage{lastpage}
 
 \vspace{1.5cm}
-\title{\color{red}{The Marshall and Olkin-G and Gamma-G family of distributions: properties and applications
-	%\footnote{The opinions expressed in this text are those of the authors and do not necessarily reflect the views of any organization.}
-}}
+\title{The Marshall and Olkin-G and Gamma-G family of distributions: properties and applications}
+
 \renewcommand{\titleheading}
 {The MOGG family of distributions}  % --- on odd running heads
 
@@ -42,20 +60,20 @@
 	{Department of Statistics,
 		Federal University of Pernambuco,\\
         Pernambuco, Recife, Brazil
-		\ (maria@de.ufpe.br)}
+        \href{maria@de.ufpe.br}{maria@de.ufpe.br}}
 	\\
 	\authoraddress{Gauss M. Cordeiro \href{https://orcid.org/0000-0002-3052-6551}{\includegraphics[scale=0.08]{ORCID-iD_icon-128x128}}}
 	{Department of Statistics,
 		Federal University of Pernambuco,\\
 		Pernambuco, Recife, Brazil
-		\ (gauss@de.ufpe.br)}
+		\href{gauss@de.ufpe.br}{gauss@de.ufpe.br}}
 	\\
 	\authoraddress{Pedro Rafael D. Marinho \href{https://orcid.org/0000-0003-1591-8300}{\includegraphics[scale=0.08]{ORCID-iD_icon-128x128}}
 	\correspondingauthor}
 	{Department of Statistics,
 		Federal University of Paraíba,\\
 		Paraíba, João Pessoa, Brazil
-		\ (pedro.rafael.marinho@gmail.com)}
+		\href{pedro.rafael.marinho@gmail.com}{pedro.rafael.marinho@gmail.com}}
 }
 \renewcommand{\authorheading}
 {Maria do Carmo S. Lima, Gauss M. Cordeiro and Pedro Rafael D. Marinho, }  % --- on even running heads
@@ -74,7 +92,7 @@
 %-------------------------------------------------------------------------------
 \setpagewiselinenumbers
 \modulolinenumbers[1]
-\linenumbers
+%\linenumbers
 %%%%%%%%%%%%%%%%%%%%%%%%%% alteracao: Datas %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent
 ~~~~{\small{\sffamily Received:} December 2020 ~~~~~~{\sffamily Revised:} May 2022 ~~~~~~{\sffamily Accepted:} Month 0000}
@@ -104,33 +122,21 @@ Applications; distribution family; mathematical properties; simulations.
 
 \section{INTRODUCTION}
 
-\textcolor{red}{The advances in the field of Data Science requires the search for new fa\-milies of distributions that adequately model real data has been increasing steadily in the last years.  The construction of different generation methods and even generators of families has made it difficult to compare new proposals. In the midst of a huge set of existing families in the literature of new distributions, to find a proposal that is in fact an excellent competitor when compared to other existing ones, in terms of adjustment to real data sets and also that does not present estimation problems, is a major challenge.}
+The advances in the field of Data Science requires the search for new fa\-milies of distributions that adequately model real data has been increasing steadily in the last years.  The construction of different generation methods and even generators of families has made it difficult to compare new proposals. In the midst of a huge set of existing families in the literature of new distributions, to find a proposal that is in fact an excellent competitor when compared to other existing ones, in terms of adjustment to real data sets and also that does not present estimation problems, is a major challenge.
 
-\textcolor{red}{The classes of distributions in the early 1980s were based on the simple idea of adding parameters to a baseline distribution.} The mechanism by adding shape parameters to a baseline distribution has proved to be useful to make the 
-generated distributions more flexible especially for studying 
-tail properties than existing ones and for improving their goodness-of-fit statistics to real data. Many special 
-distributions in these families are discussed by Tahir and Nadarajah (2015).
+The classes of distributions in the early 1980s were based on the simple idea of adding parameters to a baseline distribution. The mechanism by adding shape parameters to a baseline distribution has proved to be useful to make the 
+generated distributions more flexible especially for studying  tail properties than existing ones and for improving their goodness-of-fit statistics to real data. Many special  distributions in these families are discussed by Tahir and Nadarajah (2015) \cite{Tahir}.
 
-\textcolor{red}{The addition of parameters in the construction of new distributions/families was improved by the inclusion of mathematical functions known in the literature, such as beta and gamma functions, for example, which produce new generators 
-with more flexible properties than their baselines. 
-Two well-known examples are the beta-G (Eugene et al., 2002) 
-and gamma-G (Zografos and Balakrishnan, 2009) generators.}
+The addition of parameters in the construction of new distributions/families was improved by the inclusion of mathematical functions known in the literature, such as beta and gamma functions, for example, which produce new generators with more flexible properties than their baselines. Two well-known examples are the beta-G (Eugene et al., 2002)  \cite{Eugene} and gamma-G (Zografos and Balakrishnan, 2009) \cite{Zografos} generators.
 
-\textcolor{red}{However, the inclusion of such functions for generating new families brought, in some cases, problems for parameter estimation. So, despite the fit being more suitable for some types of data and, therefore, having a superior performance when compared to other generators, the estimation process can 
-often be a problem.}
+However, the inclusion of such functions for generating new families brought, in some cases, problems for parameter estimation. So, despite the fit being more suitable for some types of data and, therefore, having a superior performance when compared to other generators, the estimation process can  often be a problem.
 
-\textcolor{red}{In this context, this work presents a new family obtained by composing a very competitive class in the literature with another class that has the gamma function in its structure.} 
+In this context, this work presents a new family obtained by composing a very competitive class in the literature with another class that has the gamma function in its structure.
 
-Let $G(x)$ be the cumulative distribution function (CDF) of a
-baseline distribution and $g(x)=dG(x)/dx$ be the corresponding  probability density function (PDF) depending on a
-parameter vector $\eta$. A generalized family is presented
-with two extra shape parameters by transforming the CDF $G(x)$
-according to two sequential important classes. 
-These classes, \textcolor{red}{called Marshall and Olkin-G
-and Gamma-G}, are important for modeling data in several areas,  \textcolor{red}{and they are reviewed below}. 
+Let $G(x)$ be the cumulative distribution function (CDF) of a baseline distribution and $g(x)=dG(x)/dx$ be the corresponding  probability density function (PDF) depending on a parameter vector $\eta$. A generalized family is presented with two extra shape parameters by transforming the CDF $G(x)$ according to two sequential important classes.  These classes, called Marshall and Olkin-G and Gamma-G, are important for modeling data in several areas,  and they are reviewed below. 
 
 
-The CDF of the Marshall and Olkin's (1997) ($\text{MO-G}$) 
+The CDF of the Marshall and Olkin's (1997) \cite{Marshall} ($\text{MO-G}$) 
 class (for $\theta>0$) is
 \begin{equation}\label{CDF_MO}
 F_{\text{MO-G}}(x)=\frac{G(x)}{\theta+(1-\theta)G(x)}=\frac{G(x)}{1-(1-\theta)[1-G(x)]},\quad x \in \mathbb{R}.
@@ -146,10 +152,7 @@ Equation \eqref{densityMO} represents the PDF of the minimum of $n$ iid random v
 where $N$ has a geometric distribution with probability parameters $\theta$ and $\theta^{-1}$ if $0<\theta<1$ and $\theta>1$, 
 respectively.
 
-Tahir and Nadarajah (2015, Table 2) presented thirty 
-distributions belonging to this family. It is easily generated 
-from the baseline quantile function (QF) by
-$Q_{\text{MO-G}}(u)=Q_{G}\left(\theta u / \left[\theta u+1-u\right]\right)$ for $u\in(0,1)$.
+Tahir and Nadarajah (2015, Table 2) \cite{Tahir} presented thirty  distributions belonging to this family. It is easily generated  from the baseline quantile function (QF) by $Q_{\text{MO-G}}(u)=Q_{G}\left(\theta u / \left[\theta u+1-u\right]\right)$ for $u\in(0,1)$.
 
 Marshall and Olkin considered the exponential and Weibull distributions for the baseline G and derived some
 structural properties of the generated distributions. 
@@ -157,7 +160,7 @@ If G is an exponential distribution, the special case
 refers to a two-parameter competitive model to the 
 Weibull and gamma distributions.
 
-The CDF of the gamma-G ($\Gamma$-G) class (Zografos and Balakrishnan, 2009) is
+The CDF of the gamma-G ($\Gamma$-G) class (Zografos and Balakrishnan, 2009) \cite{Zografos}  is
 \begin{eqnarray}\label{CDF_Ga}
 F_{\Gamma\text{-G}}(x)=\gamma_1\left( a, -\log \left[1-G(x)\right]\right), \quad x \in \mathbb{R},
 \end{eqnarray}
@@ -291,31 +294,26 @@ $Q^{-1}(a,1-w)$ are given in \url{http://functions.wolfram.com/GammaBetaErf/Inve
 
 \section{ESTIMATION}\label{estimation}
 
-The MOGa-G family can be fitted to real data using the {\bf AdequacyModel} package ({\color{red}Marinho et al., 2019}) 
-in the {\sf R} software. This packa\-ge does not require to 
-define the log-likelihood function, and it computes the MLEs, 
-their standard errors (SEs), and the formal statistics defined 
-in Section \ref{applications}. It is only necessary to provide the
-PDF and CDF of the distribution to be fitted to a data set.
+The MOGa-G family can be fitted to real data using the {\bf AdequacyModel} package (Marinho et al., 2019)  \cite{Marinho} in the {\sf R} software. This packa\-ge does not require to  define the log-likelihood function, and it computes the MLEs,  their standard errors (SEs), and the formal statistics defined  in Section \ref{applications}. It is only necessary to provide the PDF and CDF of the distribution to be fitted to a data set.
 
-For example, if $x_i$ is one observation from (\ref{PDF_MO-Gamma-G}) and $\etn$ is a $q$-parameter vector specifying $G(\cdot)$ \textcolor{red}{as the Weibull CDF}, the log-likelihood function for $\boldsymbol{\theta}^\top=(a,\theta,\etn^\top)$ from $n$ observations can be expressed as 
+For example, if $x_i$ is one observation from (\ref{PDF_MO-Gamma-G}) and $\etn$ is a $q$-parameter vector specifying $G(\cdot)$ as the Weibull CDF, the log-likelihood function for $\boldsymbol{\theta}^\top=(a,\theta,\etn^\top)$ from $n$ observations can be expressed as 
 \begin{align}\label{loglik}
-\ell (\boldsymbol{\theta})=&\,n\log (\theta)+n\log(\gamma)+n\, a\, \gamma \log(\lambda)+(a\gamma-1)\sum_{i=1}^n{\log(x_i)}-\lambda^\gamma\sum_{i=1}^n{\log(x_i)}\nonumber \\ &
+\ell (\boldsymbol{\theta})=&\,n\log (\theta)+n\log(\gamma)+n\, a\, \gamma \log(\lambda)+(a\gamma-1)\sum_{i=1}^n{\log(x_i)}-\lambda^\gamma\sum_{i=1}^n x_i^\gamma\nonumber \\ &
 -n\log[\Gamma(a)]-2\sum_{i=1}^n{\log\{\theta+(1-\theta)\gamma_1[a,(\lambda\,x_i)^\gamma]\}}.
 \end{align}
 
 Due to the impossibility of obtaining the MLEs in closed form, numerical methods to calculate the estimates that maximize $\ell(\cdot)$ are necessary. Several programming languages and statistical software provides functions and routines that make it easy to obtain numerical estimates by various interactive methods. In practice, these estimates are commonly found in this way, since the Newton and quasi-Newton methods produce satisfactory results under reasonable conditions of the object function, i.e., when they do not impose restrictions that disturb the convergence of 
 the algorithms.
 
-The {\bf AdequacyModel} package of the programming language {\sf R} is used to obtain the MLEs, see R Core Team (2020). This library, created and maintained by one of the authors of this paper,
+The {\bf AdequacyModel} package of the programming language {\sf R} is used to obtain the MLEs, see R Core Team (2020) \cite{Team}. This library, created and maintained by one of the authors of this paper,
 is widely cited by several works in statistics, and serves as 
 a basis for other library implementations available on the Comprehensive R Archive Network (CRAN). By using the goodness.fit function, it is possible to provide an implementation  
-of (\ref {PDF_MO-Gamma-G}), and obtain $\ell(\cdot)$ by returning the MLEs, and some measures of adequacy of fit. Further details regarding this package can be obtained from Marinho et al. (2019).
+of (\ref {PDF_MO-Gamma-G}), and obtain $\ell(\cdot)$ by returning the MLEs, and some measures of adequacy of fit. Further details regarding this package can be obtained from Marinho et al. (2019) \cite{Marinho}.
 
 
 \section{SIMULATIONS}\label{sec:simulation}
 
-{\color{red}Due to the probable absence of MLEs in closed-form for distributions belonging to the MOGa-G family, it is necessary to examine the precision of the estimates calculated numerically. 
+Due to the probable absence of MLEs in closed-form for distributions belonging to the MOGa-G family, it is necessary to examine the precision of the estimates calculated numerically. 
 
 In order to do that, the biases of the estimators of the 
 parameters of the MOGa-Dagum($\theta,a,\alpha,\beta,p$) and  MOGa-Weibull($\theta,a,\lambda,\gamma$) distributions 
@@ -334,7 +332,7 @@ and consequently requiring less time to complete.
 
 The simulations are performed on a computer with an Intel(R) Core(TM) i5-9500 CPU processor with 6 threads working at a maximum frequency of 3.00GHz, requiring, on this hardware, a time of 15.4828 hours to perform all simulations, 7.7414 hours for the MOGa-Dagum($\theta, a, \alpha, \beta, p$) distribution, 
 and 4.9688 hours for the MOGa-Weibull($\theta, a, \lambda, \gamma$) distribution. Tables \ref{tab:bias1} and  \ref{tab:bias2} 
-reveal that the average biases of the MLEs could be very small for $n>2,000$.}
+reveal that the average biases of the MLEs could be very small for $n>2,000$.
 
 To generate observations from the random variable $X$ with density $f$, the well-known Acceptance-Rejection Algorithm for 
 continuous random variables is very useful when the QF involves complex functions that can lead to some numerical inaccuracies. For doing this, another random variable $Y$ is chosen such that it can generate observations from a PDF $h$ with the same support as $f$. Then, the acceptance and rejection algorithm is defined by the following steps:
@@ -344,12 +342,12 @@ continuous random variables is very useful when the QF involves complex function
 	\item If $u < \frac{f(y)}{c\, g(y)}$, where $c$ is a real constant, accept $x=y$; otherwise reject $y$ as an outcome from $X$ and return to 1.
 \end{enumerate}
 
-The constant $c$ must be chosen in such a way that $\frac{f(y)}{c \,g (y)}\leq 1 $. Thus, to minimize the computational cost of generating observations from $X$ through the generated observations from $Y$, $c$ is chosen as the lowest possible value to maximize the likelihood of acceptance. Further details of this method can be found in Rizzo (2019).
+The constant $c$ must be chosen in such a way that $\frac{f(y)}{c \,g (y)}\leq 1 $. Thus, to minimize the computational cost of generating observations from $X$ through the generated observations from $Y$, $c$ is chosen as the lowest possible value to maximize the likelihood of acceptance. Further details of this method can be found in Rizzo (2019) \cite{Rizzo}.
 
 \begin{table}[H]
 \centering
-\caption{\textcolor{red}{Average biases of the MLEs of the MOGa-Dagum($\theta, a, \alpha, \beta, p$) distri\-bu\-tion 
-calculated by the BFGS method from simulations.}}\label{tab:bias1}
+\caption{Average biases of the MLEs of the MOGa-Dagum($\theta, a, \alpha, \beta, p$) distri\-bu\-tion 
+calculated by the BFGS method from simulations.}\label{tab:bias1}
 	\begin{tabular}{rrrrrrr}
 		\hline
 		$n$ & $B(\hat{\theta})$ & $B(\hat{a})$ & $B(\hat{\alpha})$ & $B(\hat{\beta})$ & $B(\hat{p})$ & Time (mins)\\
@@ -374,8 +372,8 @@ calculated by the BFGS method from simulations.}}\label{tab:bias1}
 
 \begin{table}[H]
 	\centering
-\caption{\textcolor{red}{Average biases of the MLEs of the MOGa-Weibull($\theta, a, \lambda, \gamma$) distribution calculated 
-by the BFGS method from simulations.}}\label{tab:bias2}
+\caption{Average biases of the MLEs of the MOGa-Weibull($\theta, a, \lambda, \gamma$) distribution calculated 
+by the BFGS method from simulations.}\label{tab:bias2}
 	\begin{tabular}{rrrrrr}
 		\hline
 		$n$ & $B(\hat{\theta})$ & $B(\hat{a})$ & $B(\hat{\lambda})$ & $B(\hat{\gamma})$ & Time (mins)\\
@@ -402,12 +400,12 @@ by the BFGS method from simulations.}}\label{tab:bias2}
 
 Two applications compare the MOGa-Weibull (MOGa-W for short) 
 model with seven extended Weibull distributions: the 
-beta-Weibull ($\beta$-W) (Famoye et al., 2005), 
-Kumaraswamy Weibull (Kw-W) (Cordeiro et al., 2010), 
-Marshall-Olkin Weibull (MO-W) (Ahmed et al., 2017), 
-Marshall-Olkin Extended Weibull (MOE-W) (Cordeiro et al., 2019), exponentiated Weibull (exp-W) (Mudholkar and Srivastava, 1993), gamma Weibull ($\Gamma$-W) (Cordeiro et al., 2016), 
+beta-Weibull ($\beta$-W) (Famoye et al., 2005) \cite{Famoye}, 
+Kumaraswamy Weibull (Kw-W) (Cordeiro et al., 2010) \cite{Cordeiro_2010}, 
+Marshall-Olkin Weibull (MO-W) (Ahmed et al., 2017) \cite{Ahmad}, 
+Marshall-Olkin Extended Weibull (MOE-W) (Cordeiro et al., 2019) \cite{Cordeiro_2019}, exponentiated Weibull (exp-W) (Mudholkar and Srivastava, 1993) \cite{Mudholkar}, gamma Weibull ($\Gamma$-W) (Cordeiro et al., 2016) \cite{Cordeiro_2016}, 
 and exponentiated generalized Weibull 
-(EG-W) (Oguntunde et al., 2015) (with $a=1$). Some of 
+(EG-W) (Oguntunde et al., 2015) \cite{Oguntunde} (with $a=1$). Some of 
 these distributions are widely used in practice.
 
 The log-likelihood for $\boldsymbol{\theta}$ from the MOGa-W distribution from one observa\-tion can be expressed as 
@@ -449,8 +447,8 @@ A=\log\left[(\lambda  x)^{\gamma }\right] \,\gamma_1 \left[a,(\lambda x)^{\gamma
 and $G^{m,n}_{p,q}\,\left(z \Big{|}	\stackrel{a_{1},\ldots,a_{p}}{b_{1},\ldots,b_{q}}\right)$ is the Meijer G function.
 
 The {\bf AdequacyModel} package is used to fit the 
-previous distributions to two real data sets. The SANN method, which is a variant of simulated annealing algorithm (Belisle, 1992), is used here. The distributions are compared 
-via the Anderson Darling (A$^{*}$) and Cram\'er Von Mises (W$^{*}$) statistics reported in the {\tt goodness.fit} function.
+previous distributions to two real data sets. The SANN method, which is a variant of simulated annealing algorithm (Belisle, 1992) \cite{Belisle}, is used here. The distributions are compared 
+via the Anderson Darling (A$^{*}$) and Cram\'er von Mises (W$^{*}$) statistics reported in the {\tt goodness.fit} function.
 
 For the first case, the {\bf betareg} package is applied to a modification of the ``FoodExpenditure'' data, which refer to 
 the proportions of income spent on food for 38 households 
@@ -459,21 +457,21 @@ in a large US city (according to the package information). The household expendi
 data = FoodExpenditure_{food} / \#(FoodExpenditure_{food}),
 \end{eqnarray*}
 where $FoodExpenditure_{food}$ is the random variable 
-corresponding to the household expenditures for food, and $\#(\cdot)$ indicates the number of observations on this variable. \textcolor{red}{The observations for the first data set are given bellow:\\
+corresponding to the household expenditures for food, and $\#(\cdot)$ indicates the number of observations on this variable. The observations for the first data set are given bellow:\\
   0.4210000, 0.4382105, 0.5721316, 0.1955526, 0.2758158, 0.3565263,
   0.6120000, 0.4730526, 0.3726579, 0.2322368, 0.3732632, 0.5158947,
   0.3612632, 0.5563421, 0.4591053, 0.2533947, 0.3685526, 0.2410526,
   0.4955526, 0.2010789, 0.3653158, 0.2544737, 0.5685263, 0.2859474,
   0.7626316, 0.2863684, 0.4884474, 0.3060263, 0.4754474, 0.3826053,
   0.5050526, 0.6820526, 0.7587632, 0.4176053, 0.3923684, 0.2513158,
-  0.6070000, 0.3881842.}
+  0.6070000, 0.3881842.
   
-\textcolor{red}{Some descriptive statistics are reported in Table \ref{tabds}. The minimum value refers to a family of 3 people and income of 39,151, which does not represent the lowest family 
+Some descriptive statistics are reported in Table \ref{tabds}. The minimum value refers to a family of 3 people and income of 39,151, which does not represent the lowest family 
 income for the current data, as expected, occupying only the 
-fifth position among those with the lowest income. The maximum value corresponds to a family of 6 people with an income of 69,929, the second-largest number among the number of people per family in the group in question. Furthermore, we can note that the current data  present positive asymmetry and negative kurtosis.}
+fifth position among those with the lowest income. The maximum value corresponds to a family of 6 people with an income of 69,929, the second-largest number among the number of people per family in the group in question. Furthermore, we can note that the current data  present positive asymmetry and negative kurtosis.
 
-\textcolor{red}{In addition, the standard deviation is relatively low. Figure \ref{ttt} displays the total time on test (TTT) plot for the first data set, which shows that the failure function is decreasing. So, the MOGa-W distribution is appropriate to fit 
-these data, since its  hazard function presents this shape (see,  Figure \ref{fig:hazard}).}
+In addition, the standard deviation is relatively low. Figure \ref{ttt} displays the total time on test (TTT) plot for the first data set, which shows that the failure function is decreasing. So, the MOGa-W distribution is appropriate to fit 
+these data, since its  hazard function presents this shape (see,  Figure \ref{fig:hazard}).
 
 
 \begin{table}[H] 
@@ -550,9 +548,7 @@ $\gamma$-W$(a,\lambda,\gamma)$    & 5.7515  & - &  10.0000 & 1.2087&  0.0879 & 0
 \end{tabular}}
 \end{table}
 
-A data set collected in a pilot study about hypertension in the Dominican Republic in 1997 refers to the second application. The observations are the systolic blood pressure of persons who 
-came to medical clinics in several villages for a variety of complaints. 
-\textcolor{red}{The observations for the data set in question are:} 
+A data set collected in a pilot study about hypertension in the Dominican Republic in 1997 refers to the second application. The observations are the systolic blood pressure of persons who came to medical clinics in several villages for a variety of complaints. The observations for the data set in question are:
          150,
          120,
          120,
@@ -937,14 +933,12 @@ came to medical clinics in several villages for a variety of complaints.
 
 
 
-\textcolor{red}{Table \ref{tabds2} provides the descriptive statistics for the second data set. Consi\-dering that the systolic blood pressure represents the highest number presented in the pressure measuring equipment, the maximum (236) found in this 
-table should represent an individual with serious heart problems. This is due to the fact that the normal systolic pressure is 120.} 
+Table \ref{tabds2} provides the descriptive statistics for the second data set. Consi\-dering that the systolic blood pressure represents the highest number presented in the pressure measuring equipment, the maximum (236) found in this 
+table should represent an individual with serious heart problems. This is due to the fact that the normal systolic pressure is 120.
  
- \textcolor{red}{The minimum value (80) should be for 
- an individual who probably suffers from low blood pressure. Also note that the data set has positive skewness. This indicates that few people have high pressure values and, in this case, the mode is 120, which represents a good value for systolic pressure.}
+The minimum value (80) should be for an individual who probably suffers from low blood pressure. Also note that the data set has positive skewness. This indicates that few people have high pressure values and, in this case, the mode is 120, which represents a good value for systolic pressure.
 
- \textcolor{red}{Figure \ref{ttt2} provides the TTT plot 
- for the second clinic data, which shows that the hazard function is decreasing, thus supporting the MOGa-W model.}
+Figure \ref{ttt2} provides the TTT plot for the second clinic data, which shows that the hazard function is decreasing, thus supporting the MOGa-W model.
 
 \begin{figure}[H]
 \begin{center}
@@ -1041,9 +1035,9 @@ cited more than seventy papers on exponentiated distributions
 in their Table 1.
 
 First, the CDF of the MO-G distribution (\ref{densityMO}) 
-admits the linear representation (Barreto-Souza et al., 2013)
+admits the linear representation (Barreto-Souza et al., 2013) \cite{Barreto-Souza}
 \begin{equation}
-F_{\text{MO}-\Gamma}(x)
+F_{\text{MO}-\Gamma}(x) 
 \,=\,
 \sum^{\infty}_{i=0}\,w_i^{\text{MO-G}}\,\Pi_{i+1}(x)\,=\,\sum^{\infty}_{i=0}\,w_i^{\text{MO-G}}\,G(x)^{i+1},
 \label{EXP44}
@@ -1058,8 +1052,7 @@ w_i^{\text{MO}-\Gamma}=w_i^{\text{MO}-\Gamma}(\theta) =
 \]
 and $\bar{\theta}=1-\theta$.
 
-Second, the linear combination for the $\Gamma\text{-G}$ cumulative distribution (\ref{PDF_Ga}) follows from Castellares and 
-Lemonte (2015) as
+Second, the linear combination for the $\Gamma\text{-G}$ cumulative distribution (\ref{PDF_Ga}) follows from Castellares and Lemonte (2015) \cite{Castellares} as
 \begin{equation}\label{EXP33}
 F_{\Gamma\text{-G}}(x)\,=\,\sum_{j=0}^\infty w_{j}^{\Gamma\text{-G}}\,\,\Pi_{a+j}(x).
 \end{equation}
@@ -1081,8 +1074,7 @@ and
 is the Stirling polynomial, $H^{m}_{n+1}=(2n+1-m)H^{m}_{n} + (n-m+1)H^{m-1}_{n}$ is a positive integer,
 $H^0_0=1$, $H^{0}_{n+1}=1\times 3\times 5\times\cdots\times(2n+1)$ and $H^{n}_{n+1}=1$.
 
-By inserting \eqref{EXP33} in Equation \eqref{EXP44} and via a result for a power series raised to a positive integer (Gradshteyn and
-Ryzhik, 2000), the expansion for the cdf of the MOGa-G distribution reduces to
+By inserting \eqref{EXP33} in Equation \eqref{EXP44} and via a result for a power series raised to a positive integer (Gradshteyn and Ryzhik, 2000) \cite{Gradshteyn}, the expansion for the cdf of the MOGa-G distribution reduces to
 \begin{align*}
 F_{\text{MO}-\Gamma\text{-G}}(x)&=\sum_{i=0}^{\infty}\,w_{i}^{\text{MO-}\Gamma}\,G(x)^{(i+1)a}\,\left[\sum_{j=0}^{\infty}\,w_{j}^{\Gamma\text{-G}}\,G(x)^{j}\right]^{i+1}\\
 &=\sum_{i=0}^{\infty}\,w_{i}^{\text{MO-}\Gamma}\,G(x)^{(i+1)a}\,\sum_{j=0}^{\infty}\,c_{i+1,j}\,G(x)^{j} =\sum_{i,j=0}^\infty d_{i,j}\,\Pi_{(i+1)a+j}(x),
@@ -1161,160 +1153,41 @@ A new family of distributions called the Marshall and Olkin-Gamma-G family with 
 
 \begin{thebibliography}{8}
 
-\item
-M.H. Tahir, S. Nadarajah:
-Parameter induction in continuous univariate distributions: Well-established G families.
-Anais da Academia Brasileira de Ci\^{e}ncias {\bf 87} 539-568 (2015).
+\bibitem{Tahir} Tahir, M. H., Nadarajah, S. (2015).  Parameter induction in continuous univariate distributions: Well-established G families. \textit{Anais da Academia Brasileira de Ciências}, {\bf 87}, 539--568.
 
-\item
-A.W. Marshall, I. Olkin:
-A new method for adding a parameter to a family of distributions with
-application to the exponential and Weibull families.
-Biometrika {\bf 84} 641-652 (1997).
+\bibitem{Eugene} Eugene, N., Lee, C.,  Famoye, F. (2002). Beta-normal distribution and its applications. \textit{Communications in Statistics-Theory and methods}, {\bf 31}, 4, 497--512.
 
-\item
-K. Zografos, N. Balakrishnan:
-On families of beta-and generalized gamma-generated distribution and
-associate inference.  Statistical Methodology {\bf 6} 344-362 (2009).
+\bibitem{Zografos} Zografos, K., Balakrishnan, N. (2009). On families of beta-and generalized gamma-generated distributions and associated inference. \textit{Statistical methodology}, {\bf 6}, 4, 344--362.
 
-\item
-N. Eugene, C. Lee, F. Famoye:
-Beta-normal distribution and its applications.
-Communications in Statistics -- Theory and Methods {\bf 31} 497-512 (2002).
+\bibitem{Marshall} Marshall, A. W.,  Olkin, I. (1997).  A new method for adding a parameter to a family of distributions with application to the exponential and Weibull families. \textit{Biometrika}, {\bf 84}, 3, 641--652.
 
-\item 
-P. R. D. Marinho,  R. B. Silva,  M. Bourguignon, G. M. Cordeiro,  S. Nadarajah. AdequacyModel: An R package for probability distributions and general purpose optimization. PloS one, {\bf 14}, e0221487 (2019).
+\bibitem{Marinho} Marinho, P. R. D., Silva, R. B., Bourguignon, M., Cordeiro, G. M.,  Nadarajah, S. (2019). AdequacyModel: An R package for probability distributions and general purpose optimization. \textit{PloS one}, {\bf 14}, 8, e0221487.
 
-\item
-R Core Team. R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL
-\url{https://www.R-project.org/} (2022).
+\bibitem{Team} Team, R. C. (2022). R: A language and environment for statistical computing. \textit{R Foundation for Statistical Computing}, Vienna, Austria. \url{http://www. R-project. org/}.
 
-\item 
-F. Famoye, C. Lee and O. Olumolade: The beta-Weibull distribution. Journal of Statistical Theory and Applications {\bf4} 121-136 (2005).
+\bibitem{Rizzo} Rizzo, Maria L. (2019). Statistical computing with R. \textit{CRC Press}.
 
-\item G.M. Cordeiro, E. M. M. Ortega and S. Nadarajah: The Kumaraswamy Weibull distribution with application to failure data {\bf 347} \url{https://doi.org/10.1016/j.jfranklin.2010.06.010} (2010).
+\bibitem{Famoye} Famoye, F., Lee, C., Olumolade, O. (2005). The beta-Weibull distribution. \textit{Journal of Statistical Theory and Applications}, {\bf 4}, 2, 121--136.
 
-\item 
-H. H. Ahmed, O. M. Bdair and M. Ahsanullah: On Marshall-Olkin Extended Weibull Distribution \textbf{16} 1-17 (2017).
+\bibitem{Cordeiro_2010} Cordeiro, G. M., Ortega, E. M., Nadarajah, S. (2010). The Kumaraswamy Weibull distribution with application to failure data. \textit{Journal of the Franklin Institute}, {\bf 347}, 8, 1399--1429.
 
-\item 
-G. S. Mudholkar and D. K. Srivastava: Exponentiated Weibull Family for Analyzing Bathtub Failure-Rate Data IEEE Transactions on Reliability \textbf{42} 299-302 \url{http://dx.doi.org/10.1109/24.229504} (1993)
+\bibitem{Ahmad} Ahmad, H. H., Bdair, O. M., Ahsanullah, M.,  Ahsanullah, M. (2017). On Marshall-Olkin Extended Weibull Distribution. \textit{J. Stat. Theory Appl.}, {\bf 16}, 1, 1--17.
 
-\item 
-G. M. Cordeiro, M. C. S. Lima, A. E. Gomes, C. Q. da Silva and E. M. M. Ortega: The gamma extended Weibull distribution Journal of Statistical Distributions and Applications Berlim \textbf{3} 1-19 (2016).
+\bibitem{Cordeiro_2019} Cordeiro, G. M., Prataviera, F., do Carmo S Lima, M., Ortega, E. M. (2019). The Marshall-Olkin extended flexible Weibull regression model for censored lifetime data. \textit{Model Assisted Statistics and Applications}, {\bf 14}, 1, 1--17.
 
-\item 
-P. Oguntunde, O. Odetunmibi and A. O. Adejumo On the Exponentiated Generalized Weibull Distribution: A Generalization of the Weibull Distribution Indian Journal of Science and Technology \textbf{8} DOI: 10.17485/ijst/2015/v8i35/67611 (2015).
+\bibitem{Mudholkar} Mudholkar, G. S., Srivastava, D. K. (1993). Exponentiated Weibull family for analyzing bathtub failure-rate data. \textit{IEEE transactions on reliability}, {\bf 42}, 2, 299--302.
 
-\item C. J. P. Belisle: Convergence theorems for a class of simulated annealing algorithms on Rd J Applied Probability \textbf{29} 885-895 1992.
+\bibitem{Cordeiro_2016} Cordeiro, G. M., Maria do Carmo, S. L., Gomes, A. E., da-Silva, C. Q.,  Ortega, E. M. (2016). The gamma extended Weibull distribution. \textit{Journal of Statistical Distributions and Applications}, {\bf 3}, 1, 1--19.
 
-\item
-W. Barreto-Souza, A.J. Lemonte, G.M. Cordeiro:
-General results for the Marshall and Olkin's family of distributions.
-Anais da Academia Brasileira de Ci\^{e}ncias {\bf 85} 3-21 (2013).
+\bibitem{Oguntunde} Oguntunde, P. E., Odetunmibi, O. A., Adejumo, A. O. (2015). On the exponentiated generalized Weibull distribution: A generalization of the Weibull distribution. \textit{Indian Journal of Science and Technology}, {\bf 8}, 35, 1--7.
 
-\item
-F. Castellares, A.J. Lemonte:
-A new generalized Weibull distribution gene\-rated by gamma random variables.
-Journal of the Egyptian Mathematical Society {\bf 23} 382-390 (2015).
+\bibitem{Belisle} Bélisle, C. J. (1992). Convergence theorems for a class of simulated annealing algorithms on Rd. \textit{Journal of Applied Probability}, {\bf 29}, 4, 885--895.
 
-\item
-Gradshteyn IS, Ryzhik IM: Table of Integrals, Series and Products. Sixth edition. San Diego: Academic Press (2000).
+\bibitem{Barreto-Souza} Barreto-Souza, W., Lemonte, A. J.,  Cordeiro, G. M. (2013). General results for the Marshall and Olkin's family of distributions. \textit{Anais da Academia Brasileira de Ciências}, {\bf 85}, 1, 3--21.
 
-%\item
-%A. Alzaatreh, F. Famoye, C. Lee:
-%A new method for generating families of continuous distributions.
-%Metron {\bf 71}(1) 63-79 (2013).
+\bibitem{Castellares} Castellares, F., Lemonte, A. J. (2015). A new generalized Weibull distribution generated by gamma random variables. \textit{Journal of the Egyptian Mathematical Society}, {\bf 23}, 2, 382--390.
 
-
-%\item
-%Z.W. Birnbaum, S.C. Saunders:
-%A new family of life distributions.
-%Journal of Applied Probability {\bf 6}(2) 319-327 (1969).
-
-
-%\item
-%G.M. Cordeiro, M. de Castro:
-%A new family of generalized distributions.
-%Journal of Statistical Computation and Simulation {\bf 81}(7) 883-898 (2011).
-
-
-
-%\item
-%R.C. Gupta, R.D. Gupta, P.L. Gupta:
-%Modeling failure time data by Lehmann alternatives.
-%Communications in Statistics -- Theory and Methods {\bf 27}(4) 887-904 (1998).
-
-%\item
-%R.D. Gupta, D. Kundu:
-%Exponentiated exponential family: an alternative to gamma and Weibull distributions.
-%Biometrical Journal {\bf 43}(1) 117-130 (2001).
-
-
-%\item
-%P. Kumaraswamy:
-%Generalized probability density-function for double-bounded
-%random-processes. Journal of Hydrology {\bf 46}(1-2) 79-88 (1980).
-
-%\item
-%A.J. Lemonte, G.M. Cordeiro, G. Moreno-Arenas:
-%A new useful three-parameter extension of the exponential distribution.
-%Statistics {\bf 50}(2) 312-337 (2016).
-
-
-%\item
-%G.S. Mudholkar, D.K. Srivastava:
-%The exponentiated Weibull family: a reanalysis of the bus-motor-failure data.
-%Technometrics {\bf 37}(4) 436-445 (1995).
-
-
-%\item
-%S. Nadarajah, G.M. Cordeiro, E.M.M. Ortega:
-%Some general results for the beta-modified Weibull distribution.
-%Journal of Statistical Computation and Simulation {\bf 81}(10) 1211-1232 (2011).
-
-%\item
-%S. Nadarajah, G.M. Cordeiro, E.M.M. Ortega:
-%General results for the Kumaraswamy G distribution.
-%Journal of Statistical Computation and Simulation {\bf 87}(7) 951-979 (2012).
-
-%\item
-%S. Nadarajah, A.K. Gupta:
-%The exponentiated gamma distribution with application to drought data.
-%Calcutta Statistical Association Bulletin {\bf 59}(1-2) 29-54 (2007).
-
-%\item
-%S. Nadarajah, F. Haghighi:
-%An extension of the exponential distribution.
-%Statistics {\bf 45}(6) 543-558 (2011).
-
-%\item
-%S. Nadarajah, S. Kotz:
-%The exponentiated-type distributions.
-%Acta Applicandae Mathematicae {\bf 92}(2) 97-111 (2006).
-
-%\item
-%M.D. Nichols, W.J. Padgett:
-%A Bootstrap control chart for Weibull percentiles.
-%Quality and Reliability Engineering International {\bf 22}(2) 141-151 (2006).
-
-%\item
-%F. Proschan:
-%Theoretical explanation of observed decreasing failure rate.
-%Technometrics {\bf 5}(3) 375-383 (1963).
-
-%\item
-%M.M. Risti\'{c}, N. Balakrishnan:
-%The gamma-exponentiated exponential distribution.
-%Journal of Statistical Computation and Simulation {\bf 82}(8) 1191-1206 (2012).
-
-%\item
-%E.W. Stacy: A Generalization of the Gamma Distribution. Annals of Mathematical Statistics {\bf 33}(3) 1187-1192 (1962).
-
-
-\item 
-Rizzo, Maria L. Statistical computing with R. CRC Press (2019).
-
+\bibitem{Gradshteyn} Gradshteyn, I. S.,  Ryzhik, I. M. (2014). Table of integrals, series, and products. \textit{Academic press}.
 \end{thebibliography}
 
 
